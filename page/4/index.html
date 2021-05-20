@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://jsxhill.github.io/blog/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-homebrew使用指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/10/29/homebrew%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="article-date">
+  <time class="dt-published" datetime="2019-10-29T04:31:52.000Z" itemprop="datePublished">2019-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/10/29/homebrew%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">homebrew使用指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="homebrew是什么"><a href="#homebrew是什么" class="headerlink" title="homebrew是什么"></a>homebrew是什么</h2><p>mac上的软件包管理器。</p>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装homebrew</span></span><br><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br><span class="line"><span class="comment"># 卸载homebrew</span></span><br><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>一开始在使用brew时，会遇到权限问题。因为brew install需要向系统目录/usr/local写入文件，而普通操作用户是没有相关权限的。<br>High Sierra之前的版本可以通过sudo chown -R $(whoami) /usr/local解决。<br>之后的版本因为Mac系统的限制，/usr/local无法被直接chown，权限问题只能通过卸载/重装homebrew解决（参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46459152/cant-chown-usr-local-for-homebrew-in-osx-10-13-high-sierra">cant-chown-usr-local-for-homebrew-in-osx-10-13-high-sierra</a>）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装formula</span></span><br><span class="line">brew install &lt;formula&gt;</span><br><span class="line"><span class="comment"># 卸载formula</span></span><br><span class="line">brew uninstall &lt;formula&gt;</span><br><span class="line"><span class="comment"># 源上搜索formula</span></span><br><span class="line">brew search &lt;formula&gt;</span><br><span class="line"><span class="comment"># 查看已安装的formula</span></span><br><span class="line">brew list</span><br><span class="line"><span class="comment"># 删除缓存/历史文件</span></span><br><span class="line">brew cleanup &lt;formula&gt;</span><br><span class="line"><span class="comment"># 查看可更新的formula</span></span><br><span class="line">brew outdated</span><br><span class="line"><span class="comment"># 更新formula</span></span><br><span class="line">brew upgrade &lt;formula&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用国内镜像"><a href="#使用国内镜像" class="headerlink" title="使用国内镜像"></a>使用国内镜像</h2><p>homebrew资源有两种，一是位于github上的repo，二是位于<a target="_blank" rel="noopener" href="https://bintray.com/">bintray</a>上的二进制bottles。国内访问这两个站点都是非常慢的，因此最好替换为国内镜像。</p>
+<p>配置可以参考<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/homebrew/">清华大学Homebrew镜像使用帮助</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 替换</span></span><br><span class="line">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"><span class="comment"># 还原</span></span><br><span class="line">git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"><span class="comment"># 更新brew</span></span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
+
+<h2 id="brew-cast"><a href="#brew-cast" class="headerlink" title="brew cast"></a>brew cast</h2><p>brew cast主要用来安装一些带界面的应用软件，类似安装App应用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/10/29/homebrew%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-id="ckowi50fp001udvrv95cd63a6" data-title="homebrew使用指南" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-babel7核心概念" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/10/23/babel7%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time class="dt-published" datetime="2019-10-23T03:31:20.000Z" itemprop="datePublished">2019-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/10/23/babel7%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">babel7核心概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是babel"><a href="#什么是babel" class="headerlink" title="什么是babel"></a>什么是babel</h2><p>babel是一个能将es6+代码转换为功能等价的es5代码的工具。使得开发人员即使工作在较老的js环境，也能享受到新特性带来的好处。也可以让开发者提前体验实验特性（未加入到浏览器）。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>babel具体的语法转换功能是由插件实现的，一种插件对应一种语法转换。比如@babel/plugin-transform-arrow-functions负责将箭头函数转为es5函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in </span></span><br><span class="line"><span class="keyword">const</span> double = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].map(<span class="function">(<span class="params">num</span>) =&gt;</span> num * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="keyword">const</span> double = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="CLI配置"><a href="#CLI配置" class="headerlink" title="CLI配置"></a>CLI配置</h3><p>通过cmd options传递配置项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel --plugins @babel/plugin-transform-arrow-functions script.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件配置"><a href="#文件配置" class="headerlink" title="文件配置"></a>文件配置</h3><p>babel支持多种配置文件：<br>.babelrc 静态配置<br>.babelrc.js 支持编程<br>babel.config.js<br>babel.config.json<br>babel.config.json5<br>babel.config.cjs 模块模式下使用</p>
+<h4 id="项目级配置"><a href="#项目级配置" class="headerlink" title="项目级配置"></a>项目级配置</h4><p>自babel7开始，支持在项目根路径下添加配置文件作为projectConfig。projectConfig对该项目下的所有babel作业有效，但是它的优先级较低，可以视为defaultConfig。</p>
+<h4 id="文件级配置"><a href="#文件级配置" class="headerlink" title="文件级配置"></a>文件级配置</h4><p>文件级配置的查找逻辑是：</p>
+<ol>
+<li>从filename选项所在目录开始查找.babelrc文件。</li>
+<li>如果所在目录没有，则继续向上查找.babelrc文件。</li>
+<li>如果遇到包含package.json文件或者超出babelrcRoot指定的目录范围，则停止查找。<br>如果存在文件级配置，那么它会跟projectConfig合并，生成新的配置对象，从而实现不同的子目录拥有不同的babel配置。</li>
+</ol>
+<h3 id="API配置"><a href="#API配置" class="headerlink" title="API配置"></a>API配置</h3><p>以编程的方式传递配置项（优先级高于文件配置）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@babel/core&quot;</span>).transform(<span class="string">&quot;code&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="string">&quot;@babel/plugin-transform-arrow-functions&quot;</span>]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h3><p>babel不仅仅要解决语法转换问题（比如class关键字），还要解决jsApi兼容问题（比如IE浏览器不支持Promise对象）。polyfill的作用就是为当前环境打补丁，使其支持不兼容的jsApi。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel6</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@babel/polyfill&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// babel7，废弃@babel/polyfill，直接使用</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/stable&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;regenerator-runtime/runtime&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>babel6以前是使用@babel/polyfill，其内部会使用core-js2（core-js是专注于es6+polyfill的库）。<br>babel7以后做了优化，最好直接引用<a target="_blank" rel="noopener" href="https://juejin.im/post/5ce693b45188252db303ff23">core-js3</a>（@babel/polyfill与core-js3不兼容），原因如下：<br>1.core-js2已停止维护，部分以及未来的es6+特性只有core-js3才支持。<br>2.core-js3修复了一些历史bug，移除了一些已被废弃的api。<br>3.core-js3分包更灵活（具体可参阅<a target="_blank" rel="noopener" href="https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md">core-js@3, babel and a look into the future</a>），配合babel可以加载更小的包。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比如，缩小范围，只polyfill跟array、math相关的特性</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/es/array&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/proposals/math-extensions&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>值得一提的是，尽管core-js3按需加载做的很强大，但是其体积仍然不容小觑。以常见的Vue + Webpack4项目为例，如果要兼容IE，core-js大概在50kb（minify）左右。</p>
+<h3 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="babel-plugin-transform-runtime"></a>babel-plugin-transform-runtime</h3><p>babel polyfill可以解决api兼容性问题，但是它也“污染”了全局环境（修改built-ins对象、添加新的全局对象等等）。如果你无法掌控环境的话（比如开发一个库），这可能是个问题。[babel-plugin-transform-runtime][#babel-plugin-transform-runtime]能够帮助你创建一个沙盒环境，从而允许局部引入Symbol、Promise、Set、Generator等es6+新特性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="built_in">Promise</span>.resolve()</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="keyword">import</span> _Promise <span class="keyword">from</span> <span class="string">&quot;@babel/runtime-corejs3/core-js-stable/promise&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> promise = _Promise.resolve();</span><br></pre></td></tr></table></figure>
+
+<p>除了es6+新特性之外,plugin-transform-runtime还可以将babel内部使用的helper函数抽离到一个单独的module。跟默认的inline转换相比，可以节省一些代码体积。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out - usually</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_classCallCheck</span>(<span class="params">instance, Constructor</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!(instance <span class="keyword">instanceof</span> Constructor)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&quot;Cannot call a class as a function&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    _classCallCheck(<span class="built_in">this</span>, Person);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out - plugin-transform-runtime</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _classCallCheck2 = <span class="built_in">require</span>(<span class="string">&quot;@babel/runtime/helpers/classCallCheck&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> _classCallCheck3 = _interopRequireDefault(_classCallCheck2);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_interopRequireDefault</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : &#123; <span class="attr">default</span>: obj &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    (<span class="number">0</span>, _classCallCheck3.default)(<span class="built_in">this</span>, Person);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>总结一下，babel-plugin-transform-runtime提供3种转换（都不会污染全局环境）：</p>
+<ol>
+<li>regenerator aliasing，支持生成器函数；</li>
+<li>corejs aliasing，支持其它es6+特性，比如Promise/Symbol/Set（需开启corejs选项并安装对应的@babel/runtime-corejsX）；</li>
+<li>helper aliasing，抽离helper函数到独立的module；</li>
+</ol>
+<h2 id="preset"><a href="#preset" class="headerlink" title="preset"></a>preset</h2><p>preset是babel预设的插件集合，设置preset就相当于引入该preset下的所有插件。<br>常见的presets有es2015、stage-0、stage-1、stage-2、stage-3、env等等。每类preset都有自己的插件筛选逻辑，比如es2015包含所有es6特性；stage-3包含<a target="_blank" rel="noopener" href="https://tc39.es/process-document/">TC39</a>中的Candidate类特性（ps:stage-x是半开区间。比如stage-1，除了自身还包含所有来自stage-2、stage-3的插件）。<br>env比较特殊下面会单独叙述。</p>
+<h3 id="babel-preset-env"><a href="#babel-preset-env" class="headerlink" title="babel-preset-env"></a>babel-preset-env</h3><p>随着js运行时的发展，越来越多的es6+特性得到原生支持，反过来导致很多在preset中预设的插件是不必要的。因此就出现了evn，一种根据目标环境选择插件的preset。它的目的就是尽量只提供必需的语法转换（esX、stage-x等preset已过时）。<br>env实现的原理是通过收集js-runtime的兼容数据（比如<a target="_blank" rel="noopener" href="https://kangax.github.io/compat-table/es6/">compat-table-es6</a>）获知各环境所缺少的特性，再结合<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">browserslist</a>确定目标环境，最后得出当前需要加载的插件列表。</p>
+<h4 id="useBuiltIns"><a href="#useBuiltIns" class="headerlink" title="useBuiltIns"></a>useBuiltIns</h4><p>preset.env.useBuiltIns选项告诉babel如何处理polyfill。</p>
+<p>useBuiltIns:entry 代表在程序入口处自动拆分core-js或者@babel/polyfill:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.string.pad-start&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.string.pad-end&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>useBuiltIns:usage 代表在每个文件的使用处自动注入polyfill：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.promise&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.map&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
+
+<p>useBuiltIns:false 不使用自动polyfill。</p>
+<h3 id="babel-minify（Babili）"><a href="#babel-minify（Babili）" class="headerlink" title="babel-minify（Babili）"></a>babel-minify（Babili）</h3><p>前端工程的最后一步往往是minify bundle（压缩代码）。babel-minify就是配合babel使用的压缩插件集合。<br>与Uglify等压缩工具相比，babel-minify的优势在于：</p>
+<ol>
+<li>理解es6+语法，可以直接压缩es6+代码（Uglify只支持es5），有助于减少最终体积（无需转译es6代码的场景下）。</li>
+<li>插件化，可定制压缩功能。</li>
+<li>可以结合Flow/TypeScript注释实现更多高级压缩。<br>对个人而言，babel-minify最吸引人的就是，它不仅仅是移除空白、注释，缩短变量名，而且还能扩展以支持高级压缩。<br>比如，通过语法分析删除dead code：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123; <span class="keyword">var</span> x = <span class="number">1</span>; &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; <span class="keyword">var</span> x = f(); &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">unused</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; f(); &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+统一表达式以获得更好的压缩性：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (x) a();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">foo[<span class="string">&#x27;bar&#x27;</span>]</span><br><span class="line"><span class="built_in">Number</span>(foo)</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  x &amp;&amp; a();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="number">0</span></span><br><span class="line">foo.bar</span><br><span class="line">+foo</span><br></pre></td></tr></table></figure>
+甚至通过constant-folding等手段提升运行时性能：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="number">2</span> * <span class="number">3</span>;</span><br><span class="line"><span class="string">&quot;b&quot;</span> + a + <span class="string">&quot;c&quot;</span> + <span class="string">&quot;d&quot;</span> + g + z + <span class="string">&quot;f&quot;</span> + <span class="string">&quot;h&quot;</span> + <span class="string">&quot;z&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="number">6</span>;</span><br><span class="line"><span class="string">&quot;b&quot;</span> + a + <span class="string">&quot;cd&quot;</span> + g + z + <span class="string">&quot;fhz&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>ps:<br>最好只在产品环境下使用babel-minify。开发模式下，babel-minify可能会影响debug（代码可读性变差）。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;env&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;production&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;minify&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/10/23/babel7%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" data-id="ckowi50fq001vdvrv9bbt1l2s" data-title="babel7核心概念" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-verdaccio使用问题集合" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/10/09/verdaccio%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/" class="article-date">
+  <time class="dt-published" datetime="2019-10-09T01:51:03.000Z" itemprop="datePublished">2019-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/10/09/verdaccio%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/">verdaccio使用问题集合</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="npm-audit-‘Cannot-convert-undefined-or-null-to-object’"><a href="#npm-audit-‘Cannot-convert-undefined-or-null-to-object’" class="headerlink" title="npm audit ‘Cannot convert undefined or null to object’"></a>npm audit ‘Cannot convert undefined or null to object’</h2><p>enviroment:<br>    MAC  os10.14<br>    Node v8.14.0<br>    npm  v6.4.1</p>
+<p>errInfo:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">31764 warn audit Audit result from registry missing metadata. This is probably an issue with the registry.</span><br><span class="line">31765 verbose stack TypeError: Cannot convert undefined or null to object</span><br><span class="line">31765 verbose stack     at Function.keys (&lt;anonymous&gt;)</span><br><span class="line">31765 verbose stack     at summary (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/npm-audit-report/reporters/install.js:42:14)</span><br><span class="line">31765 verbose stack     at Object.report [as install] (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/npm-audit-report/reporters/install.js:7:13)</span><br><span class="line">31765 verbose stack     at Promise (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/npm-audit-report/index.js:20:46)</span><br><span class="line">31765 verbose stack     at new Promise (&lt;anonymous&gt;)</span><br><span class="line">31765 verbose stack     at report (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/npm-audit-report/index.js:19:10)</span><br><span class="line">31765 verbose stack     at Object.printInstallReport (/usr/<span class="built_in">local</span>/lib/node_modules/npm/lib/install/audit.js:100:10)</span><br><span class="line">31765 verbose stack     at Installer.printInstalledForHuman (/usr/<span class="built_in">local</span>/lib/node_modules/npm/lib/install.js:854:31)</span><br><span class="line">31765 verbose stack     at Bluebird.try.then (/usr/<span class="built_in">local</span>/lib/node_modules/npm/lib/install.js:778:19)</span><br><span class="line">31765 verbose stack     at tryCatcher (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">31765 verbose stack     at Promise._settlePromiseFromHandler (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:512:31)</span><br><span class="line">31765 verbose stack     at Promise._settlePromise (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:569:18)</span><br><span class="line">31765 verbose stack     at Promise._settlePromise0 (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:614:10)</span><br><span class="line">31765 verbose stack     at Promise._settlePromises (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:693:18)</span><br><span class="line">31765 verbose stack     at Async._drainQueue (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/async.js:133:16)</span><br><span class="line">31765 verbose stack     at Async._drainQueues (/usr/<span class="built_in">local</span>/lib/node_modules/npm/node_modules/bluebird/js/release/async.js:143:10)</span><br></pre></td></tr></table></figure>
+<p>reason:<br>切换npm前遗留的packcage-lock.json引起，registry指向不对。</p>
+<p>solution:<br>移除packcage-lock.json，node_modules重新安装。</p>
+<h2 id="Cannot-publish-over-existing-version"><a href="#Cannot-publish-over-existing-version" class="headerlink" title="Cannot publish over existing version"></a>Cannot publish over existing version</h2><p>即使更新了package version，仍然会报这个错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code EPUBLISHCONFLICT</span><br><span class="line">npm ERR! publish fail Cannot publish over existing version.</span><br><span class="line">npm ERR! publish fail Update the <span class="string">&#x27;version&#x27;</span> field <span class="keyword">in</span> package.json and try again.</span><br><span class="line">npm ERR! publish fail </span><br><span class="line">npm ERR! publish fail To automatically increment version numbers, see:</span><br><span class="line">npm ERR! publish fail     npm <span class="built_in">help</span> version</span><br></pre></td></tr></table></figure>
+<p>reason:<br>私有package与公有package重名。发布时，verdaccio误读了公有package的version，若该version大于本地version，则会出错。</p>
+<p>solution:<br>npm publish –force 私有强制覆盖公有。<br>或者修改私有package的名称，避免冲突。</p>
+<h2 id="maximum-amount-of-users-reached"><a href="#maximum-amount-of-users-reached" class="headerlink" title="maximum amount of users reached"></a>maximum amount of users reached</h2><p>reproduce:<br>按照官方文档说明，启用htpasswd，并设置max_users为-1。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth:</span></span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">./htpasswd</span></span><br><span class="line">    <span class="comment"># Maximum amount of users allowed to register, defaults to &quot;+inf&quot;.</span></span><br><span class="line">    <span class="comment"># You can set this to -1 to disable registration.</span></span><br><span class="line">    <span class="attr">max_users:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p>预期行为是禁止客户端注册，由管理员手动向htpasswd添加用户。结果却是已注册的用户也无法登录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code E403</span><br><span class="line">npm ERR! Registry returned 403 <span class="keyword">for</span> PUT on http://npm.yz.cn/-/user/org.couchdb.user:zhangnc: maximum amount of users reached</span><br></pre></td></tr></table></figure>
+
+<p>enviroment:<br>    MAC  os10.14<br>    verdaccio v3.x</p>
+<p>reason:<br>verdaccio自身的问题（至少3.x版本存在）。</p>
+<p>solution:<br>任选其一</p>
+<ol>
+<li>在verdaccio web站点上登录一次之后，即可通过npm cli登录。</li>
+<li>将max_users设为1，让verdaccio允许登录，同时无法在客户端注册（因为我们至少内置了一个账号）。</li>
+</ol>
+<h2 id="zlib-unexpected-end-of-file"><a href="#zlib-unexpected-end-of-file" class="headerlink" title="zlib: unexpected end of file"></a>zlib: unexpected end of file</h2><p>reproduce:<br>通过npm（指向verdaccio）安装ivux（私服包），始终报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm i ivux</span><br><span class="line"></span><br><span class="line">npm ERR! code Z_BUF_ERROR</span><br><span class="line">npm ERR! errno -5</span><br><span class="line">npm ERR! zlib: unexpected end of file</span><br></pre></td></tr></table></figure>
+
+<p>enviroment:<br>    MAC  os10.14<br>    verdaccio v3.x</p>
+<p>solution:</p>
+<ol>
+<li>清除verdaccio缓存(storage)、本地npm缓存(npm clean –force)、package.lock.josn文件、node_modules文件夹均无效。</li>
+<li>服务器重装verdaccio也无效。<br>本地机搭建verdaccio服务没有问题。在服务器上创建npm项目也没有问题。<br>基本确定问题是出在服务器与客户机通信上。似乎是网络下载异常导致的，体积稍微大一点的包就容易截断（ivux package &gt; 750kb）。</li>
+<li>最后发现是服务器上的ng被改了，还原ng并重设解决问题。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/10/09/verdaccio%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/" data-id="ckowi50fr001xdvrvaq3r7la0" data-title="verdaccio使用问题集合" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue2底层机制解析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/26/vue2%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90/" class="article-date">
+  <time class="dt-published" datetime="2019-09-26T01:34:52.000Z" itemprop="datePublished">2019-09-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/09/26/vue2%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90/">vue2底层机制解析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="reactive-data"><a href="#reactive-data" class="headerlink" title="reactive data"></a>reactive data</h2><p>@1 响应式原理包含3个部分：</p>
+<ol>
+<li>Observer，底层观察者</li>
+<li>Dep，订阅列表</li>
+<li>Watcher，高层订阅者</li>
+</ol>
+<p>reactive obj/array<br>Observer将一个对象（数组）变为“可响应式的”。</p>
+<p>reactive obj会将所有属性会变为可响应式属性，<br>reactive array会将所有子元素变为可观察的。</p>
+<pre><code>reactive prop（可响应式属性）
+可响应式属性是利用 Object.defineProperty 将原属性转换为getter/setter，并且绑定一个Dep，让自己的变化可追踪。
+除了实现原本的get/set功能之外，getter还会负责收集依赖（depend）。而setter还会负责将新value变为可观察的。如果属性值发生了变化，还会负责
+发送通知（Dep.notify）。
+
+reactive method（可响应式方法）
+响应式数组的&#39;push&#39;,&#39;pop&#39;,&#39;shift&#39;,&#39;unshift&#39;,&#39;splice&#39;,&#39;sort&#39;,&#39;reverse&#39;也是响应式的。并且还会负责将新元素（有的话）也变为可观察的。
+</code></pre>
+<p>Dep<br>每个reactive obj以及reactive prop都会绑定一个dep对象，用于记录其订阅者。<br>订阅的过程称之为收集依赖（depend）。depend是一个全局操作，每次只有一个watcher（target）可以depend。</p>
+<p>Watcher<br>订阅响应式事件。<br>响应式属性与watcher是多对多关系。<br>vm实例与watcher是一对多关系。</p>
+<h2 id="component"><a href="#component" class="headerlink" title="component"></a>component</h2><p>Vue将可配置的实例属性都放在了vm.options下，且vm.options由class options 以及 context options混合而成；<br>其余实例属性都以_开头，作为私有属性供内部使用。</p>
+<p>@1 strategies option合并策略<br>{<br>    // 先检查合并是否发生在实例上，然后调用 defaultStrat<br>    ‘el’: validDefaultStrat,<br>    ‘propsData’: validDefaultStrat,</p>
+<pre><code>// 会将所有hook并入一个数组，[...parent, ...child]
+&#39;beforeCreate&#39;: mergeHook,
+&#39;created &#39;: mergeHook,
+&#39;beforeMount&#39;: mergeHook,
+&#39;mounted&#39;: mergeHook,
+&#39;beforeUpdate&#39;: mergeHook,
+&#39;updated&#39;: mergeHook,
+&#39;beforeDestroy&#39;: mergeHook,
+&#39;destroyed&#39;: mergeHook,
+&#39;activated&#39;: mergeHook,
+&#39;deactivated&#39;: mergeHook,
+&#39;errorCaptured&#39;: mergeHook,
+
+// parent以原型代理方式并入child, child -&gt; parent
+&#39;component&#39;: mergeAssets,
+&#39;directive&#39;: mergeAssets,
+&#39;filter&#39;: mergeAssets,
+
+// 与mergeHook类似，相同的项使用concat合并，&#123; _path: [...parent, ...child] &#125;
+&#39;watch&#39;: mergewatch,
+
+// 返回一个工厂函数，内部进行递归合并，相同项child优先
+&#39;data&#39;: mergeData,
+
+// 浅复制，child覆盖parent
+&#39;props&#39;: mergeObj,
+&#39;methods&#39;: mergeObj,
+&#39;inject&#39;: mergeObj,
+&#39;computed&#39;: mergeObj,
+
+// 返回一个工厂函数，内部进行递归合并，相同项child优先
+&#39;provide&#39;: mergeDataOrFn,
+
+// 默认合并策略：child ? child : parent 
+&#39;*&#39;: defaultStrat
+</code></pre>
+<p>}</p>
+<p>@2 mergeOption是创建Vue实例的核心步骤。<br>每个实例的$options都来自 ConstructorOptions &lt; InstanceOptions 的合并。<br>而 ConstructorOptions 是来自 OwnConstructorOptions &lt; SuperConstructorOptions … &lt; VueConstructorOptions 的合并。</p>
+<p>Vue.extend（继承）就是通过 ConstructorOptions 的逐级合并而实现的。<br>    Sub.options = mergeOptions(Sub.superOptions, extendOptions);</p>
+<p>另外还会缓存3个对象，分别是：<br>    1. 父级options，Sub.superOptions = Super.options;<br>    2. 本级options Sub.extendOptions = extendOptions;<br>    3. 原始构造函数options（只读），Sub.sealedOptions = extend({}, Sub.options);<br>主要目的是为了优化Vue.mixin。mixin动态修改options的原理是：<br>    每当创建Vue实例时，会重新计算一次ConstructorOptions（resolveConstructorOptions），以保证后续动态添加的mixin会包含在其中。<br>但是全属性的mergeOptions是一件很耗时的任务，因此利用缓存做对比以及局部合并，尽量缩小合并范围，提升性能。</p>
+<p>各生命周期钩子触发的时机<br>beforeCreate    Vue实例创建时vue.init内触发；此时options已成形，但是还未进入数据观察状态；<br>created         vue.init末尾触发，实例已进入观测状态，但是还未进行模版渲染；<br>beforeMount     vue.$mount开始时触发，此时render函数已编译好，但是还未生成VNode；<br>mounted         vue.$mount结束时触发，此时VNode已生成完毕，并且已经渲染到为DOM；<br>beforeUpdate    vue._update开始时触发（首次渲染不会触发），局部DOM还未更新；<br>updated         flushSchedulerQueue结束时触发，每个watcher都会触发一次，局部DOM已更新；<br>activated       flushSchedulerQueue结束时触发，keep-alive组件专属；<br>deactivated     keep-alive组件在destory结束时触发；<br>beforeDestroy   非keep-alive组件在destory开始时触发，此时实例仍可用；<br>destroyed       $destory结束时触发，此时实例已解除所有绑定和事件监听，子组件实例也已经销毁；<br>errorCaptured</p>
+<h2 id="vnode"><a href="#vnode" class="headerlink" title="vnode"></a>vnode</h2><h2 id="compiler"><a href="#compiler" class="headerlink" title="compiler"></a>compiler</h2><h2 id="build"><a href="#build" class="headerlink" title="build"></a>build</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/26/vue2%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90/" data-id="ckowi50fo001pdvrvdaz34opm" data-title="vue2底层机制解析" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-weapp包管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/23/weapp%E5%8C%85%E7%AE%A1%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-09-23T03:37:30.000Z" itemprop="datePublished">2019-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/09/23/weapp%E5%8C%85%E7%AE%A1%E7%90%86/">weapp包管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="使用npm"><a href="#使用npm" class="headerlink" title="使用npm"></a>使用npm</h2><h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><ol>
+<li>小程序基础库版本 2.2.1 或以上（依赖客户端环境）。</li>
+<li>开发者工具 1.02.1808300 或以上开始。<br>开发时，仍然通过npm管理package。dependencies字段下的pkg会被打包进入小程序，devDependencies可使用但不会参与构建。<br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html">官方文档</a></li>
+</ol>
+<p>ps：project.config.js可通过miniprogramRoot字段指定node_modules目录。</p>
+<h3 id="引用npm包"><a href="#引用npm包" class="headerlink" title="引用npm包"></a>引用npm包</h3><p>纯js包直接通过require引用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPackage = <span class="built_in">require</span>(<span class="string">&#x27;packageName&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>自定义组件需要在json中配置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;usingComponents&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;myPackage&quot;</span>: <span class="string">&quot;packageName&quot;</span>,</span><br><span class="line">        <span class="string">&quot;package-other&quot;</span>: <span class="string">&quot;packageName/other&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="小程序npm包"><a href="#小程序npm包" class="headerlink" title="小程序npm包"></a>小程序npm包</h3><p>因为小程序的运行环境比较特殊，一些诸如window、document、Function、nodejs内置库等等对象并不能使用，所以一般的npm package，除非是纯js库，并不能直接拿到小程序中使用。为了规范书写符合小程序运行条件的包，因此制定了相关约束：</p>
+<ol>
+<li>小程序npm包根目录下必须有构建目录miniprogram_dist（也可以通过package.json.miniprogram指定其它目录）。</li>
+<li>只有miniprogram_dist目录下的文件才会被小程序编译。</li>
+<li>package.json中devDependencies字段引用的pkg不会打包到小程序包中。</li>
+</ol>
+<h3 id="npm构建"><a href="#npm构建" class="headerlink" title="npm构建"></a>npm构建</h3><p>node_modules目录并不会直接参与小程序编译，而是需要走小程序的npm构建流程：</p>
+<ol>
+<li>在项目配置中勾选启用npm模块。</li>
+<li>点击工具-&gt;构建npm。</li>
+<li>之后会在node_modules同级目录下生成miniprogram_npm目录。</li>
+<li>搜索源码中所引用的npm包。</li>
+<li>如果是标准小程序包，则将其miniprogram_dist下的文件Copy到miniprogram_npm。</li>
+<li>如果是纯js包则从入口文件（main或index.js）开始，走一遍依赖分析和打包流程（类似webpack），最后将打包后的文件拷贝至miniprogram_npm。</li>
+</ol>
+<p>miniprogram_npm目录下才是小程序真正使用的npm包。</p>
+<h3 id="发布小程序npm包"><a href="#发布小程序npm包" class="headerlink" title="发布小程序npm包"></a>发布小程序npm包</h3><p><a target="_blank" rel="noopener" href="https://github.com/wechat-miniprogram/miniprogram-cli">miniprogram-cli</a>可以协助生成以下项目模版：</p>
+<ul>
+<li>第三方自定义组件（custom-component）</li>
+<li>小程序 quickstart（miniprogram）</li>
+<li>小程序插件 quickstart（plugin）</li>
+<li>小游戏 quickstart（game）<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @wechat-miniprogram/miniprogram-cli</span><br><span class="line">miniprogram init [options] [dirPath]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="发布纯js包"><a href="#发布纯js包" class="headerlink" title="发布纯js包"></a>发布纯js包</h3><p>可以参考<a target="_blank" rel="noopener" href="https://github.com/wechat-miniprogram/sm-crypto">sm-crypto</a>模块。</p>
+<h2 id="分包机制"><a href="#分包机制" class="headerlink" title="分包机制"></a>分包机制</h2><p>todo</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/23/weapp%E5%8C%85%E7%AE%A1%E7%90%86/" data-id="ckowi50fo001rdvrv7ngq10gw" data-title="weapp包管理" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-anaconda" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/22/anaconda/" class="article-date">
+  <time class="dt-published" datetime="2019-09-22T03:57:13.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/09/22/anaconda/">anaconda</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="anaconda是什么"><a href="#anaconda是什么" class="headerlink" title="anaconda是什么"></a>anaconda是什么</h2><p>anaconda是世上最流行的科学计算python发行版之一。它提供了大量与科学计算相关的库以及包管理功能，并且支持虚拟环境(virtual environment)隔离。能够帮助使用者更加安全快速的搭建科学计算类python项目。</p>
+<h3 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h3><p>channel就是conda用来存放pkg的仓库。</p>
+<p><a target="_blank" rel="noopener" href="https://conda-forge.org/docs/user/introduction.html">conda-forge</a>是一个比默认仓库更稳定、包更多的仓库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加channel</span></span><br><span class="line">conda config --add channels conda-forge</span><br><span class="line"><span class="comment"># 设置优先级</span></span><br><span class="line">conda config --<span class="built_in">set</span> channel_priority strict</span><br></pre></td></tr></table></figure>
+<p>为channel设置优先级的目的，是为了统一从conda-forge安装包，如果找不到才尝试从其它channel（如defaults）安装。避免多channel带来的版本依赖冲突问题。</p>
+<h3 id="conda与pip"><a href="#conda与pip" class="headerlink" title="conda与pip"></a>conda与pip</h3><p>pip同样也是python的包管理器，但是混用conda与pip的话，容易造成环境的不稳定。因为conda无法察觉pip对环境所做的修改，一些包会“意外”升级，导致难以排查的版本兼容问题，反之亦然。因此在试图使用pip时，最好遵循以下原则：</p>
+<ol>
+<li>如果可以，只使用conda。</li>
+<li>如果必须使用pip，那么为此新建一个env，以达到隔离效果。</li>
+<li>混合模式下，先使用conda，后使用pip。</li>
+<li>混合模式下，如果需要变更，创建一个新的env来实施。</li>
+<li>导出混合模式的依赖文件，便于导入新env。</li>
+</ol>
+<h3 id="miniconda"><a href="#miniconda" class="headerlink" title="miniconda"></a>miniconda</h3><p>miniconda是ananconda的最小化版本，默认只包含少量的pkg，没有GUI界面，命令行与完整版一致。适合将conda只视为python包管理工具使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装2020-10-python3.8版本的miniconda，在执行conda env list时，可能会遇到error leaked semaphore</span></span><br><span class="line"><span class="comment"># 官方已发布补丁，更新conda即可</span></span><br><span class="line">conda update conda </span><br></pre></td></tr></table></figure>
+
+<h2 id="基础组件"><a href="#基础组件" class="headerlink" title="基础组件"></a>基础组件</h2><h3 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有环境 </span></span><br><span class="line">conda env list</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">conda info -e</span><br><span class="line"><span class="comment"># 创建虚拟环境并指定安装pkg，比如python3.7</span></span><br><span class="line">conda create --name &lt;name&gt; python=3.6 [...pkg]</span><br><span class="line"><span class="comment"># 激活环境</span></span><br><span class="line">conda activate &lt;name&gt;</span><br><span class="line"><span class="comment"># 退出激活</span></span><br><span class="line">conda deactivate</span><br><span class="line"><span class="comment"># 删除环境</span></span><br><span class="line">conda env remove -n &lt;name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h3><p>基础命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装包</span></span><br><span class="line">conda install &lt;pkg&gt;</span><br><span class="line"><span class="comment"># 移除包 </span></span><br><span class="line">conda remove &lt;pkg&gt;</span><br><span class="line"><span class="comment"># 查看已安装的包</span></span><br><span class="line">conda list [pkg]</span><br><span class="line"><span class="comment"># 所搜可用的包</span></span><br><span class="line">conda search &lt;pkg&gt; </span><br><span class="line"><span class="comment"># 更新包</span></span><br><span class="line">conda update &lt;pkg&gt;</span><br><span class="line"><span class="comment"># 导出依赖文件</span></span><br><span class="line">conda list -e &gt; requirements.txt</span><br><span class="line"><span class="comment"># pip导出依赖</span></span><br><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>按照依赖说明文件安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda install --yes --file requirements.txt</span><br><span class="line"><span class="comment"># 逐条安装，防止因部分包无法安装而导致所有包都不能安装</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> requirement; <span class="keyword">do</span> conda install --yes <span class="variable">$requirement</span>; <span class="keyword">done</span> &lt; requirements.txt</span><br><span class="line"><span class="comment"># conda无法安装的包从pip上安装</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> requirement; <span class="keyword">do</span> conda install --yes <span class="variable">$requirement</span> || pip install <span class="variable">$requirement</span>; <span class="keyword">done</span> &lt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="jupyter"><a href="#jupyter" class="headerlink" title="jupyter"></a>jupyter</h3><p>jupyter是python社区非常流行的WebIDE，其特色是集文档编辑与代码编辑于一体，分享非常方便。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装。建议在自己的env中进行</span></span><br><span class="line">conda install -c conda-forge jupyterlab</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">jupyter lab</span><br></pre></td></tr></table></figure>
+
+<h3 id="与PyCharm一起工作"><a href="#与PyCharm一起工作" class="headerlink" title="与PyCharm一起工作"></a>与PyCharm一起工作</h3><p><a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/">PyCharm</a>是由jetbarains提供的python IDE。与anaconda配合时，只需要将其作为python解释器即可。</p>
+<img src="/blog/2019/09/22/anaconda/interpreters.png" class="">
+
+<h2 id="安装错误"><a href="#安装错误" class="headerlink" title="安装错误"></a>安装错误</h2><p>Solving environment: failed with initial frozen solve. Retrying with flexible solve.<br>Package setuptools conflicts for:<br>python=3.7 -&gt; pip -&gt; setuptools</p>
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><p><a target="_blank" rel="noopener" href="https://docs.anaconda.com/anaconda/install/uninstall/">参考</a> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 卸载jupyterlab</span></span><br><span class="line">conda remove jupyterlab</span><br><span class="line"><span class="comment"># 2. 安装卸载助手</span></span><br><span class="line">conda install anaconda-clean</span><br><span class="line"><span class="comment"># 3.1 移除anaconda相关文件</span></span><br><span class="line">anaconda-clean</span><br><span class="line"><span class="comment"># 3.2 如果报anaconda-clean找不到，则需要启用conda环境</span></span><br><span class="line">conda activate base</span><br><span class="line"><span class="comment"># clean之后会生成备份文件，如果不需要也可以删除</span></span><br><span class="line">anaconda-clean</span><br><span class="line"><span class="comment"># 4. 删除应用文件夹</span></span><br><span class="line">rm -rf ~/anaconda3</span><br><span class="line"><span class="comment"># 5. 删除环境变量配置~/.bash_profile</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/22/anaconda/" data-id="ckowi50fk001hdvrved3o8k3c" data-title="anaconda" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-scrapy入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/22/scrapy%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-09-22T03:51:31.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/09/22/scrapy%E5%85%A5%E9%97%A8/">scrapy入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>scrapy是最受欢迎的python爬虫框架之一，很适合初学者学习。<br>话不多说，本地已有anaconda以及conda-forge，直接安装scrapy。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 为scrapy创建一个虚拟环境</span></span><br><span class="line">conda create --name scrapy python=3.6</span><br><span class="line"><span class="comment"># 进入env</span></span><br><span class="line">conda activate scrapy</span><br><span class="line"><span class="comment"># 安装scrapy（conda-forge）</span></span><br><span class="line">conda install scrapy=1.7.4</span><br></pre></td></tr></table></figure>
+<p>安装成功之后，来实践一下官方的爬虫例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个项目</span></span><br><span class="line">scrapy startproject tutorial</span><br><span class="line"><span class="comment"># 运行quotes爬虫</span></span><br><span class="line">scrapy crawl quotes -o quotes.json</span><br></pre></td></tr></table></figure>
+<p>运行成功后，可以看见爬取下来的html文件（不带css样式）。</p>
+<h2 id="scrapy-tool（CLI）"><a href="#scrapy-tool（CLI）" class="headerlink" title="scrapy tool（CLI）"></a>scrapy tool（CLI）</h2><p>scrapy命令分2类：</p>
+<ol>
+<li>全局命令（Global commands），可以在任意目录下执行；</li>
+<li>项目命令（Project-only commands），需要在某个project目录下才能执行。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># global </span></span><br><span class="line"><span class="comment"># 创建一个项目</span></span><br><span class="line">scrapy startproject myProj</span><br><span class="line"><span class="comment"># 创建一个spider</span></span><br><span class="line">scrapy genspider quotes</span><br><span class="line"></span><br><span class="line"><span class="comment"># Project-only</span></span><br><span class="line">scrapy crawl quotes</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>scrapy项目结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">项目级配置文件</span><br><span class="line">myproject/ 项目*N</span><br><span class="line">    __init__.py</span><br><span class="line">    items.py</span><br><span class="line">    middlewares.py</span><br><span class="line">    pipelines.py</span><br><span class="line">    settings.py</span><br><span class="line">    spiders/ 爬虫*N</span><br><span class="line">        __init__.py</span><br><span class="line">        spider1.py</span><br><span class="line">        spider2.py</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configuration-项目配置"><a href="#Configuration-项目配置" class="headerlink" title="Configuration 项目配置"></a>Configuration 项目配置</h3><p>自定义scrapy tool（CLI）行为，支持多层级配置（由高到低）：</p>
+<ol>
+<li>项目配置文件 scrapy.cfg</li>
+<li>用户级配置文件 <del>/.config/scrapy.cfg或</del>/.scrapy.cfg</li>
+<li>系统级配置文件 /etc/scrapy.cfg或c:\scrapy\scrapy.cfg</li>
+</ol>
+<h3 id="Setting-组件配置"><a href="#Setting-组件配置" class="headerlink" title="Setting 组件配置"></a>Setting 组件配置</h3><p>自定义scrapy组件（包括core、spider、pipeline、extensions等等）行为，支持多层级配置（优先级从高到低）：</p>
+<ol>
+<li>命令行参数 cmd options</li>
+<li>Spider配置对象 spider.custom_setting</li>
+<li>项目配置文件 setting.py</li>
+<li>CLI-Command默认配置，command.default_setting</li>
+<li>全局配置文件，scrapy.settings.default_settings<br><a target="_blank" rel="noopener" href="http://doc.scrapy.org/en/master/topics/settings.html#built-in-settings-reference">Setting配置项列表</a></li>
+</ol>
+<h2 id="Scrapy运行时结构"><a href="#Scrapy运行时结构" class="headerlink" title="Scrapy运行时结构"></a>Scrapy运行时结构</h2><p>todo</p>
+<h2 id="核心对象"><a href="#核心对象" class="headerlink" title="核心对象"></a>核心对象</h2><h3 id="Spider"><a href="#Spider" class="headerlink" title="Spider"></a>Spider</h3><p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/spiders.html">scrapy.Spider</a>用于定义如何抓取一个网站的内容。基本流程为：<br>rules filter  -&gt; start requests -&gt; response parse -&gt; extract data -&gt; follow<br>我们需要做的，就是为每个部分填充具体的业务逻辑。</p>
+<h4 id="通过命令行为Spider传递参数"><a href="#通过命令行为Spider传递参数" class="headerlink" title="通过命令行为Spider传递参数"></a>通过命令行为Spider传递参数</h4><p>由-a 传递的参数会传递给Spider的__init__方法，并成为spider对象的属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持过滤帖子所属tag</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span>(<span class="params">self</span>):</span></span><br><span class="line">    url = <span class="string">&#x27;http://quotes.toscrape.com/&#x27;</span></span><br><span class="line">    tag = <span class="built_in">getattr</span>(self, <span class="string">&#x27;tag&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 若tag存在，则修改url</span></span><br><span class="line">    <span class="keyword">if</span> tag <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        url = url + <span class="string">&#x27;tag/&#x27;</span> + tag</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">yield</span> scrapy.Request(url, self.parse)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只抓取humor标签下的帖子</span></span><br><span class="line">scrapy crawl quotes -o quotes-humor.json -a tag=humor</span><br></pre></td></tr></table></figure>
+
+<h3 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h3><p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/selectors.html">Selector</a>用于使用XPath或者CssSelector从html字符串中查询数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from scrapy.selector import Selector</span><br><span class="line">&gt;&gt;&gt; body = <span class="string">&#x27;&lt;html&gt;&lt;body&gt;&lt;span&gt;good&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;&#x27;</span></span><br><span class="line">&gt;&gt;&gt; Selector(text=body).xpath(<span class="string">&#x27;//span/text()&#x27;</span>).get()</span><br><span class="line"><span class="string">&#x27;good&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Selector内部依赖于<a target="_blank" rel="noopener" href="https://parsel.readthedocs.io/">parsel</a>，而parsel依赖于<a target="_blank" rel="noopener" href="https://lxml.de/">lxml</a>。与原库相比，Selector功能更加丰富：</p>
+<ol>
+<li>扩展了Css选择器，支持::attr()匹配属性值，::text匹配文本节点</li>
+<li>扩展了XPath，支持正则式、Set</li>
+<li>支持正则式筛选处理搜索结果，如selector.xpath(“path”).re(r’xxx’)</li>
+<li>链式混用xpath与css，充分发挥2者的优势，如selector.css(“.cls”).xpath(“//a/@href”).get()</li>
+</ol>
+<h3 id="Item"><a href="#Item" class="headerlink" title="Item"></a>Item</h3><p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/items.html">Item</a>用于定义ExtractData的数据结构，让提取逻辑更加清晰。<br>开发者一般会使用自由度较高的dict来保存提取结果。但dict对象自身结构不受限制，可以任意修改。而且除了翻阅源代码，只能通过文档方式来描述现有dict的结构，在复杂场景下，这往往会引起代码可维护性问题。Item正好提供了一个集中描述结构化数据的地方。</p>
+<p>Item是装载数据的容器，<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/loaders.html">Item Loader</a>则是专门为容器填充数据的工具。Item本身只能通过item[key]=value形式去操作数据，ItemLoader则允许你定义更加丰富的行为。<br>比如：</p>
+<ol>
+<li>支持为field添加多个数据来源，组合输出。</li>
+<li>支持input-processor，可以进行简单的数据格式化。</li>
+<li>支持output-processor，自定义数据来源输出结果。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html">Item Pipline</a><br>ItemPipline用于流式处理Item。可以用来：</p>
+<ol>
+<li>数据清洗</li>
+<li>数据校验</li>
+<li>数据筛选</li>
+<li>数据存储<br>ps: 可以通过no return或者raise DropItem(“reason”)丢弃Item，被丢弃的Item也不会本后续的流处理。</li>
+</ol>
+<h3 id="Feed-Exports"><a href="#Feed-Exports" class="headerlink" title="Feed Exports"></a>Feed Exports</h3><p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/feed-exports.html">Feed Exports</a>用于以文件形式导出数据。支持JSON、JSON Lines、CSV、XML等多种文件格式，以及本地文件、FTP、S3等多种存储方式。<br>简单场景下，可以通过命令行参数 -o <filename.ext>直接导出数据。复杂场景下，可以自定义<a target="_blank" rel="noopener" href="http://doc.scrapy.org/en/master/topics/exporters.html#topics-exporters">ItemExport</a>，结合ItemPipline流程序列化存储数据。</p>
+<h3 id="Requests-and-Responses"><a href="#Requests-and-Responses" class="headerlink" title="Requests and Responses"></a>Requests and Responses</h3><p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/request-response.html">Requests-Responses</a>request用于发送http请求，responses用于解析html文档。</p>
+<h3 id="Link-Extractors"><a href="#Link-Extractors" class="headerlink" title="Link Extractors"></a>Link Extractors</h3><p><a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/topics/link-extractors.html#link-extractors">Link Extractors</a>用于导出页面中的link对象，便于实现链接追踪。</p>
+<h2 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h2><h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>scrapy shell提供了类似python shell的交互式体验，非常适合调试CSS或者XPath表达式。<br>开启shell调试有2种方案，一是直接使用shell fetch：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell -s USER_AGENT=<span class="string">&#x27;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&#x27;</span> &lt;url&gt;</span><br></pre></td></tr></table></figure>
+<p>第二种是在spider中调用scrapy.shell.inspect_response函数，激活shell（crawler将处于挂起状态直到shell结束）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.shell <span class="keyword">import</span> inspect_response</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span>(<span class="params">self, response</span>):</span></span><br><span class="line">        inspect_response(response, self)</span><br><span class="line">        <span class="comment"># Rest of parsing code.</span></span><br></pre></td></tr></table></figure>
+<p>开启shell之后，可以在当前上文中使用如下内置对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[s] Available Scrapy objects:</span><br><span class="line">[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)</span><br><span class="line">[s]   crawler    &lt;scrapy.crawler.Crawler object at 0x10e492898&gt;</span><br><span class="line">[s]   item       &#123;&#125;</span><br><span class="line">[s]   request    &lt;GET https://movie.douban.com/chart&gt;</span><br><span class="line">[s]   response   &lt;403 https://movie.douban.com/chart&gt;</span><br><span class="line">[s]   settings   &lt;scrapy.settings.Settings object at 0x10e4925f8&gt;</span><br><span class="line">[s]   spider     &lt;PopularSpider <span class="string">&#x27;popular&#x27;</span> at 0x10e9b3588&gt;</span><br><span class="line">[s] Useful shortcuts:</span><br><span class="line">[s]   fetch(url[, redirect=True]) Fetch URL and update <span class="built_in">local</span> objects (by default, redirects are followed)</span><br><span class="line">[s]   fetch(req)                  Fetch a scrapy.Request and update <span class="built_in">local</span> objects </span><br><span class="line">[s]   shelp()           Shell <span class="built_in">help</span> (<span class="built_in">print</span> this <span class="built_in">help</span>)</span><br><span class="line">[s]   view(response)    View response <span class="keyword">in</span> a browser</span><br></pre></td></tr></table></figure>
+<p>调用诸如response.xpath()、response.css()等方法就可以测试页面结构和内容了。如果需要的话，还可以调用view(response)打开浏览器查看下载页面长什么样子。<br>另外还可以通过fetch()发起新的请求，不过这一招对inspect_response启动的shell无效（spider处于挂起状态，无法响应新的请求）。</p>
+<h3 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h3><p>todo</p>
+<h2 id="中间件与扩展"><a href="#中间件与扩展" class="headerlink" title="中间件与扩展"></a>中间件与扩展</h2><p>todo</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://selectorgadget.com/">SelectorGadget</a> 浏览器扩展，自动生成css-selector</li>
+<li><a target="_blank" rel="noopener" href="http://zvon.org/comp/r/tut-XPath_1.html">XPath-Tutorial</a> XPath指南</li>
+<li><a target="_blank" rel="noopener" href="http://plasmasturm.org/log/xpath101/">how to think in XPath</a> XPath实践</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/22/scrapy%E5%85%A5%E9%97%A8/" data-id="ckowi50fm001ndvrvfddk1pu9" data-title="scrapy入门" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-npm-dependency-conflicts" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/20/npm-dependency-conflicts/" class="article-date">
+  <time class="dt-published" datetime="2019-09-20T06:59:04.000Z" itemprop="datePublished">2019-09-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/09/20/npm-dependency-conflicts/">npm dependency conflicts</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/20/npm-dependency-conflicts/" data-id="ckowi50fl001jdvrv66m5er9i" data-title="npm dependency conflicts" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-js函数式编程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/01/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2019-09-01T07:36:26.000Z" itemprop="datePublished">2019-09-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/09/01/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">js函数式编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>-&gt; Programming<br>    -&gt; lambda calculus lambda计算（自上而下的编程方式，函数式）<br>        -&gt; 函数匿名<br>        -&gt; 只接受一元参数<br>        -&gt; 函数为一等公民<br>    -&gt; Turing machine 图灵机（自下而上的编程方式，指令式）<br>    -&gt; 两者在数学上是等价的，任何图灵机能实现的程序，都可以转化为lambda计算</p>
+<p>-&gt; Functino Programming 函数式编程<br>    -&gt; non-determinism（不确定性） = parallel processing（并行程序） + mutable state（修改状态）<br>    -&gt; Pure Function（纯函数）：<br>        -&gt; 只用于Mapping（映射）计算的函数<br>        -&gt; 无副作用（一个input恒对应一个output，也不会修改或依赖任何外部变量）<br>            -&gt; Immutability 不可变性<br>                -&gt; 不修改任何外部变量<br>                -&gt; 不共享任何state<br>        -&gt; 有一个纯函数特例noop（无返回值）</p>
+<p>-&gt; Function Composition 函数组合<br>    -&gt; f∘g &lt;=&gt; (f∘g)(x) &lt;=&gt; f(g(x))<br>    -&gt; 函数组合是fp的核心<br>    -&gt; curry（柯里化）：<br>        -&gt; 一次只处理一个参数，然后返回处理下一个参数的函数，直到最后一个参数为止<br>        -&gt; 柯里化的函数是抽象的（Abstraction），偏函数是它的实例<br>    -&gt; 3种fp：<br>        -&gt; Functions map: a =&gt; b<br>        -&gt; Functors map with context: Functor(a) =&gt; Functor(b)<br>        -&gt; Monads flatten and map with context: Monad(Monad(a)) =&gt; Monad(b)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Tiny, recursive autocurry</span></span><br><span class="line"><span class="keyword">const</span> curry = <span class="function">(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    f, arr = []</span></span></span><br><span class="line"><span class="params"><span class="function"></span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> (</span><br><span class="line">    <span class="function"><span class="params">a</span> =&gt;</span> a.length === f.length ?</span><br><span class="line">    f(...a) :</span><br><span class="line">    curry(f, a)</span><br><span class="line">)([...arr, ...args])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">f, arr = []</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// arr是参数缓存，args是当前参数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// a = [...arr, ...args] 当前参数列表</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// 是否达到形参列表长度</span></span><br><span class="line">            <span class="keyword">return</span> a.length === f.length </span><br><span class="line">                <span class="comment">// 调用f</span></span><br><span class="line">                ? f(...a) </span><br><span class="line">                <span class="comment">// 返回偏函数</span></span><br><span class="line">                : curry(f, a)</span><br><span class="line">        &#125;)([...arr, ...args])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>-&gt; Functor Map 函子运算<br>    -&gt; functor是一种抽象模型<br>        -&gt; mappable，可通过map接口将范畴A映射为范畴B<br>        -&gt; Identity，恒等，f.map(x =&gt; x)的结构在含义上应该与f相等<br>        -&gt; Composition，组合，f.map(x =&gt; h(g(x)))等价于f.map(g).map(h)<br>            -&gt; 利用函子的组合特性，可方便实现函数组合的链式调用<br>    -&gt; functor的意义在于提供一种统一的方式去处理任意数据</p>
+<p>-&gt; Monad Map Monad运算（源自数学之范畴学）<br>    -&gt; monad是一种增强的functor，对外提供flatMap功能<br>        -&gt; flatMap<br>            flatten  M(a) -&gt; a<br>            f        a -&gt; b<br>            lift     M(b)<br>    -&gt; monad的目的在于为value添加上下文信息（Context）<br>        -&gt; 空值处理<br>        -&gt; 异常处理<br>        -&gt; 异步处理</p>
+<p>-&gt; MOP 面向组件编程，用数学替代inheritance<br>    -&gt; OO的本质<br>        -&gt; Encapsulation，封装状态<br>        -&gt; Message passing，消息通信<br>        -&gt; Dynamic binding，动态绑定<br>    -&gt; Object Composition 对象组合<br>        -&gt; 组合优于继承，继承是一种耦合度很高的对象复用方式，is-a会带来诸多问题：<br>            -&gt; 脆弱的基类——因为会影响诸多class，导致基类很难修改<br>            -&gt; 大猩猩香蕉问题——继承可能会带来一堆不需要的属性或者方法<br>            -&gt; 必然的重复——不同子类可能会包含相同实现，因为并非所有接口实现都不同<br>        -&gt; 常见的对象组合方式：<br>            -&gt; Aggregation 聚集，由一组可枚举的对象组成<br>            -&gt; Concatenation 串联，向一个对象上动态添加新属性<br>            -&gt; Delegation 委托，对象将访问转发给另一个对象<br>            -&gt; Injection 注入，对象作为参数传递给其它对象</p>
+<p>-&gt; Functional vs Class<br>    -&gt; 优先使用函数<br>        -&gt; 对于js而言，class是最难使用组合模式的<br>           -&gt; 组合复杂度：Functions &gt; objects &gt; factory functions &gt; functional mixins &gt; classes<br>        -&gt; class extends会带来is-a问题<br>    -&gt; 避免使用new<br>        -&gt; new class会被迫与Constructor函数耦合，重构代码变得困难<br>        -&gt; new class会隐式告诉别人这是一个构造函数，构造函数可以extends，而extends会导致脆弱的代码结构出现<br>        -&gt; 对外暴露factory function，而非class<br>            -&gt; class只能通过new来创建对象<br>    -&gt; Class适用场景<br>        -&gt; 封装底层通用框架<br>            -&gt; 此时业务比较封闭，可以设计出健康的层次结构<br>            -&gt; 统一创建组件实例以及管理其生命周期，对外隐藏组件class<br>            -&gt; 注意class最多extends一层<br>        -&gt; 微观性能优化<br>            -&gt; 利用prototype节约内存<br>                -&gt; 大多数场景可以忽略不计。因此只在真的有必要时考虑prototype。<br>                    -&gt; 比如react、vue等UI组件库<br>                    -&gt; 比如three.js等图像引擎，他们对实时渲染性能要求较高</p>
+<p>-&gt; Lens 一种对属性取值以设值的抽象模型<br>    -&gt; lens提供2个纯函数来完成取值以及设值<br>    -&gt; 范式<br>        -&gt; view(lens, set(lens, a, store)) ≡ a<br>        -&gt; set(lens, b, set(lens, a, store)) ≡ set(lens, b, store)<br>        -&gt; set(lens, view(lens, store), store) ≡ store</p>
+<p>-&gt; Transducers 转换器<br>    -&gt; Transducers是高阶reducer（缩减器）<br>        -&gt; 函数组合reducer<br>        -&gt; 高效的流式数据处理<br>        -&gt; 能够处理任意结构的可枚举对象<br>        -&gt; 无论是lazy（懒求值）或者eager（及早求值）都不影响Transducers<br>    -&gt; 签名<br>        -&gt; reducer = (accumulator, current) =&gt; accumulator<br>           transducer = reducer =&gt; reducer<br>           即<br>           transducer = ((accumulator, current) =&gt; accumulator) =&gt; ((accumulator, current) =&gt; accumulator)<br>        -&gt; reducer是用于将多个输入变为一个输入的函数<br>    -&gt; Top to bottom / Left to right<br>        -&gt; Function Compose f∘g∘h =&gt; reducer(h) -&gt; reducer(g) -&gt; reducer(f)<br>    -&gt; rules<br>        -&gt; Initialization，如果accumulator没有初始值，那么transducer必须调用step为其生成一个empty值（valid initial accumulator）<br>        -&gt; Early termination，当接收到一个reduced时，transducer必须检查并停止pipe（提前终止reducing）<br>        -&gt; Completion(optional)，当缩减过程结束时，可以选择性执行一个Complete操作（after reducing，do sth）<br>    -&gt; fp编程环境<br>        -&gt; 使用js框架：Ramda RxJS Mori<br>            -&gt; 与underscore、lodash相比，前者是js版函数式编程，而后者是命令式的工具方法（如今很多方法都可以用原生方法替代）<br>        -&gt; Clojure（Script）从Lisp发展而来的函数式编程语言<br>            -&gt; ClojureScript可以将Clojure编译为js。如此一来，Clojure代码可以调用js函数以及在browser/node中运行
+        </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/01/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" data-id="ckowi50fm001mdvrvegsx8uch" data-title="js函数式编程" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sublime3-anaconda环境搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2019-07-31T00:21:34.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">sublime3+anaconda环境搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Mac-Anaconda-Python37"><a href="#Mac-Anaconda-Python37" class="headerlink" title="Mac + Anaconda + Python37"></a>Mac + Anaconda + Python37</h2><p>Anaconda安装完毕后，创建虚拟环境py37。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name py37 python=3.7</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有虚拟环境</span></span><br><span class="line">conda info -e</span><br></pre></td></tr></table></figure>
+<p>log如图：</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-create-py37.png" class="">
+
+<p>然后打开Sublime Text -&gt;Tools -&gt; Build System -&gt; New Build System，添加并保存为下配置：<br>py37.sublime-build</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;cmd&quot;</span>: [<span class="string">&quot;/Users/&lt;your path&gt;/anaconda3/envs/py37/bin/python3.7&quot;</span>, <span class="string">&quot;-u&quot;</span>, <span class="string">&quot;$file&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;file_regex&quot;</span>: <span class="string">&quot;^[ ]File \&quot;(...?)\&quot;, line ([0-9]*)&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;selector&quot;</span>: <span class="string">&quot;source.python&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ps：</p>
+<ol>
+<li>自定义配置文件会保存在Sublime/Packages/User下，可以随时调整。</li>
+</ol>
+<p>最后run build测试一下。</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/hello-world-py37.png" class="">
+
+<h2 id="插件SublimeREPL"><a href="#插件SublimeREPL" class="headerlink" title="插件SublimeREPL"></a>插件SublimeREPL</h2><p>安装后可以在SublimeText中运行交互式解释器，方便调试。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>SublimeREPL-Python默认调用系统环境中的python。为了调用上述步骤创建的py37，可以添加如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入Sublime插件安装目录</span></span><br><span class="line"><span class="built_in">cd</span> &lt;Sublime Packages&gt;/User</span><br><span class="line"><span class="comment"># 创建SublimeREPL配置目</span></span><br><span class="line">mkdir -p SublimeREPL/config/Python</span><br></pre></td></tr></table></figure>
+<p>然后添加如下2份文件：<br>Default.sublime-commands</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;SublimeREPL: Python - Anaconda&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;run_existing_window_command&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;file&quot;</span>: <span class="string">&quot;config/Python/Main.sublime-menu&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;SublimeREPL: Python - Anaconda - run&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;run_existing_window_command&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda_run&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;file&quot;</span>: <span class="string">&quot;config/Python/Main.sublime-menu&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Main.sublime-menu（注意将其中cmd部分的python path替换为你的真实路径）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;tools&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;children&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;SublimeREPL&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;mnemonic&quot;</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;SublimeREPL&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;children&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;Python&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;Python&quot;</span>,</span><br><span class="line"></span><br><span class="line">            <span class="attr">&quot;children&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;repl_open&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;Python - Anaconda&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;mnemonic&quot;</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;subprocess&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;encoding&quot;</span>: <span class="string">&quot;utf8&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;cmd&quot;</span>: [<span class="string">&quot;/Users/&lt;your path&gt;/anaconda3/envs/py37/bin/python3.7&quot;</span>, <span class="string">&quot;-i&quot;</span>, <span class="string">&quot;-u&quot;</span>],</span><br><span class="line">                    <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$file_path&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;syntax&quot;</span>: <span class="string">&quot;Packages/Python/Python.tmLanguage&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;external_id&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;extend_env&quot;</span>:</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">&quot;PYTHONIOENCODING&quot;</span>: <span class="string">&quot;utf-8&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,&#123;</span><br><span class="line">                <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;repl_open&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;Python - Anaconda - Run&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda_run&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;mnemonic&quot;</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;subprocess&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;encoding&quot;</span>: <span class="string">&quot;utf8&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;cmd&quot;</span>: [<span class="string">&quot;/Users/&lt;your path&gt;/anaconda3/envs/py37/bin/python3.7&quot;</span>, <span class="string">&quot;-u&quot;</span>, <span class="string">&quot;$file_basename&quot;</span>],</span><br><span class="line">                    <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$file_path&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;syntax&quot;</span>: <span class="string">&quot;Packages/Python/Python.tmLanguage&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;external_id&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;extend_env&quot;</span>:</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">&quot;PYTHONIOENCODING&quot;</span>: <span class="string">&quot;utf-8&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>然后通过菜单Tools&gt;SublimeREPL&gt;Python&gt;”Python - Anaconda - Run”即可运行.py文件。</p>
+<p>为了方便，还可以跟Build System相结合。比如修改之前的py37.sublime-build为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;target&quot;</span>: <span class="string">&quot;run_existing_window_command&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda_run&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;file&quot;</span>: <span class="string">&quot;config/Python/Main.sublime-menu&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后直接使用ctrl+b就可以调用REPL运行.py文件啦。</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-repl-run.png" class="">
+
+<p>另外也可以直接进入交互模式，运行python语句。<br>Tools&gt;SublimeREPL&gt;Python&gt;Python - Anaconda</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-repl-exec.png" class="">
+
+<p>ps：</p>
+<ol>
+<li>Main.sublime-menu配置中，cwd用于指定当前目录。$file_path代表Current File所在的目录。还可以设为$folder，代表Current File所在的Project根目录。</li>
+</ol>
+<h3 id="调试（Debug）"><a href="#调试（Debug）" class="headerlink" title="调试（Debug）"></a>调试（Debug）</h3><p>todo</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-id="ckowi50gh0047dvrvcefpaw2h" data-title="sublime3+anaconda环境搭建" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/blog/page/3/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="extend next" rel="next" href="/blog/page/5/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

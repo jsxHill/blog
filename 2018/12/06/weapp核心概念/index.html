@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>weapp核心概念 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="项目结构小程序包含一个描述整体程序的app和多个描述各自页面的page。 123456789101112Root├── app.js 小程序入口，初始化&#x2F;全局逻辑├── app.json 全局配置文件，包括每个页面的配置├── app.wxss 全局样式入口├── project.config.json 项目配置文件（针对微信开发者工具）├── sitemap.json 配置小程序及其页面是否允许">
+<meta property="og:type" content="article">
+<meta property="og:title" content="weapp核心概念">
+<meta property="og:url" content="https://jsxhill.github.io/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目结构小程序包含一个描述整体程序的app和多个描述各自页面的page。 123456789101112Root├── app.js 小程序入口，初始化&#x2F;全局逻辑├── app.json 全局配置文件，包括每个页面的配置├── app.wxss 全局样式入口├── project.config.json 项目配置文件（针对微信开发者工具）├── sitemap.json 配置小程序及其页面是否允许">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jsxhill.github.io/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/lifecycle.png">
+<meta property="article:published_time" content="2018-12-06T10:19:06.000Z">
+<meta property="article:modified_time" content="2020-03-24T07:16:43.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="weapp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsxhill.github.io/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/lifecycle.png">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-weapp核心概念" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time class="dt-published" datetime="2018-12-06T10:19:06.000Z" itemprop="datePublished">2018-12-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      weapp核心概念
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>小程序包含一个描述整体程序的app和多个描述各自页面的page。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Root</span><br><span class="line">├── app.js 小程序入口，初始化/全局逻辑</span><br><span class="line">├── app.json 全局配置文件，包括每个页面的配置</span><br><span class="line">├── app.wxss 全局样式入口</span><br><span class="line">├── project.config.json 项目配置文件（针对微信开发者工具）</span><br><span class="line">├── sitemap.json 配置小程序及其页面是否允许被微信索引</span><br><span class="line">├── pages 小程序页面定义</span><br><span class="line">    ├── index 页面1</span><br><span class="line">        ├── index.js 页面逻辑</span><br><span class="line">        ├── index.wxml 页面结构</span><br><span class="line">        ├── index.json 页面配置，会覆盖app.json中的同名配置</span><br><span class="line">        ├── index.wxss 页面样式</span><br></pre></td></tr></table></figure>
+
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>小程序采用了CommonJS规范，通过module.exports与require的方式定义/引用模块。</p>
+<h2 id="页面生命周期"><a href="#页面生命周期" class="headerlink" title="页面生命周期"></a>页面生命周期</h2><img src="/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/lifecycle.png" class="">
+
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>小程序的路由全部由框架进行管理，即页面栈。对于js逻辑而言，页面栈是只读的。</p>
+<table>
+<thead>
+<tr>
+<th>路由方式</th>
+<th>页面栈表现</th>
+<th>触发方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始化</td>
+<td>新页面入栈</td>
+<td></td>
+</tr>
+<tr>
+<td>打开新页面</td>
+<td>新页面入栈</td>
+<td>wx.navigateTo <br /> <code>&lt;navigator open-type=&quot;navigateTo&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td>页面重定向</td>
+<td>当前页面出栈，新页面入栈</td>
+<td>wx.redirectTo <br /> <code>&lt;navigator open-type=&quot;navigateTo&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td>页面返回</td>
+<td>页面不断出栈，直到目标返回页</td>
+<td>wx.navigateBack <br /> <code>&lt;navigator open-type=&quot;navigateBack&quot;/&gt; </code></td>
+</tr>
+<tr>
+<td>Tab 切换</td>
+<td>页面全部出栈，只留下新的 Tab 页面</td>
+<td>wx.switchTab <br /> <code>&lt;navigator open-type=&quot;switchTab&quot;/&gt; </code></td>
+</tr>
+<tr>
+<td>重启动</td>
+<td>页面全部出栈，只留下新的页面</td>
+<td>wx.reLaunch <br /> <code>&lt;navigator open-type=&quot;reLaunch&quot;/&gt; </code></td>
+</tr>
+</tbody></table>
+<h2 id="WXML"><a href="#WXML" class="headerlink" title="WXML"></a>WXML</h2><p>wxml是小程序用来描述页面结构的标记语言，类似HTML，区别在于wxml提供的是语义、功能更加明确的组件标签，并提供模版渲染语法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;array&#125;&#125;&quot;</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ps: <code>&lt;block&gt;</code>仅仅是一个包装元素，类似vue中的<code>&lt;template&gt;</code>，不会被渲染，可接收指令。</p>
+<h3 id="Mustache语法"><a href="#Mustache语法" class="headerlink" title="Mustache语法"></a>Mustache语法</h3><p>小程序template中使用{{ expression }}来绑定数据，但是expression只支持简单的js表达式:</p>
+<ol>
+<li>绑定变量 {{ variablName }}</li>
+<li>绑定true/false {{ true }}、{{ false }}</li>
+<li>三元运算 {{flag ? true : false}}</li>
+<li>算数运算 {{a + b}}</li>
+<li>逻辑判断 {{a > 1}}</li>
+<li>字符串拼接 {{a + "suffix"}}</li>
+<li>访问对象属性 {{obj.name}}、{{arr[0].checked}}</li>
+<li>创建新数组 {{[name, "john", "smith"]}}，支持展开运算符 {{[...fruits, "apple", "orange"]}}</li>
+<li>创建新对象 {{title: "用户管理", code: "01"}}，支持展开运算符 {{...attrs, title: "系统设置"}}</li>
+</ol>
+<p>注意:</p>
+<ol>
+<li>在属性中使用Mustache需要使用””引起来。另外花括号与”之间不要有空格，"{{a}} "会被解析为"{{a + ' '}}"，可能会造成意料之外的副作用。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;length &gt; 5&#125;&#125;&quot;</span> <span class="attr">data-code</span>=<span class="string">&quot;&#123;&#123;pageCode&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;menu.title&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>expression中不支持函数调用，即使是原生方法也不行，如arr.indexOf(“xx”) &gt; 0</li>
+</ol>
+<h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><p>page.data用于定义页面数据。修改数据后必须使用this.setData(changedObj, cb)，否则不会更新到视图。<br>changedObj支持key-path锁定值范围，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">arr</span>: [&#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;july&quot;</span></span><br><span class="line">        &#125;],</span><br><span class="line"></span><br><span class="line">        <span class="attr">info</span>:&#123;</span><br><span class="line">            <span class="attr">sex</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="title">onChange</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 可以通过path来设置嵌套属性</span></span><br><span class="line">        <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">            <span class="string">&quot;arr[0].name&quot;</span>: <span class="string">&quot;aug&quot;</span>,</span><br><span class="line">            <span class="string">&quot;info.sex&quot;</span>: <span class="number">1</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="WXS"><a href="#WXS" class="headerlink" title="WXS"></a>WXS</h2><p>小程序脚本语言，配合WXML使用（弥补mustache不支持函数调用的不足）。<br>wxs虽然语法上参考了javascript，但是两者是不同的语言。因此wxs与js相互之间无法相互调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;wxs <span class="built_in">module</span>=<span class="string">&quot;m1&quot;</span>&gt;</span><br><span class="line"><span class="keyword">var</span> getMax = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> max = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; ++i) &#123;</span><br><span class="line">        max = max === <span class="literal">undefined</span> ?</span><br><span class="line">            array[i] :</span><br><span class="line">            (max &gt;= array[i] ? max : array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.getMax = getMax;</span><br><span class="line">&lt;/wxs&gt;</span><br></pre></td></tr></table></figure>
+<p>在WXML中调用getMax：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;m1.getMax(arr)&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" data-id="ckowi50gk004fdvrv13rj4gww" data-title="weapp核心概念" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/12/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6ColorPicker/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          自定义组件ColorPicker
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/12/06/Linux%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux常见运维操作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

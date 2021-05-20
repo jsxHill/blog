@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>babel7核心概念 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="什么是babelbabel是一个能将es6+代码转换为功能等价的es5代码的工具。使得开发人员即使工作在较老的js环境，也能享受到新特性带来的好处。也可以让开发者提前体验实验特性（未加入到浏览器）。 配置babel具体的语法转换功能是由插件实现的，一种插件对应一种语法转换。比如@babel&#x2F;plugin-transform-arrow-functions负责将箭头函数转为es5函数： 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="babel7核心概念">
+<meta property="og:url" content="https://jsxhill.github.io/blog/2019/10/23/babel7%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是babelbabel是一个能将es6+代码转换为功能等价的es5代码的工具。使得开发人员即使工作在较老的js环境，也能享受到新特性带来的好处。也可以让开发者提前体验实验特性（未加入到浏览器）。 配置babel具体的语法转换功能是由插件实现的，一种插件对应一种语法转换。比如@babel&#x2F;plugin-transform-arrow-functions负责将箭头函数转为es5函数： 123456">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-23T03:31:20.000Z">
+<meta property="article:modified_time" content="2020-12-01T03:34:38.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="babel">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-babel7核心概念" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/10/23/babel7%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time class="dt-published" datetime="2019-10-23T03:31:20.000Z" itemprop="datePublished">2019-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      babel7核心概念
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是babel"><a href="#什么是babel" class="headerlink" title="什么是babel"></a>什么是babel</h2><p>babel是一个能将es6+代码转换为功能等价的es5代码的工具。使得开发人员即使工作在较老的js环境，也能享受到新特性带来的好处。也可以让开发者提前体验实验特性（未加入到浏览器）。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>babel具体的语法转换功能是由插件实现的，一种插件对应一种语法转换。比如@babel/plugin-transform-arrow-functions负责将箭头函数转为es5函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in </span></span><br><span class="line"><span class="keyword">const</span> double = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].map(<span class="function">(<span class="params">num</span>) =&gt;</span> num * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="keyword">const</span> double = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num * <span class="number">2</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="CLI配置"><a href="#CLI配置" class="headerlink" title="CLI配置"></a>CLI配置</h3><p>通过cmd options传递配置项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel --plugins @babel/plugin-transform-arrow-functions script.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件配置"><a href="#文件配置" class="headerlink" title="文件配置"></a>文件配置</h3><p>babel支持多种配置文件：<br>.babelrc 静态配置<br>.babelrc.js 支持编程<br>babel.config.js<br>babel.config.json<br>babel.config.json5<br>babel.config.cjs 模块模式下使用</p>
+<h4 id="项目级配置"><a href="#项目级配置" class="headerlink" title="项目级配置"></a>项目级配置</h4><p>自babel7开始，支持在项目根路径下添加配置文件作为projectConfig。projectConfig对该项目下的所有babel作业有效，但是它的优先级较低，可以视为defaultConfig。</p>
+<h4 id="文件级配置"><a href="#文件级配置" class="headerlink" title="文件级配置"></a>文件级配置</h4><p>文件级配置的查找逻辑是：</p>
+<ol>
+<li>从filename选项所在目录开始查找.babelrc文件。</li>
+<li>如果所在目录没有，则继续向上查找.babelrc文件。</li>
+<li>如果遇到包含package.json文件或者超出babelrcRoot指定的目录范围，则停止查找。<br>如果存在文件级配置，那么它会跟projectConfig合并，生成新的配置对象，从而实现不同的子目录拥有不同的babel配置。</li>
+</ol>
+<h3 id="API配置"><a href="#API配置" class="headerlink" title="API配置"></a>API配置</h3><p>以编程的方式传递配置项（优先级高于文件配置）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@babel/core&quot;</span>).transform(<span class="string">&quot;code&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="string">&quot;@babel/plugin-transform-arrow-functions&quot;</span>]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h3><p>babel不仅仅要解决语法转换问题（比如class关键字），还要解决jsApi兼容问题（比如IE浏览器不支持Promise对象）。polyfill的作用就是为当前环境打补丁，使其支持不兼容的jsApi。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel6</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@babel/polyfill&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// babel7，废弃@babel/polyfill，直接使用</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/stable&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;regenerator-runtime/runtime&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>babel6以前是使用@babel/polyfill，其内部会使用core-js2（core-js是专注于es6+polyfill的库）。<br>babel7以后做了优化，最好直接引用<a target="_blank" rel="noopener" href="https://juejin.im/post/5ce693b45188252db303ff23">core-js3</a>（@babel/polyfill与core-js3不兼容），原因如下：<br>1.core-js2已停止维护，部分以及未来的es6+特性只有core-js3才支持。<br>2.core-js3修复了一些历史bug，移除了一些已被废弃的api。<br>3.core-js3分包更灵活（具体可参阅<a target="_blank" rel="noopener" href="https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md">core-js@3, babel and a look into the future</a>），配合babel可以加载更小的包。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比如，缩小范围，只polyfill跟array、math相关的特性</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/es/array&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/proposals/math-extensions&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>值得一提的是，尽管core-js3按需加载做的很强大，但是其体积仍然不容小觑。以常见的Vue + Webpack4项目为例，如果要兼容IE，core-js大概在50kb（minify）左右。</p>
+<h3 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="babel-plugin-transform-runtime"></a>babel-plugin-transform-runtime</h3><p>babel polyfill可以解决api兼容性问题，但是它也“污染”了全局环境（修改built-ins对象、添加新的全局对象等等）。如果你无法掌控环境的话（比如开发一个库），这可能是个问题。[babel-plugin-transform-runtime][#babel-plugin-transform-runtime]能够帮助你创建一个沙盒环境，从而允许局部引入Symbol、Promise、Set、Generator等es6+新特性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="built_in">Promise</span>.resolve()</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="keyword">import</span> _Promise <span class="keyword">from</span> <span class="string">&quot;@babel/runtime-corejs3/core-js-stable/promise&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> promise = _Promise.resolve();</span><br></pre></td></tr></table></figure>
+
+<p>除了es6+新特性之外,plugin-transform-runtime还可以将babel内部使用的helper函数抽离到一个单独的module。跟默认的inline转换相比，可以节省一些代码体积。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out - usually</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_classCallCheck</span>(<span class="params">instance, Constructor</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!(instance <span class="keyword">instanceof</span> Constructor)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&quot;Cannot call a class as a function&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    _classCallCheck(<span class="built_in">this</span>, Person);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out - plugin-transform-runtime</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _classCallCheck2 = <span class="built_in">require</span>(<span class="string">&quot;@babel/runtime/helpers/classCallCheck&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> _classCallCheck3 = _interopRequireDefault(_classCallCheck2);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_interopRequireDefault</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : &#123; <span class="attr">default</span>: obj &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    (<span class="number">0</span>, _classCallCheck3.default)(<span class="built_in">this</span>, Person);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>总结一下，babel-plugin-transform-runtime提供3种转换（都不会污染全局环境）：</p>
+<ol>
+<li>regenerator aliasing，支持生成器函数；</li>
+<li>corejs aliasing，支持其它es6+特性，比如Promise/Symbol/Set（需开启corejs选项并安装对应的@babel/runtime-corejsX）；</li>
+<li>helper aliasing，抽离helper函数到独立的module；</li>
+</ol>
+<h2 id="preset"><a href="#preset" class="headerlink" title="preset"></a>preset</h2><p>preset是babel预设的插件集合，设置preset就相当于引入该preset下的所有插件。<br>常见的presets有es2015、stage-0、stage-1、stage-2、stage-3、env等等。每类preset都有自己的插件筛选逻辑，比如es2015包含所有es6特性；stage-3包含<a target="_blank" rel="noopener" href="https://tc39.es/process-document/">TC39</a>中的Candidate类特性（ps:stage-x是半开区间。比如stage-1，除了自身还包含所有来自stage-2、stage-3的插件）。<br>env比较特殊下面会单独叙述。</p>
+<h3 id="babel-preset-env"><a href="#babel-preset-env" class="headerlink" title="babel-preset-env"></a>babel-preset-env</h3><p>随着js运行时的发展，越来越多的es6+特性得到原生支持，反过来导致很多在preset中预设的插件是不必要的。因此就出现了evn，一种根据目标环境选择插件的preset。它的目的就是尽量只提供必需的语法转换（esX、stage-x等preset已过时）。<br>env实现的原理是通过收集js-runtime的兼容数据（比如<a target="_blank" rel="noopener" href="https://kangax.github.io/compat-table/es6/">compat-table-es6</a>）获知各环境所缺少的特性，再结合<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">browserslist</a>确定目标环境，最后得出当前需要加载的插件列表。</p>
+<h4 id="useBuiltIns"><a href="#useBuiltIns" class="headerlink" title="useBuiltIns"></a>useBuiltIns</h4><p>preset.env.useBuiltIns选项告诉babel如何处理polyfill。</p>
+<p>useBuiltIns:entry 代表在程序入口处自动拆分core-js或者@babel/polyfill:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.string.pad-start&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.string.pad-end&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>useBuiltIns:usage 代表在每个文件的使用处自动注入polyfill：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.promise&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Promise</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;core-js/modules/es.map&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
+
+<p>useBuiltIns:false 不使用自动polyfill。</p>
+<h3 id="babel-minify（Babili）"><a href="#babel-minify（Babili）" class="headerlink" title="babel-minify（Babili）"></a>babel-minify（Babili）</h3><p>前端工程的最后一步往往是minify bundle（压缩代码）。babel-minify就是配合babel使用的压缩插件集合。<br>与Uglify等压缩工具相比，babel-minify的优势在于：</p>
+<ol>
+<li>理解es6+语法，可以直接压缩es6+代码（Uglify只支持es5），有助于减少最终体积（无需转译es6代码的场景下）。</li>
+<li>插件化，可定制压缩功能。</li>
+<li>可以结合Flow/TypeScript注释实现更多高级压缩。<br>对个人而言，babel-minify最吸引人的就是，它不仅仅是移除空白、注释，缩短变量名，而且还能扩展以支持高级压缩。<br>比如，通过语法分析删除dead code：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123; <span class="keyword">var</span> x = <span class="number">1</span>; &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; <span class="keyword">var</span> x = f(); &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">unused</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; f(); &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+统一表达式以获得更好的压缩性：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (x) a();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">foo[<span class="string">&#x27;bar&#x27;</span>]</span><br><span class="line"><span class="built_in">Number</span>(foo)</span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  x &amp;&amp; a();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="number">0</span></span><br><span class="line">foo.bar</span><br><span class="line">+foo</span><br></pre></td></tr></table></figure>
+甚至通过constant-folding等手段提升运行时性能：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in</span></span><br><span class="line"><span class="number">2</span> * <span class="number">3</span>;</span><br><span class="line"><span class="string">&quot;b&quot;</span> + a + <span class="string">&quot;c&quot;</span> + <span class="string">&quot;d&quot;</span> + g + z + <span class="string">&quot;f&quot;</span> + <span class="string">&quot;h&quot;</span> + <span class="string">&quot;z&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// out</span></span><br><span class="line"><span class="number">6</span>;</span><br><span class="line"><span class="string">&quot;b&quot;</span> + a + <span class="string">&quot;cd&quot;</span> + g + z + <span class="string">&quot;fhz&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>ps:<br>最好只在产品环境下使用babel-minify。开发模式下，babel-minify可能会影响debug（代码可读性变差）。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;env&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;production&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;presets&quot;</span>: [<span class="string">&quot;minify&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/10/23/babel7%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" data-id="ckowi50fq001vdvrv9bbt1l2s" data-title="babel7核心概念" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/10/29/homebrew%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          homebrew使用指南
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/10/09/verdaccio%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">verdaccio使用问题集合</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

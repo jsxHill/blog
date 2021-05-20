@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>DragDrop Demo</title>
+	<style>
+	.list {
+		list-style-type: none;
+		padding: 0;
+		width: 300px;
+	}
+
+	.list-item {
+		height: 22px;
+		line-height: 22px;
+		padding: 5px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin: 10px 0;
+	}
+	</style>
+</head>
+
+<body>
+	<div>拖拽列表排序</div>
+	<ul id="drag1" class="list" 
+		ondragstart="onDragstart1(event)"
+		ondrop="onDrop1(event)" 
+		ondragover="onDragover1(event)">
+		<li class="list-item" draggable="true" data-index="0">1. First row</li>
+		<li class="list-item" draggable="true" data-index="1">2. Second row</li>
+		<li class="list-item" draggable="true" data-index="2">3. Third row</li>
+		<li class="list-item" draggable="true" data-index="3">4. Fourth row</li>
+		<li class="list-item" draggable="true" data-index="4">5. Fifth row</li>
+	</ul>
+
+	<div>拖拽列表排序，带蒙板</div>
+	<ul id="drag1" class="list" 
+		ondragstart="onDragstart(event)"
+		ondrop="onDrop(event)" 
+		ondragover="onDragover(event)">
+		<li class="list-item" draggable="true" data-index="0">1. First row</li>
+		<li class="list-item" draggable="true" data-index="1">2. Second row</li>
+		<li class="list-item" draggable="true" data-index="2">3. Third row</li>
+		<li class="list-item" draggable="true" data-index="3">4. Fourth row</li>
+		<li class="list-item" draggable="true" data-index="4">5. Fifth row</li>
+	</ul>
+</body>
+<script src="/js/dom.js"></script>
+<script>
+var $drag1 = document.querySelector("#drag1")
+
+function onDragstart1(e) {
+	e.dataTransfer.setData("text/plain", e.target.dataset.index)
+}
+
+function onDragover1(e){
+	e.preventDefault()
+}
+
+function onDrop1(e){
+	e.preventDefault()
+
+	var index = e.dataTransfer.getData("text/plain")
+		$source = $drag1.querySelector("[data-index='" + index + "']"),
+		$target = e.target
+
+	swapNode($source, $target)
+}
+</script>
+
+</html>

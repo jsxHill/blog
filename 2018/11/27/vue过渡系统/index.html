@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>vue过渡系统 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="进入离开过渡设置元素进入&#x2F;离开时的动效果。触发点:  条件渲染 (使用 v-if) 条件展示 (使用 v-show) 动态组件 (使用 is) 组件根节点  transition组件，实现单个元素的过渡transition组件不会渲染为真实的dom节点。在触发点被激活时，vue会自动嗅探当前元素是否应用了过渡效果，如果是，则会在不同的过渡阶段为触发元素添加不同的过渡class。 过渡周期：   过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue过渡系统">
+<meta property="og:url" content="https://jsxhill.github.io/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="进入离开过渡设置元素进入&#x2F;离开时的动效果。触发点:  条件渲染 (使用 v-if) 条件展示 (使用 v-show) 动态组件 (使用 is) 组件根节点  transition组件，实现单个元素的过渡transition组件不会渲染为真实的dom节点。在触发点被激活时，vue会自动嗅探当前元素是否应用了过渡效果，如果是，则会在不同的过渡阶段为触发元素添加不同的过渡class。 过渡周期：   过">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jsxhill.github.io/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/transition.png">
+<meta property="article:published_time" content="2018-11-27T09:08:08.000Z">
+<meta property="article:modified_time" content="2020-11-08T08:13:12.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsxhill.github.io/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/transition.png">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-vue过渡系统" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time class="dt-published" datetime="2018-11-27T09:08:08.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      vue过渡系统
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="进入离开过渡"><a href="#进入离开过渡" class="headerlink" title="进入离开过渡"></a>进入离开过渡</h2><p>设置元素进入/离开时的动效果。<br>触发点:</p>
+<ol>
+<li>条件渲染 (使用 v-if)</li>
+<li>条件展示 (使用 v-show)</li>
+<li>动态组件 (使用 is)</li>
+<li>组件根节点</li>
+</ol>
+<h3 id="transition组件，实现单个元素的过渡"><a href="#transition组件，实现单个元素的过渡" class="headerlink" title="transition组件，实现单个元素的过渡"></a>transition组件，实现单个元素的过渡</h3><p>transition组件不会渲染为真实的dom节点。在触发点被激活时，vue会自动嗅探当前元素是否应用了过渡效果，如果是，则会在不同的过渡阶段为触发元素添加不同的过渡class。</p>
+<p>过渡周期：</p>
+<img src="/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/transition.png" class="">
+
+<p>过渡模式mode：</p>
+<ol>
+<li>默认enter与leave同时发生。</li>
+<li>in-out：新元素先进行过渡，完成之后当前元素过渡离开。</li>
+<li>out-in：当前元素先进行过渡，完成之后新元素过渡进入。</li>
+</ol>
+<p>主要场景，多选一过渡<br>原生标签若名称相同，则需要通过key来区分。多个组件则不用。</p>
+<h3 id="transition-group组件，实现多个元素同时过渡"><a href="#transition-group组件，实现多个元素同时过渡" class="headerlink" title="transition-group组件，实现多个元素同时过渡"></a>transition-group组件，实现多个元素同时过渡</h3><p>transition-group会被渲染为一个真实dom节点，默认为span。<br>过渡模式mode不可用，此时不是单个元素的切换。<br>内部元素总是需要提供唯一key。</p>
+<p>transition-group会提供一个新特性move，在元素改变定位时应用，为其添加class v-move。内部实现是利用了FLIP动画队列，让元素平滑的改变位置。</p>
+<h2 id="状态过渡"><a href="#状态过渡" class="headerlink" title="状态过渡"></a>状态过渡</h2><p>元素本身改变的动效。</p>
+<ul>
+<li>数字和运算</li>
+<li>颜色的显示</li>
+<li>SVG 节点的位置</li>
+<li>元素的大小和其他的属性</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://aerotwist.com/blog/flip-your-animations/">FLIP</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/" data-id="ckowi50gy0052dvrv9y5m6wwm" data-title="vue过渡系统" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          webpack之code-splitting
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/11/27/Sortablejs%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sortablejs学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

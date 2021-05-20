@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>利用yeoman生成项目代码 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="yeoman是什么yeoman是一款使用Node开发的项目代码生成工具，支持多种语言（Web, Java, Python, C#, 等等)。 安装&amp;使用generator12345678# 安装yonpm install -g yo# 安装generatornpm install -g generator-webapp# 使用generator，可以省略generator-前缀yo gen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用yeoman生成项目代码">
+<meta property="og:url" content="https://jsxhill.github.io/blog/2019/04/01/%E5%88%A9%E7%94%A8yeoman%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="yeoman是什么yeoman是一款使用Node开发的项目代码生成工具，支持多种语言（Web, Java, Python, C#, 等等)。 安装&amp;使用generator12345678# 安装yonpm install -g yo# 安装generatornpm install -g generator-webapp# 使用generator，可以省略generator-前缀yo gen">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-04-01T03:05:42.000Z">
+<meta property="article:modified_time" content="2020-03-27T06:37:15.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="yo">
+<meta property="article:tag" content="generator">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-利用yeoman生成项目代码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/04/01/%E5%88%A9%E7%94%A8yeoman%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2019-04-01T03:05:42.000Z" itemprop="datePublished">2019-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      利用yeoman生成项目代码
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="yeoman是什么"><a href="#yeoman是什么" class="headerlink" title="yeoman是什么"></a>yeoman是什么</h2><p><a target="_blank" rel="noopener" href="https://yeoman.io/learning/index.html">yeoman</a>是一款使用Node开发的项目代码生成工具，支持多种语言（Web, Java, Python, C#, 等等)。</p>
+<h3 id="安装-amp-使用generator"><a href="#安装-amp-使用generator" class="headerlink" title="安装&amp;使用generator"></a>安装&amp;使用generator</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装yo</span></span><br><span class="line">npm install -g yo</span><br><span class="line"><span class="comment"># 安装generator</span></span><br><span class="line">npm install -g generator-webapp</span><br><span class="line"><span class="comment"># 使用generator，可以省略generator-前缀</span></span><br><span class="line">yo generator-name</span><br><span class="line"><span class="comment"># 使用子generator</span></span><br><span class="line">yo generator-name:sub-generator</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义generator"><a href="#自定义generator" class="headerlink" title="自定义generator"></a>自定义generator</h2><p>yeoman本身不生成任何代码，而是把这项工作交给<a target="_blank" rel="noopener" href="https://yeoman.io/authoring/">生成器</a>插件。</p>
+<h3 id="创建一个generator"><a href="#创建一个generator" class="headerlink" title="创建一个generator"></a>创建一个generator</h3><p>generator本质上是一个node_module，目录结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├───package.json</span><br><span class="line">└───generators/</span><br><span class="line">    ├───app/</span><br><span class="line">    │   └───index.js</span><br><span class="line">    └───router/</span><br><span class="line">        └───index.js</span><br></pre></td></tr></table></figure>
+<p>generators为生成器目录。app是默认生成器，供命令yo name使用。<br>router是子生成器，供命令yo name:sub-generator使用。</p>
+<p>package.json配置如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;generator-xxx&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.1.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;...&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;files&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;generators&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;keywords&quot;</span>: [<span class="string">&quot;yeoman-generator&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;yeoman-generator&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>name必须以generator-开头。</li>
+<li>keywords必须包含yeoman-generator。</li>
+<li>发布后如果期望generator能够被yeoman官方收录，description是必填项。</li>
+<li>yeoman-generator是生成器的基类，后续都是在其基础上进行扩展开发。</li>
+<li>files定义了生成器所在目录（配合yo命令使用）。</li>
+</ol>
+<h3 id="task-amp-run-loop"><a href="#task-amp-run-loop" class="headerlink" title="task &amp; run loop"></a>task &amp; run loop</h3><p>generator由一系列task（即generator原型对象上的method）组成，并通过run loop队列执行task。<br>另外yeoman还定义了task的优先级（通过name匹配），特殊优先级名称及其执行顺序如下：</p>
+<ol>
+<li>initializing，初始化方法</li>
+<li>prompting，处理与用户交互的部分</li>
+<li>configuring，修改以及保存项目配置</li>
+<li>default，特殊优先级之外都归入此类</li>
+<li>writing，文件写入处理</li>
+<li>conflicts，冲突处理</li>
+<li>install，依赖安装（npm、bower）</li>
+<li>end，结束/清理阶段</li>
+</ol>
+<h3 id="用户交互"><a href="#用户交互" class="headerlink" title="用户交互"></a>用户交互</h3><p>可以在prompting中定义交互式命令行菜单（基于<a target="_blank" rel="noopener" href="https://github.com/SBoudrias/Inquirer.js">Inquirer.js</a>）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">prompting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.answers = <span class="keyword">await</span> <span class="built_in">this</span>.prompt([&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;confirm&quot;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;cool&quot;</span>,</span><br><span class="line">        <span class="attr">message</span>: <span class="string">&quot;Would you like to enable the Cool feature?&quot;</span></span><br><span class="line">    &#125;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以支持CLI options、arguments参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yo app [options] arguments</span><br></pre></td></tr></table></figure>
+<p>定义arguments</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.argument(<span class="string">&quot;appname&quot;</span>, &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;)</span><br><span class="line"><span class="built_in">this</span>.log(<span class="built_in">this</span>.options.appname)</span><br></pre></td></tr></table></figure>
+<p>定义options</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.option(<span class="string">&quot;coffee&quot;</span>)</span><br><span class="line"><span class="built_in">this</span>.log(<span class="built_in">this</span>.options.coffee)</span><br></pre></td></tr></table></figure>
+
+<h3 id="in-memory-fs"><a href="#in-memory-fs" class="headerlink" title="in-memory fs"></a>in-memory fs</h3><p>为了更好处理文件IO，yeoman使用了内存文件系统<a target="_blank" rel="noopener" href="https://github.com/sboudrias/mem-fs-editor">mem-fs</a>。mem-fs提供了便于使用的同步file api，而且能够缓存文件写入结果（在内存中进行），延迟磁盘写入（yeoman会在end阶段自动提交缓存）。</p>
+<p>mem-fs内部使用了<a target="_blank" rel="noopener" href="https://github.com/mrmlnc/fast-glob#compatible-with-node-glob">fast-glob</a>，因此在file api中可以使用glob-pattern，以及相关的配置选项，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.fs.copy(</span><br><span class="line">    <span class="built_in">this</span>.templatePath(<span class="string">&#x27;**/*.js&#x27;</span>),</span><br><span class="line">    <span class="built_in">this</span>.destinationPath(), &#123;</span><br><span class="line">        <span class="attr">globOptions</span>: &#123;</span><br><span class="line">            <span class="attr">ignore</span>: [<span class="string">&#x27;dist&#x27;</span>, <span class="string">&#x27;package-lock.json&#x27;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h3><h4 id="本地运行local-genetator"><a href="#本地运行local-genetator" class="headerlink" title="本地运行local genetator"></a>本地运行local genetator</h4><p>将generator发布到npm之前，可以先在本地运行测试。<br>方法有2种：</p>
+<ol>
+<li>利用npm link。</li>
+<li>直接使用yo some/path/to/generator运行本地生成器。</li>
+</ol>
+<h4 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># OS X / Linux</span></span><br><span class="line">node --inspect `<span class="built_in">which</span> yo` &lt;generator&gt; [arguments]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line"><span class="comment"># Find the path to the yo binary in Command Prompt</span></span><br><span class="line"><span class="built_in">where</span> yo</span><br><span class="line"><span class="comment"># Or find the path to the yo binary in PowerShell</span></span><br><span class="line">get-command yo</span><br><span class="line"><span class="comment"># Would be something like C:\Users\&lt;USER&gt;\AppData\Roaming\npm\yo</span></span><br><span class="line"><span class="comment"># Use this path to derive yo cli.js file</span></span><br><span class="line"><span class="comment"># C:\Users\&lt;USER&gt;\AppData\Roaming\npm\node_modules\yo\lib\cli.js</span></span><br><span class="line">node --inspect &lt;path to yo cli.js&gt; &lt;generator&gt; [arguments]</span><br></pre></td></tr></table></figure>
+<p>内部debug信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># OS X / Linux</span></span><br><span class="line">DEBUG=yeoman:generator</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line"><span class="built_in">set</span> DEBUG=yeoman:generator</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用问题总结"><a href="#使用问题总结" class="headerlink" title="使用问题总结"></a>使用问题总结</h2><h3 id="this-sourceRoot-path-更改模版存放路径后导致模板文件找不到"><a href="#this-sourceRoot-path-更改模版存放路径后导致模板文件找不到" class="headerlink" title="this.sourceRoot(path)更改模版存放路径后导致模板文件找不到"></a>this.sourceRoot(path)更改模版存放路径后导致模板文件找不到</h3><p>默认情况下，模板文件目录是generator下的templates目录（跟index.js同级）。比较坑的是，如果使用sourceRoot(path)修改root，其上下文是destination 目录而非generator目录。因此，这个方法应当避免使用（官方已视其为<a target="_blank" rel="noopener" href="https://github.com/yeoman/generator/issues/1070">遗留方法</a>）。<br>获取generator根目录可以使用this.resolved，获取模板文件path可以使用this.templatePath()。</p>
+<h3 id="gitignore无法复制"><a href="#gitignore无法复制" class="headerlink" title=".gitignore无法复制"></a>.gitignore无法复制</h3><p>本地运行好好的generator发布到npm后再使用，结果发现.gitignore文件没有复制，还多了一份.npmignore文件。原来这是npm导致的。npm publish会自动过滤掉.gitignore文件，因此.gitignore根本不会提交到仓库，自然也无法复制。另外如果未提供.npmignore文件，但存在.gitignore文件，npm会copy .gitignore并作为.npmigore上传，因此多了一份.npmignore文件。<br>解决办法是，将.gitignore重命名为gitignore_copy，然后在generator中处理为.gitignore。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .gitignore需要特殊处理</span></span><br><span class="line"><span class="built_in">this</span>.fs.copy(</span><br><span class="line">    <span class="built_in">this</span>.templatePath(<span class="string">&#x27;gitignore_copy&#x27;</span>),</span><br><span class="line">    <span class="built_in">this</span>.destinationPath(<span class="string">&#x27;.gitignore&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://yeoman.github.io/generator/">Generator API</a><br><a target="_blank" rel="noopener" href="https://github.com/yeoman/generator/issues/812">.gitignore isn’t copying</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/04/01/%E5%88%A9%E7%94%A8yeoman%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81/" data-id="ckowi50fb0014dvrv8rrofm2b" data-title="利用yeoman生成项目代码" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/04/01/%E5%89%8D%E7%AB%AF%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8BG2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前端可视化之G2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/03/29/%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何发布一个npm包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

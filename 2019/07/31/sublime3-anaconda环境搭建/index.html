@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>sublime3+anaconda环境搭建 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Mac + Anaconda + Python37Anaconda安装完毕后，创建虚拟环境py37。 1234conda create --name py37 python&#x3D;3.7# 查看所有虚拟环境conda info -e log如图：   然后打开Sublime Text -&gt;Tools -&gt; Build System -&gt; New Build System，添加并保存为下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sublime3+anaconda环境搭建">
+<meta property="og:url" content="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Mac + Anaconda + Python37Anaconda安装完毕后，创建虚拟环境py37。 1234conda create --name py37 python&#x3D;3.7# 查看所有虚拟环境conda info -e log如图：   然后打开Sublime Text -&gt;Tools -&gt; Build System -&gt; New Build System，添加并保存为下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-create-py37.png">
+<meta property="og:image" content="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/hello-world-py37.png">
+<meta property="og:image" content="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-repl-run.png">
+<meta property="og:image" content="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-repl-exec.png">
+<meta property="article:published_time" content="2019-07-31T00:21:34.000Z">
+<meta property="article:modified_time" content="2020-10-06T02:29:34.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="st3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-create-py37.png">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-sublime3-anaconda环境搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2019-07-31T00:21:34.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      sublime3+anaconda环境搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Mac-Anaconda-Python37"><a href="#Mac-Anaconda-Python37" class="headerlink" title="Mac + Anaconda + Python37"></a>Mac + Anaconda + Python37</h2><p>Anaconda安装完毕后，创建虚拟环境py37。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name py37 python=3.7</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有虚拟环境</span></span><br><span class="line">conda info -e</span><br></pre></td></tr></table></figure>
+<p>log如图：</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-create-py37.png" class="">
+
+<p>然后打开Sublime Text -&gt;Tools -&gt; Build System -&gt; New Build System，添加并保存为下配置：<br>py37.sublime-build</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;cmd&quot;</span>: [<span class="string">&quot;/Users/&lt;your path&gt;/anaconda3/envs/py37/bin/python3.7&quot;</span>, <span class="string">&quot;-u&quot;</span>, <span class="string">&quot;$file&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;file_regex&quot;</span>: <span class="string">&quot;^[ ]File \&quot;(...?)\&quot;, line ([0-9]*)&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;selector&quot;</span>: <span class="string">&quot;source.python&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ps：</p>
+<ol>
+<li>自定义配置文件会保存在Sublime/Packages/User下，可以随时调整。</li>
+</ol>
+<p>最后run build测试一下。</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/hello-world-py37.png" class="">
+
+<h2 id="插件SublimeREPL"><a href="#插件SublimeREPL" class="headerlink" title="插件SublimeREPL"></a>插件SublimeREPL</h2><p>安装后可以在SublimeText中运行交互式解释器，方便调试。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>SublimeREPL-Python默认调用系统环境中的python。为了调用上述步骤创建的py37，可以添加如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入Sublime插件安装目录</span></span><br><span class="line"><span class="built_in">cd</span> &lt;Sublime Packages&gt;/User</span><br><span class="line"><span class="comment"># 创建SublimeREPL配置目</span></span><br><span class="line">mkdir -p SublimeREPL/config/Python</span><br></pre></td></tr></table></figure>
+<p>然后添加如下2份文件：<br>Default.sublime-commands</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;SublimeREPL: Python - Anaconda&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;run_existing_window_command&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;file&quot;</span>: <span class="string">&quot;config/Python/Main.sublime-menu&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;SublimeREPL: Python - Anaconda - run&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;run_existing_window_command&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda_run&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;file&quot;</span>: <span class="string">&quot;config/Python/Main.sublime-menu&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Main.sublime-menu（注意将其中cmd部分的python path替换为你的真实路径）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;tools&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;children&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;SublimeREPL&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;mnemonic&quot;</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;SublimeREPL&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;children&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;Python&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;Python&quot;</span>,</span><br><span class="line"></span><br><span class="line">            <span class="attr">&quot;children&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;repl_open&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;Python - Anaconda&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;mnemonic&quot;</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;subprocess&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;encoding&quot;</span>: <span class="string">&quot;utf8&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;cmd&quot;</span>: [<span class="string">&quot;/Users/&lt;your path&gt;/anaconda3/envs/py37/bin/python3.7&quot;</span>, <span class="string">&quot;-i&quot;</span>, <span class="string">&quot;-u&quot;</span>],</span><br><span class="line">                    <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$file_path&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;syntax&quot;</span>: <span class="string">&quot;Packages/Python/Python.tmLanguage&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;external_id&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;extend_env&quot;</span>:</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">&quot;PYTHONIOENCODING&quot;</span>: <span class="string">&quot;utf-8&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,&#123;</span><br><span class="line">                <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;repl_open&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;caption&quot;</span>: <span class="string">&quot;Python - Anaconda - Run&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda_run&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;mnemonic&quot;</span>: <span class="string">&quot;R&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;args&quot;</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;subprocess&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;encoding&quot;</span>: <span class="string">&quot;utf8&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;cmd&quot;</span>: [<span class="string">&quot;/Users/&lt;your path&gt;/anaconda3/envs/py37/bin/python3.7&quot;</span>, <span class="string">&quot;-u&quot;</span>, <span class="string">&quot;$file_basename&quot;</span>],</span><br><span class="line">                    <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$file_path&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;syntax&quot;</span>: <span class="string">&quot;Packages/Python/Python.tmLanguage&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;external_id&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;extend_env&quot;</span>:</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="attr">&quot;PYTHONIOENCODING&quot;</span>: <span class="string">&quot;utf-8&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>然后通过菜单Tools&gt;SublimeREPL&gt;Python&gt;”Python - Anaconda - Run”即可运行.py文件。</p>
+<p>为了方便，还可以跟Build System相结合。比如修改之前的py37.sublime-build为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;target&quot;</span>: <span class="string">&quot;run_existing_window_command&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="string">&quot;repl_python_anaconda_run&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;file&quot;</span>: <span class="string">&quot;config/Python/Main.sublime-menu&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后直接使用ctrl+b就可以调用REPL运行.py文件啦。</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-repl-run.png" class="">
+
+<p>另外也可以直接进入交互模式，运行python语句。<br>Tools&gt;SublimeREPL&gt;Python&gt;Python - Anaconda</p>
+<img src="/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/anaconda-repl-exec.png" class="">
+
+<p>ps：</p>
+<ol>
+<li>Main.sublime-menu配置中，cwd用于指定当前目录。$file_path代表Current File所在的目录。还可以设为$folder，代表Current File所在的Project根目录。</li>
+</ol>
+<h3 id="调试（Debug）"><a href="#调试（Debug）" class="headerlink" title="调试（Debug）"></a>调试（Debug）</h3><p>todo</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/07/31/sublime3-anaconda%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-id="ckowi50gh0047dvrvcefpaw2h" data-title="sublime3+anaconda环境搭建" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/09/01/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          js函数式编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/07/27/cypress%E8%B0%83%E8%AF%95%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cypress调试篇</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

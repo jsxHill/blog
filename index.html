@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://jsxhill.github.io/blog/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-js中如何实现私有成员" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/" class="article-date">
+  <time class="dt-published" datetime="2021-05-20T06:19:01.000Z" itemprop="datePublished">2021-05-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/cookbook/">cookbook</a>►<a class="article-category-link" href="/blog/categories/cookbook/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="真正的私有化"><a href="#真正的私有化" class="headerlink" title="真正的私有化"></a>真正的私有化</h2><p>对于js而言，要实现货真价实的私有变量（外部完全无法访问），只能使用闭包。比如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(<span class="string">&#x27;hh&#x27;</span>)</span><br><span class="line">foo.getName() <span class="comment">// hh</span></span><br><span class="line">foo.name <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>闭包大法虽好，但是这样写有一个缺点——每次创建一个实例的时，都要新建相关的method。对于需要大量创建的对象来说，其开销就无法令人满意了（一般情况下，method都是放在prototype上以便所有实例共享使用）。</p>
+<h2 id="折中方案"><a href="#折中方案" class="headerlink" title="折中方案"></a>折中方案</h2><p>使用prototype的缺点则是将所有成员都暴露了出来。面对这种两难的局面，一般有以下几种折中处理方案。<br>第一种，也是最简单直接的，约定所有以’_’开头的即为私有属性，客户程序不应该调用它。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>._name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>._name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(<span class="string">&#x27;hh&#x27;</span>)</span><br><span class="line">foo.getName() <span class="comment">// hh</span></span><br><span class="line">foo.name <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>当然，如果遇到不遵守约定的人，私有性则会被破坏。</p>
+<p>第二种，利用Symbol隐藏私有属性名称，使外界无法直接引用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Foo = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> _name = <span class="built_in">Symbol</span>(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>[_name] = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Foo.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>[_name]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Foo</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(<span class="string">&#x27;hh&#x27;</span>)</span><br><span class="line">foo.getName() <span class="comment">// hh</span></span><br><span class="line">foo.name <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>Symbol方案已经比较接近完美了，美中不足的是，外界仍然可以通过<code>Object.getOwnPropertySymbols(foo)</code>获取到Symbol，从而破坏私有性。另外必须使用<code>this[symbolName]</code>比不上使用<code>this.name</code>书写顺畅。</p>
+<p>第三种，利用WeakMap隐藏私有属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Foo = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> private = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> props = &#123;</span><br><span class="line">            name</span><br><span class="line">        &#125;</span><br><span class="line">        private.set(<span class="built_in">this</span>, props)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Foo.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> private.get(<span class="built_in">this</span>).name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Foo</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(<span class="string">&#x27;hh&#x27;</span>)</span><br><span class="line">foo.getName() <span class="comment">// hh</span></span><br><span class="line">foo.name <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>WeakMap实现的效果跟Symbol类似，而且没有getOwnPropertySymbols泄密的问题，完美。<br>另外之所以使用WeakMap，是为了置空对象（<code>foo = null</code>）可以被垃圾回收，防止内存泄露。</p>
+<h2 id="新特性-Private-class-fields"><a href="#新特性-Private-class-fields" class="headerlink" title="新特性 Private class fields"></a>新特性 Private class fields</h2><p>WeakMap使用起来还是稍显复杂。官方在es2020终于提出了一个原生解决方案，简单来说就是在class声明中凡是以<code>#</code>开头的，就代表它是私有属性，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    #name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.#name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">getName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.#name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(<span class="string">&#x27;hh&#x27;</span>)</span><br><span class="line">foo.getName() <span class="comment">// hh</span></span><br><span class="line">foo.name <span class="comment">// undefined</span></span><br><span class="line">foo.#name <span class="comment">// Uncaught SyntaxError: Private field &#x27;#name&#x27; must be declared in an enclosing class</span></span><br></pre></td></tr></table></figure>
+<p>该方案无疑是最高效的，不过以‘#’开头的命名法总让人有感觉有点瑕疵，为什么不使用常见的private关键字呢？<br>这是因为js本质上还是动态语言，在对象上可以随意添加/删除属性。以<code>foo.name</code>为例，js解释器是无法判断name是初始化设置的私有属性还是后来添加的公开属性的，所以必须在名称上加以区别。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/" data-id="ckowi756q009vdvrv0zt96r0y" data-title="js中如何实现私有成员" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sinonjs与单元测试" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="article-date">
+  <time class="dt-published" datetime="2020-11-14T12:32:54.000Z" itemprop="datePublished">2020-11-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="Fakes-伪造"><a href="#Fakes-伪造" class="headerlink" title="Fakes 伪造"></a>Fakes 伪造</h3><p>fake是一个函数，它会记录每次调用产生的参数、返回值、this值、以及抛出的异常。<br>fake除了记录不会去做其它事情，除非手动定义其行为（behavior）。而且这些行为只能在创建时定义，之后便无法修改。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sinon.fake.returns(value) <span class="comment">// return value</span></span><br><span class="line">sinon.fake.throws(value) <span class="comment">// throw new Error(value)</span></span><br><span class="line">sinon.fake.resolves(value) 返回<span class="built_in">Promise</span>.resolve(value)</span><br><span class="line">sinon.fake.rejects(value) 返回<span class="built_in">Promise</span>.reject(value)</span><br><span class="line">sinon.fake.yields([value1, ..., valueN])</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spies-间谍"><a href="#Spies-间谍" class="headerlink" title="Spies 间谍"></a>Spies 间谍</h3><h3 id="Stubs-桩"><a href="#Stubs-桩" class="headerlink" title="Stubs 桩"></a>Stubs 桩</h3><h3 id="Mock-模"><a href="#Mock-模" class="headerlink" title="Mock 模"></a>Mock 模</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" data-id="ckowi50ge003ydvrv8sq71e6l" data-title="sinonjs与单元测试" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue组件单测环境搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2020-11-08T08:15:03.000Z" itemprop="datePublished">2020-11-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>最小化的vue组件单测环境只需按转</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue vue-template-compiler @vue/test-utils jsdom jsdom-global -D</span><br></pre></td></tr></table></figure>
+<p>ps: jsdom与jsdom-global用于在node环境中提供dom上下文。如果是在浏览器中运行，那么它们也不用安装了。</p>
+<p>不过这个基础环境并不支持vue单文件，也不具备其它预编译功能（比如babel转译）。所以更加常见的是结合webpack，直接对编译好的文件进行测试。具体内容在之后的mocha-webpack章节会讨论。</p>
+<h2 id="vue-test-utils-官方测试套件"><a href="#vue-test-utils-官方测试套件" class="headerlink" title="@vue/test-utils 官方测试套件"></a>@vue/test-utils 官方测试套件</h2><p>运行环境：nodejs + jsdom</p>
+<p>shallowMount浅渲染，只挂载一个组件而不渲染其子组件。<br>组件不会自动销毁，只能手动Wrapper.destory()。<br>检查dom变化需要用到Vue.nextTick()，注意这是一个异步过程。<br>transition需要特殊处理，Vue.nextTick()无法保证动画已经执行完毕。</p>
+<p>localVue局部Vue，可用于环境隔离<br>mocks仿造prop<br>stubs覆写全局或局部注册<br>当你的测试运行在 jsdom 中时，只能探测到内联样式</p>
+<p>wrapper.trigger触发DOM事件，包括键盘事件keydown.xxx</p>
+<h3 id="异步问题"><a href="#异步问题" class="headerlink" title="异步问题"></a>异步问题</h3><p><a target="_blank" rel="noopener" href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a></p>
+<h3 id="配合vue-router使用"><a href="#配合vue-router使用" class="headerlink" title="配合vue-router使用"></a>配合vue-router使用</h3><p>安装 Vue Router 会在 Vue 的原型上添加 $route 和 $router 只读属性。<br>这意味着在未来的任何测试中，伪造 $route 或 $router 都会失效。</p>
+<ol>
+<li>在localVue中安装</li>
+<li>mock $router、$route对象</li>
+<li>stub它们</li>
+</ol>
+<h3 id="配合vuex使用"><a href="#配合vuex使用" class="headerlink" title="配合vuex使用"></a>配合vuex使用</h3><h2 id="mochapack"><a href="#mochapack" class="headerlink" title="mochapack"></a>mochapack</h2><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @vue/test-utils mocha mocha-webpack jsdom jsdom-global -D</span><br></pre></td></tr></table></figure>
+<p>package.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>webpack.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nodeExternals = <span class="built_in">require</span>(<span class="string">&#x27;webpack-node-externals&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">// 外置所有的 NPM 依赖</span></span><br><span class="line">    <span class="attr">externals</span>: [nodeExternals()]，</span><br><span class="line">    <span class="comment">// 源码表在 mocha-webpack 中需要通过内联的方式获取</span></span><br><span class="line">    <span class="attr">devtool</span>: <span class="string">&#x27;inline-cheap-module-source-map&#x27;</span></span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="comment">// 在源码表中使用绝对路径 (对于在 IDE 中调试时很重要)</span></span><br><span class="line">        <span class="attr">devtoolModuleFilenameTemplate</span>: <span class="string">&#x27;[absolute-resource-path]&#x27;</span>,</span><br><span class="line">        <span class="attr">devtoolFallbackModuleFilenameTemplate</span>: <span class="string">&#x27;[absolute-resource-path]?[hash]&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>setup.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;jsdom-global&#x27;</span>)()</span><br></pre></td></tr></table></figure>
+
+<h3 id="vue-cli-plugin-unit-mocha插件"><a href="#vue-cli-plugin-unit-mocha插件" class="headerlink" title="@vue/cli-plugin-unit-mocha插件"></a>@vue/cli-plugin-unit-mocha插件</h3><p>unit-mocha是vueCli中负责初始化mocha-webpack单测环境的插件。该插件内部依赖jsdom、jsdom-global、mocha、mochapack这几个核心库，然后会自动为项目安装库@vue/test-utils、chai。另外插件对外提供命令vue-cli-service test:unit以便运行单元测试。</p>
+<p>ps:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 为已有的项目添加mocha-webpack</span></span><br><span class="line">vue add unit-mocha</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://cli.vuejs.org/core-plugins/unit-mocha.html">参考</a></p>
+<h3 id="测试覆盖率"><a href="#测试覆盖率" class="headerlink" title="测试覆盖率"></a>测试覆盖率</h3><p><a target="_blank" rel="noopener" href="https://github.com/zinserjan/mocha-webpack/blob/master/docs/guides/code-coverage.md">https://github.com/zinserjan/mocha-webpack/blob/master/docs/guides/code-coverage.md</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-id="ckowi50gd003vdvrv6cpwa16x" data-title="Vue组件单测环境搭建" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-VsCode实践总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2020-11-04T02:50:42.000Z" itemprop="datePublished">2020-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>虽然VsCode是一款非常强大的编辑器，但是在深度使用过程中也难免会遇到一些体验不好的地方。因此在这里持续做一个列表总结，避免重复踩坑。</p>
+<h2 id="插件篇"><a href="#插件篇" class="headerlink" title="插件篇"></a>插件篇</h2><h3 id="按需使用问题"><a href="#按需使用问题" class="headerlink" title="按需使用问题"></a>按需使用问题</h3><p>截止2020.11月为止，VsCode所支持的插件按需加载方式有：</p>
+<ol>
+<li>全局启用/禁用</li>
+<li>Workspace启用/禁用</li>
+<li>插件自定义启用逻辑（比如指定文件类型）</li>
+</ol>
+<p>ps: 如果想看当前项目启用了哪些插件，可以使用Show Runing Extensions命令。</p>
+<p>目前最大的问题是，Workspace启用/禁用无法共享，这导致我们需要为每一个项目去手动禁用不需要的插件，非常不便。这个问题还未得到官方解决，民间的替代方案可以<br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/58765230/copy-enable-disable-extensions-settings-to-another-workspace">参考</a>(无论哪一种都有缺陷)。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" data-id="ckowi50gd003sdvrv6b8lg2ej" data-title="VsCode实践总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-chai-cheatSheet" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/09/27/chai-cheatSheet/" class="article-date">
+  <time class="dt-published" datetime="2020-09-27T02:26:21.000Z" itemprop="datePublished">2020-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="谓词"><a href="#谓词" class="headerlink" title="谓词"></a>谓词</h2><p>谓词(变量) = 命题。</p>
+<h3 id="类型（DataType）判断"><a href="#类型（DataType）判断" class="headerlink" title="类型（DataType）判断"></a>类型（DataType）判断</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>an</td>
+<td>支持所有js内置类型判断，以及提供<code>[Symbol.toStringTag]</code>属性的自定义类型判断。<br/><code>expect(&#39;foo&#39;).to.be.a(&#39;string&#39;)</code></td>
+</tr>
+<tr>
+<td>arguments</td>
+<td>Arguments</td>
+<td>是否是arguments对象<br/><code>expect(arguments).to.be.arguments</code></td>
+</tr>
+<tr>
+<td>instanceof</td>
+<td>instanceOf</td>
+<td>同instanceof运算符<br/><code>expect(new Date()).be.an.instanceof(Date)</code></td>
+</tr>
+<tr>
+<td>extensible</td>
+<td></td>
+<td>对象是否是可扩展的<br/><code>expect(&#123;a: 1&#125;).to.be.extensible</code></td>
+</tr>
+<tr>
+<td>sealed</td>
+<td></td>
+<td>对象是否是封闭的<br/><code>expect(&#123;a: 1&#125;).to.be.sealed</code></td>
+</tr>
+<tr>
+<td>frozen</td>
+<td></td>
+<td>对象是否是冻结的<br/><code>expect(&#123;a: 1&#125;).to.be.sealed</code></td>
+</tr>
+</tbody></table>
+<h3 id="等式判断"><a href="#等式判断" class="headerlink" title="等式判断"></a>等式判断</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ok</td>
+<td></td>
+<td>是否truthy value<br/><code>expect(1).to.be.ok</code>不推荐使用ok，类型自动转换本身就是难以察觉的事情，用显示的等于判断更加严谨。<br />比如<code>expect(1).to.be.equal(1)</code><br/></td>
+</tr>
+<tr>
+<td>true</td>
+<td></td>
+<td>是否 <code>=== true</code><br/><code>expect(true).to.be.true</code></td>
+</tr>
+<tr>
+<td>false</td>
+<td></td>
+<td>是否 <code>=== false</code><br/><code>expect(false).to.be.false</code></td>
+</tr>
+<tr>
+<td>null</td>
+<td></td>
+<td>是否 <code>=== null</code><br/><code>expect(null).to.be.null</code></td>
+</tr>
+<tr>
+<td>undefined</td>
+<td></td>
+<td>是否 <code>=== undefined</code><br/><code>expect(null).to.be.undefined</code></td>
+</tr>
+<tr>
+<td>NaN</td>
+<td></td>
+<td>是否isNaN<br/><code>expect(&#39;foo&#39;).to.not.be.NaN</code></td>
+</tr>
+<tr>
+<td>empty</td>
+<td></td>
+<td>是否为空<br/><code>expect([]).to.be.empty</code><br /><code>expect(&#39;&#39;).to.be.empty</code><br /><code>expect(&#123;&#125;).to.be.empty</code><br />空可以简单理解为对象存在但是其length === 0</td>
+</tr>
+<tr>
+<td>equal</td>
+<td>eq</td>
+<td><code>===</code>判断<br/><code>expect(&#39;foo&#39;).to.equal(&#39;foo&#39;)</code></td>
+</tr>
+<tr>
+<td>eql</td>
+<td>eqls</td>
+<td>近似等价于deep.equal<br/><code>expect(&#123;a: 1&#125;).to.eql(&#123;a: 1&#125;)</code><br/>区别在于deep.equal会影响chain之后的所有判断</td>
+</tr>
+</tbody></table>
+<h3 id="不等式判断"><a href="#不等式判断" class="headerlink" title="不等式判断"></a>不等式判断</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>above</td>
+<td>gt/greaterThan</td>
+<td>大于<br/><code>expect(100).to.be.above(99)</code></td>
+</tr>
+<tr>
+<td>least</td>
+<td>gte</td>
+<td>大于等于<br/><code>expect(100).to.be.at.least(100)</code></td>
+</tr>
+<tr>
+<td>below</td>
+<td>lt/lessThan</td>
+<td>小于<br/><code>expect(99).to.be.below(100)</code></td>
+</tr>
+<tr>
+<td>most</td>
+<td>lte</td>
+<td>小于等于<br/><code>expect(100).to.be.at.most(100)</code></td>
+</tr>
+<tr>
+<td>lengthOf</td>
+<td></td>
+<td>长度等于<br/><code>expect([1, 2, 3]).to.have.lengthOf(3)</code><br/>根据目标对象的length/size属性判断</td>
+</tr>
+</tbody></table>
+<h3 id="存在性判断"><a href="#存在性判断" class="headerlink" title="存在性判断"></a>存在性判断</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>exist</td>
+<td></td>
+<td>相当于!== null &amp;&amp; !== undefined<br/><code>expect(1).to.exist</code><br/>跟ok的问题类似，如果能指明所比较的值，则不用exist</td>
+</tr>
+<tr>
+<td>property</td>
+<td></td>
+<td>属性是否存在/等于某值<br/><code>expect(&#123;a: 1&#125;).to.have.property(&#39;a&#39;)</code><br /><code>expect(&#123;a: 1&#125;).to.have.property(&#39;a&#39;, 1)</code><br/> 1. 可与deep、nested配合支持嵌套结构。<br/>2. property会改变当前目标值，比如<code>expect(&#123;a: 1&#125;).to.have.property(&#39;a&#39;).that.is.equal(1)</code></td>
+</tr>
+<tr>
+<td>ownProperty</td>
+<td>haveOwnProperty</td>
+<td>自身属性是否存在<br/>效果上等价于own.property</td>
+</tr>
+<tr>
+<td>ownPropertyDescriptor</td>
+<td></td>
+<td>属性描述符是否存在/等于某个descriptor<br/><code>expect(&#123;a: 1&#125;).to.have.ownPropertyDescriptor(&#39;a&#39;)</code><br/>ownPropertyDescriptor会改变当前目标值</td>
+</tr>
+<tr>
+<td>match</td>
+<td>matches</td>
+<td>正则匹配<br/><code>expect(&#39;foobar&#39;).to.match(/^foo/)</code></td>
+</tr>
+<tr>
+<td>keys</td>
+<td></td>
+<td>key是否存在<br/><code>expect(&#123;a: 1, b: 2&#125;).to.have.all.keys(&#39;a&#39;, &#39;b&#39;)</code></td>
+</tr>
+<tr>
+<td>respondTo</td>
+<td>respondsTo</td>
+<td>对象上是否存在method（如果对象是函数，则检测的是其prototype ）<br/><code>expect(new Date()).to.respondTo(&#39;getTime&#39;)</code></td>
+</tr>
+<tr>
+<td>oneOf</td>
+<td></td>
+<td>是否存在于某个指定数组<br/><code>expect(1).to.be.oneOf([1, 2, 3])</code></td>
+</tr>
+</tbody></table>
+<h3 id="范围-集合判断"><a href="#范围-集合判断" class="headerlink" title="范围/集合判断"></a>范围/集合判断</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>include</td>
+<td>includes/contain/contains</td>
+<td>是否包含：<br/>1. include默认使用<code>===</code>比较每一个子元素，嵌套结构判断需要配合deep/nested。<br />2. include默认会搜索原型链上的属性，配合own可以阻止这一行为。<br/><code>expect(&#39;foobar&#39;).to.include(&#39;foo&#39;)</code><br /><code>expect([1, 2, 3]).to.include(2)</code><br /><code>expect(&#123;a: 1, b: 2, c: 3&#125;).to.include(&#123;a: 1, b: 2&#125;)</code></td>
+</tr>
+<tr>
+<td>members</td>
+<td></td>
+<td>子数组判断<br/><code>expect([1, 2, 3]).to.have.members([2, 1, 3])</code></td>
+</tr>
+<tr>
+<td>within</td>
+<td></td>
+<td>区间判断（适用于数字/日期）<br/><code>expect(2).to.be.within(1, 3)</code></td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+<td>子字符串判断<br/><code>expect(&#39;foobar&#39;).to.not.have.string(&#39;taco&#39;)</code></td>
+</tr>
+<tr>
+<td>closeTo</td>
+<td>approximately</td>
+<td>数字是否靠近某个中心值（+/-半径）<br/><code>expect(1.5).to.be.closeTo(1, 0.5)</code></td>
+</tr>
+<tr>
+<td>finite</td>
+<td></td>
+<td>是否有限数字，等价于非NaN且非Infinity<br/><code>expect(1).to.be.finite</code></td>
+</tr>
+</tbody></table>
+<h3 id="函数式判断"><a href="#函数式判断" class="headerlink" title="函数式判断"></a>函数式判断</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>throw</td>
+<td>throws/Throw</td>
+<td>异常捕获<br/>1. throw会改变当前目标值<br />2. 注意wrap，expect(fn).throw()或者expect(() =&gt; fn(args)).throw()<br />3. 只支持捕获Error或者其派生对象</td>
+</tr>
+<tr>
+<td>satisfy</td>
+<td>satisfies</td>
+<td>自定义判断，返回truthy值表示真。<br/><code>expect(1).to.satisfy(function(num) &#123; return num &gt; 0 &#125;)</code></td>
+</tr>
+<tr>
+<td>change</td>
+<td>changes</td>
+<td>是否发生了改变。2种应用场景：<br/>1. 判断调用目标函数后，某个指定函数的返回值发生了改变。<br/>2. 判断调用目标函数后，某个对象的属性发生了改变。<br/><code>expect(add).to.change(getResult)</code><br/><code>expect(add).to.change(obj, &quot;total&quot;)</code><br/>change一般很少使用，更加易用方式是直接对运算结果进行判断。</td>
+</tr>
+<tr>
+<td>increase</td>
+<td></td>
+<td>判断调用目标函数后，某个指定函数的返回值增加了<br/><code>expect(addTwo).to.increase(getVal).by(2)</code></td>
+</tr>
+<tr>
+<td>decrease</td>
+<td></td>
+<td>判断调用目标函数后，某个指定函数的返回值减少了<br/><code>expect(subTwo).to.decrease(getVal).by(2)</code></td>
+</tr>
+<tr>
+<td>by</td>
+<td></td>
+<td>跟在change/increase/decrease后面，判断差值是多少<br/><code>expect(subTwo).to.decrease(getVal).by(2)</code></td>
+</tr>
+</tbody></table>
+<h3 id="特殊谓词"><a href="#特殊谓词" class="headerlink" title="特殊谓词"></a>特殊谓词</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fail</td>
+<td></td>
+<td>创建一个错误命题<br/><code>expect.fail(actual, expected, [message], [operator])</code><br/><code>should.fail(actual, expected, [message], [operator])</code></td>
+</tr>
+</tbody></table>
+<h2 id="副词"><a href="#副词" class="headerlink" title="副词"></a>副词</h2><p>副词用于修饰谓词（无法单独使用），从而组合出不同的语义。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>修饰对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>not</td>
+<td>all</td>
+<td>否定地，得出与原谓词相反的结论<br/><code>expect(&#123;a: 1&#125;).to.not.have.property(&#39;b&#39;)</code></td>
+</tr>
+<tr>
+<td>deep</td>
+<td>equal/include/members/keys/property</td>
+<td>递归地，常用于object/array数据的对比<br/><code>expect(&#123;a: 1&#125;).to.deep.equal(&#123;a: 1&#125;)</code></td>
+</tr>
+<tr>
+<td>nested</td>
+<td>property</td>
+<td>嵌套地，其实就是支持object-path /include<br/><code>expect(&#123;a: &#123;b: [&#39;x&#39;, &#39;y&#39;]&#125;&#125;).to.nested.include(&#123;&#39;a.b[1]&#39;: &#39;y&#39;&#125;);</code></td>
+</tr>
+<tr>
+<td>own</td>
+<td>property/include</td>
+<td>自身地，忽略原型链上的属性<br/><code>expect(&#123;toString: () =&gt; &#123;&#125;&#125;).to.have.own.property(&#39;toString&#39;)</code></td>
+</tr>
+<tr>
+<td>ordered</td>
+<td>members</td>
+<td>有序地，要求集合中元素出现的顺序保持一致<br/><code>expect([1, 2]).to.have.ordered.members([1, 2])</code></td>
+</tr>
+<tr>
+<td>include</td>
+<td>members</td>
+<td>部分地，针对某个子集元素进行断言<br/><code>expect([1, 2, 3]).to.include.ordered.members([1, 2])</code></td>
+</tr>
+<tr>
+<td>any</td>
+<td>keys</td>
+<td>至少一个<br/><code>expect(&#123;a: 1, b: 2&#125;).to.not.have.any.keys(&#39;c&#39;, &#39;d&#39;)</code></td>
+</tr>
+<tr>
+<td>all</td>
+<td>keys</td>
+<td>全部满足<br/><code>expect(&#123;a: 1, b: 2&#125;).to.have.all.keys(&#39;a&#39;, &#39;b&#39;)</code></td>
+</tr>
+<tr>
+<td>lengthOf</td>
+<td>above/below/least/most/within</td>
+<td>长度上<br/><code>expect([1, 2, 3]).to.have.lengthOf.above(2)</code></td>
+</tr>
+<tr>
+<td>itself</td>
+<td>respondTo</td>
+<td>自身上，当目标是函数时，迫使respondTo从自身开始检测<br/></td>
+</tr>
+</tbody></table>
+<h2 id="连词"><a href="#连词" class="headerlink" title="连词"></a>连词</h2><p>连词本身不参与逻辑判断，可以添加到任意位置，用来增强代码的可读性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">an</span><br><span class="line">to</span><br><span class="line">be</span><br><span class="line">been</span><br><span class="line">is</span><br><span class="line">that</span><br><span class="line">which</span><br><span class="line">and</span><br><span class="line">has</span><br><span class="line">have</span><br><span class="line">with</span><br><span class="line">at</span><br><span class="line">of</span><br><span class="line">same</span><br><span class="line">but</span><br><span class="line">does</span><br><span class="line">still</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/09/27/chai-cheatSheet/" data-id="ckowi50ga003idvrv20i51gjw" data-title="chai cheatSheet" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/07/13/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2020-07-13T12:40:15.000Z" itemprop="datePublished">2020-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/07/13/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">Deployment</a></p>
+<h2 id="语法特性"><a href="#语法特性" class="headerlink" title="语法特性"></a>语法特性</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><span class="fl avatar-big"><img src="/blog/images/female.png" class="avatar" title="女 female"></span>
+<span class="fl avatar-big"><img src="/blog/2020/07/13/hello-world/nets.png" class="" title="篮网"></span>
+<span class="fl avatar-big"><img src="/blog/2020/07/13/hello-world/raptors.svg" class="" title="猛龙"></span>
+<span class="fl avatar-big"><img src="/blog/2020/07/13/hello-world/inner/spurs.jpeg" class="" title="马刺"></span>
+
+<h3 id="插入代码块"><a href="#插入代码块" class="headerlink" title="插入代码块"></a>插入代码块</h3><blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a target="_blank" rel="noopener" href="http://devdocs.io/">http://devdocs.io</a><br>[作者[, 出处]] [链接] [链接标题]<br>[内容]</p>
+<footer><strong>@DevDocs,官网</strong><cite><a target="_blank" rel="noopener" href="https://twitter.com/devdocs/status/356095192085962752">高亮</a></cite></footer></blockquote>
+
+<figure class="highlight js"><figcaption><span>extend</span><a target="_blank" rel="noopener" href="https://hexo.io/docs/tag-plugins">相关链接</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [title] [lang:language] [url] [link text]</span></span><br><span class="line"><span class="built_in">Object</span>.assign(a, b)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><figcaption><span>_.compact</span><a target="_blank" rel="noopener" href="http://underscorejs.org/#compact">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><figcaption><span>_.compact</span><a target="_blank" rel="noopener" href="http://underscorejs.org/#compact">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/07/13/hello-world/" data-id="ckowhr5rl0000yfrvdrjpapdq" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Gulp使用指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/06/16/Gulp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="article-date">
+  <time class="dt-published" datetime="2020-06-16T06:01:13.000Z" itemprop="datePublished">2020-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/06/16/Gulp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">Gulp使用指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/06/16/Gulp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-id="ckowi50g9003fdvrv7n9n0z95" data-title="Gulp使用指南" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-d3-js术语表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/05/23/d3-js%E6%9C%AF%E8%AF%AD%E8%A1%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-05-23T01:25:57.000Z" itemprop="datePublished">2020-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/05/23/d3-js%E6%9C%AF%E8%AF%AD%E8%A1%A8/">d3.js术语表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id=""><a href="#" class="headerlink" title=""></a></h2><table>
+<thead>
+<tr>
+<th>$custom 索引</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$V D</td>
+<td>Data Binding 数据绑定</td>
+<td>支持datum()，绑定单个数据；支持data()，绑定一组数据</td>
+</tr>
+<tr>
+<td>$V S</td>
+<td>Selection 选择器</td>
+<td>类似于jquery，用于dom操作（主要是修改svg）</td>
+</tr>
+<tr>
+<td>$V S</td>
+<td>Scale 比例尺</td>
+<td>用于缩放比例计算</td>
+</tr>
+<tr>
+<td>$V X</td>
+<td>Axis 坐标轴</td>
+<td></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/05/23/d3-js%E6%9C%AF%E8%AF%AD%E8%A1%A8/" data-id="ckowi50g70039dvrv2ti7bqca" data-title="d3.js术语表" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Web大屏开发思路" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/05/22/Web%E5%A4%A7%E5%B1%8F%E5%BC%80%E5%8F%91%E6%80%9D%E8%B7%AF/" class="article-date">
+  <time class="dt-published" datetime="2020-05-22T02:29:40.000Z" itemprop="datePublished">2020-05-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/05/22/Web%E5%A4%A7%E5%B1%8F%E5%BC%80%E5%8F%91%E6%80%9D%E8%B7%AF/">Web大屏开发思路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="等比缩放"><a href="#等比缩放" class="headerlink" title="等比缩放"></a>等比缩放</h2><p>一般大屏的特点就是在一屏内展示内容。考虑到投放屏幕的尺寸跟设计稿往往有所差异，因此大屏需要具备一定的自适应缩放能力。<br>在不考虑跨屏匹配的前期下，大屏的缩放问题跟移动端碎片化屏幕适配问题类似。因此我们可以利用rem来布局。</p>
+<h3 id="contain效果"><a href="#contain效果" class="headerlink" title="contain效果"></a>contain效果</h3><p>rem布局原理不再赘述，这里讨论一个新的问题。rem虽然能够让元素弹性缩放，但是它是按单边等比缩放的。比如按屏幕宽度，若10rem=clientWidth，那么凡是width=10rem的元素在任意手机上都会占满手机的宽度。但是对于高度height而言就无法统一了。原本刚好铺满一屏的页面，在另一款分辨率不同的手机上，很可能会出现纵向滚动条。对于大部分Web应用而言，这不是问题，但是对于大屏来说就不太友好了。</p>
+<p>为了不出现滚动条，且利用rem等比缩放的便利，我们可以模仿背景图片的contain效果——无论图片多大，都会等比缩放至刚好能够在其容器下完整展示的尺寸。以设计稿尺寸为基准，大屏的contain效果如下图所示：</p>
+<img src="/blog/2020/05/22/Web%E5%A4%A7%E5%B1%8F%E5%BC%80%E5%8F%91%E6%80%9D%E8%B7%AF/contain.png" class="">
+
+<p>实现起来也不难，如果是更宽的场景，则根据高度比例换算，即</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rem = clientHeight * (clientHeight / designHeight) / <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>如果是更高的场景，则直接根据宽度计算，即</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rem = clientWidth / <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>ps: 10是将页面划分为10等份的意思，是rem计算中常用的一个系数。可根据实际情况调整。</p>
+<h3 id="scale缩放"><a href="#scale缩放" class="headerlink" title="scale缩放"></a>scale缩放</h3><p>除了rem之外，另外一种实现等比缩放的方法是利用transform: scale(x, y)缩放。算法与rem如出一辙，只不过最终体现为在根容器元素上设置scale比例。<br>值得一提的是，在利用rem缩放时，可能会遇到：</p>
+<ol>
+<li>FontSize受浏览器限制（比如chrome默认最小字体为12px)。</li>
+<li>canvas图表不会自动缩放（需要重新渲染）。<br>而scale缩放则没有这些问题，能省不少功夫。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/05/22/Web%E5%A4%A7%E5%B1%8F%E5%BC%80%E5%8F%91%E6%80%9D%E8%B7%AF/" data-id="ckowi50g50032dvrv8l0106ci" data-title="Web大屏开发思路" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-在VSCode上构建风格统一的Vue开发环境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2020/05/05/%E5%9C%A8VSCode%E4%B8%8A%E6%9E%84%E5%BB%BA%E9%A3%8E%E6%A0%BC%E7%BB%9F%E4%B8%80%E7%9A%84Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time class="dt-published" datetime="2020-05-05T03:59:19.000Z" itemprop="datePublished">2020-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/guide/">guide</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2020/05/05/%E5%9C%A8VSCode%E4%B8%8A%E6%9E%84%E5%BB%BA%E9%A3%8E%E6%A0%BC%E7%BB%9F%E4%B8%80%E7%9A%84Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">在VSCode上构建风格统一的Vue开发环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>工欲善其事，必先利其器。我们选择VSCode这一款强大且对前端开发非常友好的代码编辑器。</p>
+<p>VSCode提供了2种配置模式，用户和工作区。用户配置实际上就是全局配置，对所有的文件都有效。而工作区（目录）配置是局部的，只对工作区下的文件有效。<br>由于不同的项目可能存在不同的风格，因此我们采取更加灵活的工作区配置方式。</p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>以vue开发为目标，我们需要安装vetur、eslint、prettier这三款插件：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://vuejs.github.io/vetur/">vetur</a>是一款集成插件，提供了针对.vue文件的语法高亮、格式化、校验、智能提示等基础功能（依赖<a target="_blank" rel="noopener" href="https://eslint.org/docs/user-guide/configuring">eslint</a>、<a target="_blank" rel="noopener" href="https://prettier.io/docs/en/">prettier</a>）。</li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">eslint-vscode</a>静态js质量检查（依赖<a target="_blank" rel="noopener" href="https://eslint.org/docs/user-guide/configuring">eslint</a>）。</li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">prettier-vscode</a>代码格式化（自带<a target="_blank" rel="noopener" href="https://prettier.io/docs/en/">prettier</a>，但是会按照工作区-&gt;全局-&gt;自身优先级顺序去调用）。</li>
+</ol>
+<p>自带的prettier版本落后而且不支持扩展配置，因此最好安装本地依赖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i prettier eslint eslint-plugin-vue babel-eslint -D</span><br></pre></td></tr></table></figure>
+
+<h3 id="避免prettier与eslint冲突"><a href="#避免prettier与eslint冲突" class="headerlink" title="避免prettier与eslint冲突"></a>避免prettier与eslint冲突</h3><p>eslint本身包含的格式化规则可能跟prettier发生冲突，因此还需要：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i eslint-config-prettier -D</span><br></pre></td></tr></table></figure>
+<p>eslint-config-prettier的作用是移除eslint跟code foramtting有关的规则，使其专注于代码质量，格式化问题全部交给prettier。</p>
+<p>另外，还可以选择安装eslint-plugin-prettier：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i eslint-plugin-prettier -D</span><br></pre></td></tr></table></figure>
+<p>eslint-plugin-prettier的作用是把prettier加入eslint的审查规则。如果你写的代码跟prettier格式化预期结果不一致，则会导致eslint校验失败。</p>
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/yangshun/318102f525ec68033bf37ac4a010eb0c">use-eslint-with-prettier</a></li>
+<li><a target="_blank" rel="noopener" href="https://prettier.io/docs/en/integrating-with-linters.html">integrating-with-linters</a></li>
+</ol>
+<h3 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h3><p>可以根据团队约定来调整配置，以下为关键配置说明：</p>
+<h4 id="vscode-json"><a href="#vscode-json" class="headerlink" title=".vscode.json"></a>.vscode.json</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;   </span><br><span class="line">    <span class="attr">&quot;editor.codeActionsOnSave&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;source.fixAll.eslint&quot;</span>: <span class="literal">true</span> <span class="comment">// 保存时自动运行eslint</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span>, <span class="comment">//默认使用prettier格式化代码</span></span><br><span class="line">    <span class="attr">&quot;vetur.validation.template&quot;</span>: <span class="literal">false</span>, <span class="comment">// 关闭vetur插件的校验功能，以免跟本地eslint冲突</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="eslintrc-json"><a href="#eslintrc-json" class="headerlink" title=".eslintrc.json"></a>.eslintrc.json</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;extends&quot;</span>: [</span><br><span class="line">        &#x27;prettier&#x27;, <span class="comment">// 关闭eslint默认规则中跟prettier相冲突的规则</span></span><br><span class="line">        &#x27;plugin:vue/recommended&#x27;, <span class="comment">// vue官方自定义规则</span></span><br><span class="line">        &#x27;plugin:vue/essential&#x27;, <span class="comment">// vue官方自定义规则</span></span><br><span class="line">        &#x27;@vue/prettier&#x27;, <span class="comment">// 关闭vue自定义规则中跟prettier相冲突的规则</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;parserOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;sourceType&quot;</span>: &#x27;module&#x27;,</span><br><span class="line">        <span class="comment">// 改用babel-eslint的是因为eslint只支持最新稳定版特性，不支持实验特性以及非标准规范（如TypeScript）。</span></span><br><span class="line">        <span class="attr">&quot;parser&quot;</span>: &#x27;babel-eslint&#x27;, </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="prettierrc-json"><a href="#prettierrc-json" class="headerlink" title=".prettierrc.json"></a>.prettierrc.json</h4><p>prettier格式化选项配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;trailingComma&quot;</span>: <span class="string">&quot;es5&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;tabWidth&quot;</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="attr">&quot;semi&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;singleQuote&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后可以将配置文件添加到源代码管理，以便共享。</p>
+<h3 id="vue-cli中的eslint"><a href="#vue-cli中的eslint" class="headerlink" title="@vue/cli中的eslint"></a>@vue/cli中的eslint</h3><p>如果选用eslint+prettier，@vue/cli会为我们安装如下模块：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    scripts: &#123;</span><br><span class="line">        <span class="attr">&quot;lint&quot;</span>: <span class="string">&quot;vue-cli-service lint&quot;</span>, <span class="comment">// 提供lint命令</span></span><br><span class="line">    &#125;,</span><br><span class="line">    devDependencies: &#123;</span><br><span class="line">        <span class="attr">&quot;@vue/cli-plugin-eslint&quot;</span>: <span class="string">&quot;^4.5.8&quot;</span>, <span class="comment">// 命令集成</span></span><br><span class="line">        <span class="attr">&quot;@vue/eslint-config-prettier&quot;</span>: <span class="string">&quot;^6.0.0&quot;</span>, <span class="comment">// 排除eslint自身的代码格式校验</span></span><br><span class="line">        <span class="attr">&quot;babel-eslint&quot;</span>: <span class="string">&quot;^10.1.0&quot;</span>, <span class="comment">// 语法解析器</span></span><br><span class="line">        <span class="attr">&quot;eslint&quot;</span>: <span class="string">&quot;^6.7.2&quot;</span>, </span><br><span class="line">        <span class="attr">&quot;eslint-plugin-prettier&quot;</span>: <span class="string">&quot;^3.1.3&quot;</span>, <span class="comment">// prettier自定义校验规则</span></span><br><span class="line">        <span class="attr">&quot;eslint-plugin-vue&quot;</span>: <span class="string">&quot;^6.2.2&quot;</span>, <span class="comment">// vue自定义校验规则</span></span><br><span class="line">        <span class="attr">&quot;prettier&quot;</span>: <span class="string">&quot;^1.19.1&quot;</span>, <span class="comment">// 用于格式化代码</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果勾选了lint on commit，还会添加gitHooks（gitHooks用法见<a target="_blank" rel="noopener" href="https://github.com/yyx990803/yorkie">yorkie</a>）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;gitHooks&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;pre-commit&quot;</span>: <span class="string">&quot;lint-staged&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;lint-staged&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;*.&#123;js,jsx,vue&#125;&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;vue-cli-service lint&quot;</span>,</span><br><span class="line">            <span class="string">&quot;git add&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时在.eslintrc中会添加以下配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     extends: [</span><br><span class="line">        &#x27;eslint:recommended&#x27;, <span class="comment">// 默认启用eslint官方推荐规则</span></span><br><span class="line">        &#x27;prettier&#x27;,</span><br><span class="line">        &#x27;plugin:vue/recommended&#x27;,</span><br><span class="line">        &#x27;plugin:vue/essential&#x27;,</span><br><span class="line">        &#x27;@vue/prettier&#x27;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    parserOptions: &#123;</span><br><span class="line">        sourceType: &#x27;module&#x27;,</span><br><span class="line">        parser: &#x27;babel-eslint&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@vue/cli-plugin-eslint还对外提供lint命令，用于批量检查/修复文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">api.registerCommand(</span><br><span class="line">    <span class="string">&#x27;lint&#x27;</span>, &#123;</span><br><span class="line">        <span class="attr">description</span>: <span class="string">&#x27;lint and fix source files&#x27;</span>,</span><br><span class="line">        <span class="attr">usage</span>: <span class="string">&#x27;vue-cli-service lint [options] [...files]&#x27;</span>,</span><br><span class="line">        <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;--format [formatter]&#x27;</span>: <span class="string">&#x27;specify formatter (default: codeframe)&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;--no-fix&#x27;</span>: <span class="string">&#x27;do not fix errors or warnings&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;--no-fix-warnings&#x27;</span>: <span class="string">&#x27;fix errors, but do not fix warnings&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;--max-errors [limit]&#x27;</span>: <span class="string">&#x27;specify number of errors to make build failed (default: 0)&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;--max-warnings [limit]&#x27;</span>: <span class="string">&#x27;specify number of warnings to make build failed (default: Infinity)&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">details</span>: <span class="string">&#x27;For more options, see https://eslint.org/docs/user-guide/command-line-interface#options&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="params">args</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">require</span>(<span class="string">&#x27;./lint&#x27;</span>)(args, api)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>总的来说，@vue/cli提供了一整套开箱即用的eslint集成方案。但是它同时也包含了太多默认配置，对于希望自定义校验规则与时机的团队来说并不实用。而且如果是老项目还会存在大量文件被fix的问题。个人更加倾向于手动配置eslint。</p>
+<h2 id="代码编辑"><a href="#代码编辑" class="headerlink" title="代码编辑"></a>代码编辑</h2><h3 id="插件扩展篇"><a href="#插件扩展篇" class="headerlink" title="插件扩展篇"></a>插件扩展篇</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>手动安装</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/emmet">Emmet</a></td>
+<td>否</td>
+<td>注意，新版VSCode中Trigger Expansion On Tab默认是关闭的，需要手动打开</td>
+</tr>
+<tr>
+<td>Auto Rename Tag</td>
+<td>是</td>
+<td>自动修改闭合标签名称</td>
+</tr>
+<tr>
+<td>vscode-json5</td>
+<td>是</td>
+<td>支持json5语法高亮</td>
+</tr>
+</tbody></table>
+<h3 id="快捷键篇"><a href="#快捷键篇" class="headerlink" title="快捷键篇"></a>快捷键篇</h3><p>参考官网提供的CheetSheet：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf">MacOs</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf">Windows</a></li>
+</ol>
+<h3 id="其它调整"><a href="#其它调整" class="headerlink" title="其它调整"></a>其它调整</h3><p>前端存在大量以短横线命名的名称，可以通过去掉editor.wordSeparators配置中的<code>-</code>实现双击选中它们。</p>
+<h2 id="代码补全"><a href="#代码补全" class="headerlink" title="代码补全"></a>代码补全</h2><h3 id="path-alias"><a href="#path-alias" class="headerlink" title="path alias"></a>path alias</h3><p>模块化编程时，如果使用相对路径，比如import xx from ‘../../xx.js’，VSCode是支持路径补全和查找的。<br>但是用过webpack的同学都知道，我们往往在代码中使用的是路径别名，比如import xx from ‘@/api/xx’。如此一来VSCode的智能提示就会失效。<br>解决方案为，在项目跟目录下添加jsconfig.json文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;baseUrl&quot;</span>: <span class="string">&quot;.&quot;</span>,</span><br><span class="line">        <span class="comment">// alias</span></span><br><span class="line">        <span class="attr">&quot;paths&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;@/*&quot;</span>: [<span class="string">&quot;./src/*&quot;</span>],</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//Add any build/compiled folders here to stop vscode searching those</span></span><br><span class="line">    <span class="attr">&quot;exclude&quot;</span>: [<span class="string">&quot;node_modules&quot;</span>, <span class="string">&quot;dist&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/languages/jsconfig">参考</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2020/05/05/%E5%9C%A8VSCode%E4%B8%8A%E6%9E%84%E5%BB%BA%E9%A3%8E%E6%A0%BC%E7%BB%9F%E4%B8%80%E7%9A%84Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="ckowi50g8003cdvrv3yxq8eyv" data-title="在VSCode上构建风格统一的Vue开发环境" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

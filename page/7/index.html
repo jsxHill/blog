@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://jsxhill.github.io/blog/page/7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-自定义组件ColorPicker" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6ColorPicker/" class="article-date">
+  <time class="dt-published" datetime="2018-12-19T06:04:47.000Z" itemprop="datePublished">2018-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6ColorPicker/">自定义组件ColorPicker</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS中颜色的表示方式"><a href="#CSS中颜色的表示方式" class="headerlink" title="CSS中颜色的表示方式"></a>CSS中颜色的表示方式</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29309477">CSS颜色</a></p>
+<h3 id="16进制"><a href="#16进制" class="headerlink" title="16进制"></a>16进制</h3>#2d8cf0{%raw%}
+<p>红:绿:蓝 三原色。<br>三原色添加越多，和成色越亮（淡）。<br>当三原色数值相等时，始终为灰色，只是明暗程度不等。</p>
+<h3 id="RGB-RGBA"><a href="#RGB-RGBA" class="headerlink" title="RGB/RGBA"></a>RGB/RGBA</h3><p>rgb(128, 128, 128)<br>十进制表示形式。</p>
+<h3 id="HSL"><a href="#HSL" class="headerlink" title="HSL"></a>HSL</h3><p>hsl(60, 100%, 50%)<br>色调，饱和度，亮度<br>色调，10进制，从0到360表示色轮上的不同颜色。其中 0 是红色，120 是绿色，240 是蓝色。<br>饱和度，百分比，0到100。其中 0% 是无色的，100% 是全色的。<br>亮度，百分比，0到100。其中 0% 是黑色的，100% 是白色的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6ColorPicker/" data-id="ckowi50gt004qdvrvgkb88m9c" data-title="自定义组件ColorPicker" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-weapp核心概念" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time class="dt-published" datetime="2018-12-06T10:19:06.000Z" itemprop="datePublished">2018-12-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">weapp核心概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>小程序包含一个描述整体程序的app和多个描述各自页面的page。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Root</span><br><span class="line">├── app.js 小程序入口，初始化/全局逻辑</span><br><span class="line">├── app.json 全局配置文件，包括每个页面的配置</span><br><span class="line">├── app.wxss 全局样式入口</span><br><span class="line">├── project.config.json 项目配置文件（针对微信开发者工具）</span><br><span class="line">├── sitemap.json 配置小程序及其页面是否允许被微信索引</span><br><span class="line">├── pages 小程序页面定义</span><br><span class="line">    ├── index 页面1</span><br><span class="line">        ├── index.js 页面逻辑</span><br><span class="line">        ├── index.wxml 页面结构</span><br><span class="line">        ├── index.json 页面配置，会覆盖app.json中的同名配置</span><br><span class="line">        ├── index.wxss 页面样式</span><br></pre></td></tr></table></figure>
+
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>小程序采用了CommonJS规范，通过module.exports与require的方式定义/引用模块。</p>
+<h2 id="页面生命周期"><a href="#页面生命周期" class="headerlink" title="页面生命周期"></a>页面生命周期</h2><img src="/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/lifecycle.png" class="">
+
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>小程序的路由全部由框架进行管理，即页面栈。对于js逻辑而言，页面栈是只读的。</p>
+<table>
+<thead>
+<tr>
+<th>路由方式</th>
+<th>页面栈表现</th>
+<th>触发方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始化</td>
+<td>新页面入栈</td>
+<td></td>
+</tr>
+<tr>
+<td>打开新页面</td>
+<td>新页面入栈</td>
+<td>wx.navigateTo <br /> <code>&lt;navigator open-type=&quot;navigateTo&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td>页面重定向</td>
+<td>当前页面出栈，新页面入栈</td>
+<td>wx.redirectTo <br /> <code>&lt;navigator open-type=&quot;navigateTo&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td>页面返回</td>
+<td>页面不断出栈，直到目标返回页</td>
+<td>wx.navigateBack <br /> <code>&lt;navigator open-type=&quot;navigateBack&quot;/&gt; </code></td>
+</tr>
+<tr>
+<td>Tab 切换</td>
+<td>页面全部出栈，只留下新的 Tab 页面</td>
+<td>wx.switchTab <br /> <code>&lt;navigator open-type=&quot;switchTab&quot;/&gt; </code></td>
+</tr>
+<tr>
+<td>重启动</td>
+<td>页面全部出栈，只留下新的页面</td>
+<td>wx.reLaunch <br /> <code>&lt;navigator open-type=&quot;reLaunch&quot;/&gt; </code></td>
+</tr>
+</tbody></table>
+<h2 id="WXML"><a href="#WXML" class="headerlink" title="WXML"></a>WXML</h2><p>wxml是小程序用来描述页面结构的标记语言，类似HTML，区别在于wxml提供的是语义、功能更加明确的组件标签，并提供模版渲染语法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;array&#125;&#125;&quot;</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ps: <code>&lt;block&gt;</code>仅仅是一个包装元素，类似vue中的<code>&lt;template&gt;</code>，不会被渲染，可接收指令。</p>
+<h3 id="Mustache语法"><a href="#Mustache语法" class="headerlink" title="Mustache语法"></a>Mustache语法</h3><p>小程序template中使用{{ expression }}来绑定数据，但是expression只支持简单的js表达式:</p>
+<ol>
+<li>绑定变量 {{ variablName }}</li>
+<li>绑定true/false {{ true }}、{{ false }}</li>
+<li>三元运算 {{flag ? true : false}}</li>
+<li>算数运算 {{a + b}}</li>
+<li>逻辑判断 {{a > 1}}</li>
+<li>字符串拼接 {{a + "suffix"}}</li>
+<li>访问对象属性 {{obj.name}}、{{arr[0].checked}}</li>
+<li>创建新数组 {{[name, "john", "smith"]}}，支持展开运算符 {{[...fruits, "apple", "orange"]}}</li>
+<li>创建新对象 {{title: "用户管理", code: "01"}}，支持展开运算符 {{...attrs, title: "系统设置"}}</li>
+</ol>
+<p>注意:</p>
+<ol>
+<li>在属性中使用Mustache需要使用””引起来。另外花括号与”之间不要有空格，"{{a}} "会被解析为"{{a + ' '}}"，可能会造成意料之外的副作用。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;length &gt; 5&#125;&#125;&quot;</span> <span class="attr">data-code</span>=<span class="string">&quot;&#123;&#123;pageCode&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;menu.title&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>expression中不支持函数调用，即使是原生方法也不行，如arr.indexOf(“xx”) &gt; 0</li>
+</ol>
+<h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><p>page.data用于定义页面数据。修改数据后必须使用this.setData(changedObj, cb)，否则不会更新到视图。<br>changedObj支持key-path锁定值范围，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">arr</span>: [&#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;july&quot;</span></span><br><span class="line">        &#125;],</span><br><span class="line"></span><br><span class="line">        <span class="attr">info</span>:&#123;</span><br><span class="line">            <span class="attr">sex</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="title">onChange</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 可以通过path来设置嵌套属性</span></span><br><span class="line">        <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">            <span class="string">&quot;arr[0].name&quot;</span>: <span class="string">&quot;aug&quot;</span>,</span><br><span class="line">            <span class="string">&quot;info.sex&quot;</span>: <span class="number">1</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="WXS"><a href="#WXS" class="headerlink" title="WXS"></a>WXS</h2><p>小程序脚本语言，配合WXML使用（弥补mustache不支持函数调用的不足）。<br>wxs虽然语法上参考了javascript，但是两者是不同的语言。因此wxs与js相互之间无法相互调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;wxs <span class="built_in">module</span>=<span class="string">&quot;m1&quot;</span>&gt;</span><br><span class="line"><span class="keyword">var</span> getMax = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> max = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; array.length; ++i) &#123;</span><br><span class="line">        max = max === <span class="literal">undefined</span> ?</span><br><span class="line">            array[i] :</span><br><span class="line">            (max &gt;= array[i] ? max : array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.getMax = getMax;</span><br><span class="line">&lt;/wxs&gt;</span><br></pre></td></tr></table></figure>
+<p>在WXML中调用getMax：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;m1.getMax(arr)&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/06/weapp%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" data-id="ckowi50gk004fdvrv13rj4gww" data-title="weapp核心概念" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Linux常见运维操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/06/Linux%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2018-12-06T03:31:07.000Z" itemprop="datePublished">2018-12-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/06/Linux%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/">Linux常见运维操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="vi-vim编辑器"><a href="#vi-vim编辑器" class="headerlink" title="vi/vim编辑器"></a>vi/vim编辑器</h2><p>这个是linux修改文件最常用的工具了。<br><a target="_blank" rel="noopener" href="http://vimcdoc.sourceforge.net/doc/help.html#reference_toc">命令参考手册</a></p>
+<h2 id="进程监控"><a href="#进程监控" class="headerlink" title="进程监控"></a>进程监控</h2><p>todo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 终止进程</span></span><br><span class="line"><span class="built_in">kill</span> :pid</span><br><span class="line"><span class="comment"># 端口搜索</span></span><br><span class="line">lsof -i :4000 </span><br><span class="line">netstat -lnp|grep 88  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="资源监控"><a href="#资源监控" class="headerlink" title="资源监控"></a>资源监控</h2><p>todo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看内存（总）使用情况</span></span><br><span class="line">free </span><br><span class="line"><span class="comment"># 查看各进程的消耗情况</span></span><br><span class="line">top </span><br></pre></td></tr></table></figure>
+
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><p>todo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新增</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">rsync -a --delete :path <span class="comment"># 快速删除文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找</span></span><br><span class="line"><span class="built_in">which</span> xx </span><br><span class="line"><span class="comment"># rpm包查询</span></span><br><span class="line">rpm -qa </span><br><span class="line">rpm -qa | grep :pkg</span><br><span class="line"><span class="comment"># dpkg包查询</span></span><br><span class="line">dpkg -l </span><br><span class="line">dpkg -l | grep :pkg</span><br><span class="line"><span class="comment"># yum包查询</span></span><br><span class="line">yum list installed</span><br><span class="line">yum list installed | grep :pkg</span><br><span class="line"><span class="comment"># 手动编译包查询</span></span><br><span class="line"><span class="built_in">cd</span> [/sbin | /usr/bin]</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><p>todo</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/06/Linux%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/" data-id="ckowi50gj004cdvrvb75camew" data-title="Linux常见运维操作" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-利用verdaccio搭建私有npm仓库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/05/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2018-12-05T08:47:53.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/05/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/">利用Verdaccio搭建私有npm仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Verdaccio"><a href="#Verdaccio" class="headerlink" title="Verdaccio"></a><a target="_blank" rel="noopener" href="https://github.com/verdaccio/verdaccio">Verdaccio</a></h1><p>由于sinopia原作者三年前已经停止更新，因此社区成员fork了一份版本继续维护，成为如今的Verdaccio。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">npm install -g verdaccio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">verdaccio</span><br><span class="line">warn --- config file  - /Users/july/.config/verdaccio/config.yaml</span><br><span class="line">warn --- Plugin successfully loaded: htpasswd</span><br><span class="line">warn --- Plugin successfully loaded: audit</span><br><span class="line">warn --- http address - http://localhost:4873/ - verdaccio/3.9.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>推荐使用nrm管理源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装nrm</span></span><br><span class="line">npm install -g nrm --registry=https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 查看列表</span></span><br><span class="line">nrm ls</span><br><span class="line"><span class="comment"># 添加名字为 sinopia 的镜像</span></span><br><span class="line">nrm add verdaccio http://localhost:4873</span><br><span class="line"><span class="comment"># 查看列表</span></span><br><span class="line">nrm ls</span><br><span class="line"><span class="comment"># 使用 sinopia 的镜像地址</span></span><br><span class="line">nrm use verdaccio</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用pm2进程管理器</span></span><br><span class="line">npm install -g pm2</span><br><span class="line"><span class="comment"># 注册并启动服务</span></span><br><span class="line">pm2 start `<span class="built_in">which</span> verdaccio`</span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">pm2 list</span><br><span class="line">pm2 stop <span class="variable">$app_id</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://pm2.keymetrics.io/docs/usage/startup/#manually-resurrect-processes">开机自动运行</a>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化启动脚本</span></span><br><span class="line">pm2 startup</span><br><span class="line"><span class="comment"># 保存应用</span></span><br><span class="line">pm2 save</span><br></pre></td></tr></table></figure>
+<p>服务端启动成功后，可以在线查看私服上的package。</p>
+<img src="/blog/2018/12/05/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/verdaccio.png" class="" title="verdaccio">
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>verdaccio是在sinopia原有配置项上扩展的。</p>
+<h3 id="账户管理"><a href="#账户管理" class="headerlink" title="账户管理"></a>账户管理</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth:</span></span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">./htpasswd</span></span><br><span class="line">    <span class="comment"># Maximum amount of users allowed to register, defaults to &quot;+inf&quot;.</span></span><br><span class="line">    <span class="comment"># You can set this to -1 to disable registration.</span></span><br><span class="line">    <span class="attr">max_users:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p>默认使用<a target="_blank" rel="noopener" href="https://github.com/verdaccio/verdaccio-htpasswd">htpasswd</a>，使用账号/密码登录。<br>在线账户生成器<a target="_blank" rel="noopener" href="http://www.htaccesstools.com/htpasswd-generator/">htpasswd-generator</a>。</p>
+<p>todo 利用gitlab账户登陆<br><a target="_blank" rel="noopener" href="https://github.com/bufferoverflow/verdaccio-gitlab">verdaccio-gitlab</a></p>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logs:</span></span><br><span class="line">  <span class="comment"># console output</span></span><br><span class="line">  <span class="bullet">-</span> &#123;<span class="attr">type:</span> <span class="string">stdout</span>, <span class="attr">format:</span> <span class="string">pretty</span>, <span class="attr">level:</span> <span class="string">http</span>&#125;</span><br><span class="line">  <span class="comment"># file output</span></span><br><span class="line">  <span class="bullet">-</span> &#123;<span class="attr">type:</span> <span class="string">file</span>, <span class="attr">path:</span> <span class="string">verdaccio.log</span>, <span class="attr">level:</span> <span class="string">info</span>&#125;</span><br><span class="line">  <span class="comment"># Rotating log stream. Options are passed directly to bunyan. See: https://github.com/trentm/node-bunyan#stream-type-rotating-file</span></span><br><span class="line">  <span class="bullet">-</span> &#123;<span class="attr">type:</span> <span class="string">rotating-file</span>, <span class="attr">format:</span> <span class="string">json</span>, <span class="attr">path:</span> <span class="string">/path/to/log.jsonl</span>, <span class="attr">level:</span> <span class="string">http</span>, <span class="attr">options:</span> &#123;<span class="attr">period:</span> <span class="string">1d</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>verdaccio支持多种日志输出形式。需要注意的是，path是相对于启动verdaccio时所在的目录。</p>
+<h3 id="发布控制"><a href="#发布控制" class="headerlink" title="发布控制"></a>发布控制</h3><p>todo<br><a target="_blank" rel="noopener" href="https://verdaccio.org/docs/en/protect-your-dependencies">Protecting packages</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/05/%E5%88%A9%E7%94%A8verdaccio%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" data-id="ckowi50gr004odvrv5erhhb9w" data-title="利用Verdaccio搭建私有npm仓库" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-利用cnpmjs搭建私有npm仓库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/05/%E5%88%A9%E7%94%A8cnpmjs%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2018-12-05T03:00:38.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/05/%E5%88%A9%E7%94%A8cnpmjs%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/">利用cnpmjs搭建私有npm仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="cnpmjs-org-Github"><a href="#cnpmjs-org-Github" class="headerlink" title="cnpmjs.org Github"></a>cnpmjs.org <a target="_blank" rel="noopener" href="https://github.com/cnpm/cnpmjs.org">Github</a></h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/05/%E5%88%A9%E7%94%A8cnpmjs%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" data-id="ckowi50gl004idvrvfd2ne3ml" data-title="利用cnpmjs搭建私有npm仓库" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-更加轻松的使用node" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/05/%E6%9B%B4%E5%8A%A0%E8%BD%BB%E6%9D%BE%E7%9A%84%E4%BD%BF%E7%94%A8node/" class="article-date">
+  <time class="dt-published" datetime="2018-12-05T02:18:38.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/05/%E6%9B%B4%E5%8A%A0%E8%BD%BB%E6%9D%BE%E7%9A%84%E4%BD%BF%E7%94%A8node/">更加轻松的使用node</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h2><p>最好使用一款Node版本管理器，不仅可以进行多版本管理，卸载也更加方便，还可以避免一些全局安装带来的问题（比如Mac下npm i -g需要sudo权限）。easy life。</p>
+<h3 id="使用n"><a href="#使用n" class="headerlink" title="使用n"></a>使用<a href="https:#www.npmjs.com/package/n">n</a></h3><p>轻便实用，缺点是仅限Mac/Linux环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装n</span></span><br><span class="line">npm install -g n</span><br><span class="line"><span class="comment"># 安装\切换node版本</span></span><br><span class="line">n 8.14.0</span><br><span class="line"><span class="comment"># 查看并切换已安装的node版本</span></span><br><span class="line">n</span><br><span class="line"><span class="comment"># 安装最新node版本</span></span><br><span class="line">n latest</span><br><span class="line"><span class="comment"># 安装最新的stable版本</span></span><br><span class="line">n stable</span><br><span class="line"><span class="comment"># 安装最新的LTS版本</span></span><br><span class="line">n lts</span><br><span class="line"><span class="comment"># 移除node版本</span></span><br><span class="line">n rm 8.14.0</span><br><span class="line"><span class="comment"># 移除所有node版本（当前版本除外）</span></span><br><span class="line">n prune </span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换node版本后，npm可能会出问题，使用下面的语句修复，但是这条命令会请求https://registry.npmjs.org/npm/非常慢</span></span><br><span class="line">curl -0 -L https:<span class="comment">#npmjs.com/install.sh | sudo sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要重新安装npm可以这样做</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用nvm（推荐）"><a href="#使用nvm（推荐）" class="headerlink" title="使用nvm（推荐）"></a>使用<a target="_blank" rel="noopener" href="https://github.com/creationix/nvm">nvm</a>（推荐）</h3><p>跟n不同，nvm是独立于npm的外部shell脚本，使用限制更少，并且能够做到不同node版本使用不同的全局模块。<br>windows系统可以使用<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>，效果是一样的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装/更新nvm</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br><span class="line"><span class="comment"># 校验nvm是否安装成功（可能需要重启terminal）</span></span><br><span class="line"><span class="built_in">command</span> -v nvm</span><br><span class="line"><span class="comment"># 安装node最新版</span></span><br><span class="line">nvm install node</span><br><span class="line"><span class="comment"># 安装node指定版</span></span><br><span class="line">nvm install 8.15.1</span><br><span class="line"><span class="comment"># 查看可安装版本</span></span><br><span class="line">nvm ls-remote</span><br><span class="line"><span class="comment"># 查看本地已安装的版本</span></span><br><span class="line">nvm ls</span><br><span class="line"><span class="comment"># 切换至node（node是最新node版本的别名）</span></span><br><span class="line">nvm use node</span><br><span class="line"><span class="comment"># 查找安装路径</span></span><br><span class="line">nvm <span class="built_in">which</span> 5.0</span><br><span class="line"><span class="comment"># 移动全局pkg（即使node已按转也可以执行）</span></span><br><span class="line">nvm install 6 --reinstall-packages-from=5</span><br><span class="line"><span class="comment"># 设置默认版本</span></span><br><span class="line">nvm <span class="built_in">alias</span> default 8</span><br></pre></td></tr></table></figure>
+
+<p>nvm默认是从<a target="_blank" rel="noopener" href="http://nodejs.org/dist/%E4%B8%8A%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%9B%BD%E5%86%85%E5%8F%AF%E4%BB%A5%E6%9B%BF%E6%8D%A2%E4%B8%BA%E6%B7%98%E5%AE%9D%E9%95%9C%E5%83%8F%EF%BC%9A">http://nodejs.org/dist/上下载，国内可以替换为淘宝镜像：</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node_mirror: https://npm.taobao.org/mirrors/node/</span><br><span class="line">npm_mirror: https://npm.taobao.org/mirrors/npm/</span><br></pre></td></tr></table></figure>
+
+<h4 id="移除nvm"><a href="#移除nvm" class="headerlink" title="移除nvm"></a>移除nvm</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf <span class="string">&quot;<span class="variable">$NVM_DIR</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>Edit ~/.bashrc (or other shell resource config) and remove the lines below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">&quot;<span class="variable">$HOME</span>/.nvm&quot;</span></span><br><span class="line">[ -s <span class="string">&quot;<span class="variable">$NVM_DIR</span>/nvm.sh&quot;</span> ] &amp;&amp; \. <span class="string">&quot;<span class="variable">$NVM_DIR</span>/nvm.sh&quot;</span> <span class="comment"># This loads nvm</span></span><br><span class="line">[[ -r <span class="variable">$NVM_DIR</span>/bash_completion ]] &amp;&amp; \. <span class="variable">$NVM_DIR</span>/bash_completion</span><br></pre></td></tr></table></figure>
+
+<h3 id="OSX卸载node"><a href="#OSX卸载node" class="headerlink" title="OSX卸载node"></a>OSX卸载node</h3><p>如果是通过node installer安装的，则需要手动删除以下相关文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/&#123;lib/node&#123;,/.npm,_modules&#125;,bin,share/man&#125;/&#123;npm*,node*,man1/node*&#125; /user/<span class="built_in">local</span>/include/node /user/<span class="built_in">local</span>/include/node_modules /usr/<span class="built_in">local</span>/lib/dtrace/node.d /usr/<span class="built_in">local</span>/share/doc/node /opt/<span class="built_in">local</span>/bin/node /opt/<span class="built_in">local</span>/include/node /opt/<span class="built_in">local</span>/lib/node_modules </span><br></pre></td></tr></table></figure>
+<p>如果是解压安装的，则跟上述类似，删除相关目录下的node以及node_modules。<br>如果是通过管理器安装的（如nvm），则只需执行配套的rmove命令即可。</p>
+<h2 id="进程监控"><a href="#进程监控" class="headerlink" title="进程监控"></a>进程监控</h2><h3 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">cnpm install -g pm2</span><br><span class="line"><span class="comment"># 新增&amp;启动</span></span><br><span class="line">pm2 start :cmd</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">pm2 list</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">pm2 stop :id</span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">pm2 delete :id</span><br></pre></td></tr></table></figure>
+
+<h2 id="stackoverflow"><a href="#stackoverflow" class="headerlink" title="stackoverflow"></a>stackoverflow</h2><h3 id="gyp-No-Xcode-or-CLT-version-detected"><a href="#gyp-No-Xcode-or-CLT-version-detected" class="headerlink" title="gyp: No Xcode or CLT version detected"></a>gyp: No Xcode or CLT version detected</h3><p>系统: macOS<br>原因：不明<br>解决方法：<br>    重装<br>    1. 输入xcode-select –print-path查看 command-line tools 的安装路径，不出意外显示的结果应该是/Library/Developer/CommandLineTools<br>    2. 输入sudo rm -r -f /Library/Developer/CommandLineTools把 command-line tools 从系统移除掉<br>    3. 最后输入xcode-select –install重新安装</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/05/%E6%9B%B4%E5%8A%A0%E8%BD%BB%E6%9D%BE%E7%9A%84%E4%BD%BF%E7%94%A8node/" data-id="ckowi50gv004udvrv9408cqz4" data-title="更加轻松的使用node" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-利用sinopia搭建私有npm仓库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/12/05/%E5%88%A9%E7%94%A8sinopia%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2018-12-05T01:52:28.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/12/05/%E5%88%A9%E7%94%A8sinopia%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/">利用sinopia搭建私有npm仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="sinopia-Github"><a href="#sinopia-Github" class="headerlink" title="sinopia Github"></a>sinopia <a target="_blank" rel="noopener" href="https://github.com/rlidwka/sinopia">Github</a></h1><p>sinopia使用文件系统作为存储，安装部署非常简单。功能上，支持npm包的发布、更新和删除，与npmorg如出一辙，而且可以作为本地代理来缓存、覆盖npmorg包。因此sinopia很适合个人或者小团队使用。</p>
+<pre><code>sinopia已停止维护，此篇仅作参考，可以转到Verdaccio。
+</code></pre>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">npm install -g sinopia</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">sinopia</span><br><span class="line">warn  --- config file  - /Users/july/.config/sinopia/config.yaml</span><br><span class="line">warn  --- http address - http://localhost:4873/</span><br></pre></td></tr></table></figure>
+<img src="/blog/2018/12/05/%E5%88%A9%E7%94%A8sinopia%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/sinopia.png" class="" title="sinopia">
+
+<h3 id="config-yaml"><a href="#config-yaml" class="headerlink" title="config.yaml"></a><a target="_blank" rel="noopener" href="https://github.com/rlidwka/sinopia/blob/master/conf/full.yaml">config.yaml</a></h3><p>默认配置允许所有人访问和发布pacakage。<br>对于生产环境，一般做以下修改：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将url设置为淘宝镜像</span></span><br><span class="line"><span class="attr">uplinks:</span></span><br><span class="line">  <span class="attr">npmjs:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://registry.npm.taobao.org/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置端口以及监听任何ip请求（允许外部访问）</span></span><br><span class="line"><span class="attr">listen:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:4873</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h4><p>auth部分对应账号管理。账号信息存储在htpasswd文件中。该文件是通过<a target="_blank" rel="noopener" href="https://github.com/rlidwka/sinopia-htpasswd">sinopia-htpasswd</a>插件来读取的（sinopia-htpasswd无需单独安装）。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth:</span></span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="comment"># 注意，这里是相对config.yaml文件所在路径</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">./htpasswd</span></span><br><span class="line">    <span class="comment"># max_user: 1000</span></span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，允许客户端注册新用户。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端注册用户</span></span><br><span class="line">npm adduser --registry http://localhost:4873/</span><br></pre></td></tr></table></figure>
+
+<p>可以将max_users设置为-1，禁止客户端注册。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auth:</span></span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">./htpasswd</span></span><br><span class="line">    <span class="attr">max_users:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<p>然后手动添加用户。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For unix</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;user:`mkpasswd --method=sha-512 password`&quot;</span> &gt;&gt; htpasswd</span><br><span class="line"><span class="comment"># For Mac</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/52108/how-to-create-sha512-password-hashes-on-command-line">Linux下如何创建加密密码</a></p>
+<h3 id="安装常见错误"><a href="#安装常见错误" class="headerlink" title="安装常见错误"></a>安装常见错误</h3><h4 id="No-Xcode-or-CLT-version-detected"><a href="#No-Xcode-or-CLT-version-detected" class="headerlink" title="No Xcode or CLT version detected!"></a>No Xcode or CLT version detected!</h4><p>enviroment:<br>    MAC  os10.14<br>    Node v8.14.0<br>    npm  v6.4.1<br>errInfo:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">gyp: No Xcode or CLT version detected!</span><br><span class="line">gyp ERR! configure error </span><br><span class="line">gyp ERR! stack Error: `gyp` failed with <span class="built_in">exit</span> code: 1</span><br><span class="line">gyp ERR! stack     at ChildProcess.onCpExit (/usr/<span class="built_in">local</span>/lib/node_modules/cnpm/node_modules/node-gyp/lib/configure.js:345:16)</span><br><span class="line">gyp ERR! stack     at emitTwo (events.js:126:13)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:214:7)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)</span><br><span class="line">gyp ERR! System Darwin 18.2.0</span><br><span class="line">gyp ERR! <span class="built_in">command</span> <span class="string">&quot;/usr/local/bin/node&quot;</span> <span class="string">&quot;/usr/local/lib/node_modules/cnpm/node_modules/npminstall/node-gyp-bin/node-gyp.js&quot;</span> <span class="string">&quot;rebuild&quot;</span></span><br><span class="line">gyp ERR! cwd /usr/<span class="built_in">local</span>/lib/node_modules/sinopia/node_modules/_crypt3@0.2.0@crypt3</span><br><span class="line">gyp ERR! node -v v8.14.0</span><br><span class="line">gyp ERR! node-gyp -v v3.7.0</span><br><span class="line">gyp ERR! not ok </span><br><span class="line">sinopia-htpasswd@0.4.5 › crypt3@&gt;=0.1.5 &lt;1.0.0-0 optional error: Error: Run <span class="string">&quot;sh -c node-gyp rebuild&quot;</span> error, <span class="built_in">exit</span> code 1</span><br><span class="line">    at ChildProcess.proc.on.code (/usr/<span class="built_in">local</span>/lib/node_modules/cnpm/node_modules/runscript/index.js:74:21)</span><br><span class="line">    at emitTwo (events.js:126:13)</span><br><span class="line">    at ChildProcess.emit (events.js:214:7)</span><br><span class="line">    at maybeClose (internal/child_process.js:915:16)</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)</span><br></pre></td></tr></table></figure>
+<p>solution:<br>依赖中用到了原生模块编译，需要本地环境提供编译器。<br><a target="_blank" rel="noopener" href="https://github.com/nodejs/node-gyp#on-macos">node-gyp on mac</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/12/05/%E5%88%A9%E7%94%A8sinopia%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89npm%E4%BB%93%E5%BA%93/" data-id="ckowi50gq004ndvrv307n1n3r" data-title="利用sinopia搭建私有npm仓库" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-webpack之module" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/11/27/webpack%E4%B9%8Bmodule/" class="article-date">
+  <time class="dt-published" datetime="2018-11-27T09:08:27.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/11/27/webpack%E4%B9%8Bmodule/">webpack之module</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="module"><a href="#module" class="headerlink" title="module"></a>module</h2><p><a target="_blank" rel="noopener" href="https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655">webpack4动态导入更新说明</a></p>
+<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p>除开js/json以外的文件，只要提供对应的loader，webpack就可以以模块的方式来处理它。<br>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logo <span class="keyword">from</span> <span class="string">&#x27;./logo.png&#x27;</span></span><br><span class="line"><span class="keyword">import</span> csv <span class="keyword">from</span> <span class="string">&#x27;./rooms.csv&#x27;</span></span><br><span class="line"><span class="keyword">import</span> DatePicker <span class="keyword">from</span> <span class="string">&#x27;./components/date-picker.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> template <span class="keyword">from</span> <span class="string">&#x27;./template.xlsx&#x27;</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">&#x27;./common.less&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>loader会负责对文件进行编译或者转换，最终提供对前端环境有意义的模块。</p>
+<p>loader与loader之间还可以连接起来，实现对文件的流处理:<br>file -&gt; loader1 -&gt; loader2 … -&gt; loaderN -&gt; Webpack Module<br>例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.scss$/,</span><br><span class="line">    use: [&#123;</span><br><span class="line">            loader: &#x27;style-loader&#x27;,</span><br><span class="line">            options: &#123;</span><br><span class="line">                sourceMap: <span class="literal">true</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            loader: &#x27;css-loader&#x27;,</span><br><span class="line">            options: &#123;</span><br><span class="line">                sourceMap: <span class="literal">true</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            loader: &#x27;sass-loader&#x27;,</span><br><span class="line">            options: &#123;</span><br><span class="line">                sourceMap: <span class="literal">true</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>scss文件首先会经过sass-loader解析为css文件，然后再通过css-loader以webpack resolve规则解析@import、url所引用的路径，最后通过style-loader添加到dom里面去（没错，它们是按use声明倒序执行的）。</p>
+<h3 id="babel-loader"><a href="#babel-loader" class="headerlink" title="babel-loader"></a>babel-loader</h3><p>自webpack2之后，import、export已经得到了webpack的内置支持，不再需要通过babel转换，但是其它es6+的特性还是需要babel处理。</p>
+<h3 id="css预处理"><a href="#css预处理" class="headerlink" title="css预处理"></a>css预处理</h3><h4 id="sass"><a href="#sass" class="headerlink" title="sass"></a>sass</h4><p>如果项目中需要使用scss/sass，则需要配置sass-loader。</p>
+<p>sass-loader也支持全局引入scss，以下是vue-cli3中的配置示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">css</span>: &#123;</span><br><span class="line">        <span class="attr">loaderOptions</span>: &#123;</span><br><span class="line">            <span class="comment">// pass options to sass-loader</span></span><br><span class="line">            <span class="attr">sass</span>: &#123;</span><br><span class="line">                <span class="comment">// @/ is an alias to src/</span></span><br><span class="line">                <span class="comment">// so this assumes you have a file named `src/variables.scss`</span></span><br><span class="line">                <span class="attr">data</span>: <span class="string">`</span></span><br><span class="line"><span class="string">                    @import &quot;@/styles/_variables.scss&quot;;</span></span><br><span class="line"><span class="string">                `</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="dynamic-import"><a href="#dynamic-import" class="headerlink" title="dynamic import"></a>dynamic import</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/11/27/webpack%E4%B9%8Bmodule/" data-id="ckowi50gz0054dvrv95wpgykk" data-title="webpack之module" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-webpack之code-splitting" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/" class="article-date">
+  <time class="dt-published" datetime="2018-11-27T09:08:21.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/">webpack之code-splitting</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="如何分析Bundle"><a href="#如何分析Bundle" class="headerlink" title="如何分析Bundle"></a>如何分析Bundle</h2><h3 id="stats-json"><a href="#stats-json" class="headerlink" title="stats.json"></a>stats.json</h3><p><a href="">stats</a>是webpack生成的模块统计信息。通过它可以分析出模块依赖图，从而优化编译速度。</p>
+<h3 id="stats可视化工具"><a href="#stats可视化工具" class="headerlink" title="stats可视化工具"></a>stats可视化工具</h3><p>这里试用了几款第三方分析工具（官方本身的太难用，包多一点直接卡死）：</p>
+<h4 id="webpack-chart"><a href="#webpack-chart" class="headerlink" title="webpack-chart"></a>webpack-chart</h4><img src="/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/chart.png" class="">
+<p><a target="_blank" rel="noopener" href="https://alexkuz.github.io/webpack-chart/">webpack-chart</a>是一款比较基础的工具，信息检索很不方便，子级模块需要逐层点击展开，操作繁琐且信息展示不全，无法应对module比较多项目。</p>
+<h4 id="webpack-visualizer"><a href="#webpack-visualizer" class="headerlink" title="webpack-visualizer"></a>webpack-visualizer</h4><p><a target="_blank" rel="noopener" href="https://chrisbateman.github.io/webpack-visualizer/">webpack-visualizer</a> 信息检索能力比webpack-chart要强，每个模块的信息都可以通过鼠标悬浮方式查看，并且还可以分chunk查看。<br>但是它存在一个bug，就是当chunk中包含非js模块时，其下子模块的actual值跟实际情况不相符。比如：</p>
+<img src="/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/visualizer.png" class="">
+<p>对于app.xxx.js而言，其内容几乎都来自src下的js模块，因此src的actual实际上是250K左右。<br>另外，当模块很多时，界面上会出现细小难以操作区域，即使放大浏览器页面也不够。</p>
+<h4 id="webpack-bundle-analyzer"><a href="#webpack-bundle-analyzer" class="headerlink" title="webpack-bundle-analyzer"></a>webpack-bundle-analyzer</h4><p><a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/webpack-bundle-analyzer">webpack-bundle-analyzer</a>是三者之中最好用的统计工具。<br>它不仅提供了stat-size视图，还有parsed视图（minify之后的大小）、gzip视图（gzip压缩后的大小）。不存在非js模块的错误统计问题。界面支持缩放，任意层级的模块都可以清晰查看。</p>
+<img src="/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/bundle-analyzer.png" class="">
+
+<h3 id="如何衡量打包速度"><a href="#如何衡量打包速度" class="headerlink" title="如何衡量打包速度"></a>如何衡量打包速度</h3><p><a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/profiling-plugin/">profiling-plugin</a><br>通过该插件可以获取webpack编译过程的性能监控图，从而分析每个plugin花费的时间。</p>
+<p>todo 如何获取rebuild的profile，官方推荐的插件会抛异常。<br>todo 如何正确的分析profile（从简单的例子开始）</p>
+<h3 id="SMP"><a href="#SMP" class="headerlink" title="SMP"></a>SMP</h3><p><a target="_blank" rel="noopener" href="https://codeburst.io/announcing-smp-speeding-up-webpack-with-timers-8387d769e5c7">SMP</a><br>todo </p>
+<h3 id="vue-cli3-x"><a href="#vue-cli3-x" class="headerlink" title="vue-cli3.x"></a>vue-cli3.x</h3><p>vue inspect &gt; output.js 获取开发模式下的webpackConfig（产品模式加 –mode production）。<br>vueCLI3 build –report-json 产品模式编译并输出statsJSON。</p>
+<p>调试compile<br>node –inspect-brk ./node_modules/@vue/cli-service/bin/vue-cli-service.js serve<br>可在server.js compiler中获取stats。</p>
+<p>调试resolve webpackConfig<br>node –inspect-brk ./node_modules/@vue/cli-service/bin/vue-cli-service.js inspect –mode production &gt; webpackConfig.product.js</p>
+<p>todo 使用<a target="_blank" rel="noopener" href="https://github.com/amireh/happypack">happypack</a>降低编译时间。</p>
+<h2 id="webpack是如何进行代码拆分的？"><a href="#webpack是如何进行代码拆分的？" class="headerlink" title="webpack是如何进行代码拆分的？"></a>webpack是如何进行代码拆分的？</h2><h3 id="chunk拆分"><a href="#chunk拆分" class="headerlink" title="chunk拆分"></a>chunk拆分</h3><p>webpack最终会将我们书写代码块合并包到一个bundle里面，作为浏览器的下载单元。因此bundle的大小会影响前端页面的加载性能。<br>理想的状况是bundle本身足够小(200kb左右)，但是对于现代Web SPA应用而言，巨型bundle是很容易产生的。有效的解决办法就是拆分bundle为多个chunk，再结合前端的动态加载技术实现页面资源的懒加载（按需加载）。</p>
+<p>webpack会在3个地方分离代码：</p>
+<ol>
+<li>不同的entry打包为不同的bundle</li>
+<li>通过SplitChunks插件去重和分离chunk</li>
+<li>通过动态导入创建分离的代码</li>
+</ol>
+<h4 id="SplitChunksPlugin"><a href="#SplitChunksPlugin" class="headerlink" title="SplitChunksPlugin"></a>SplitChunksPlugin</h4><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/split-chunks-plugin/">SplitChunksPlugin</a>的前任是CommonsChunkPlugin。CommonsChunkPlugin是手动指定需要分离出来的模块，而SplitChunksPlugin的做法更加聪明，它允许开发者制定一组规则，然后在编译过程中将符合规则的模块自动分离出来。</p>
+<p>SplitChunksPlugin的默认规则是：</p>
+<ul>
+<li>该模块是共享的（被多次引用）或者是来自node_modules文件夹</li>
+<li>原始size &gt; 30kb</li>
+<li>页面按需加载时，并发请求数 &lt;= 5</li>
+<li>页面初始化加载时，并发请求数 &lt;= 3<br>若以上规则全部满足，则会发生代码分离。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SplitChunksPlugin的默认配置</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">optimization</span>: &#123;</span><br><span class="line">        <span class="attr">splitChunks</span>: &#123;</span><br><span class="line">            <span class="attr">chunks</span>: <span class="string">&#x27;async&#x27;</span>, <span class="comment">// all - 静态/动态导入都可, async - 动态导入的模块, initial - 静态导入的模块, function(chunk) - 自定义条件</span></span><br><span class="line">            <span class="attr">minSize</span>: <span class="number">30000</span>, <span class="comment">// &gt; 30kb</span></span><br><span class="line">            <span class="attr">maxSize</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">minChunks</span>: <span class="number">1</span>, <span class="comment">// 被引用次数至少为1</span></span><br><span class="line">            <span class="attr">maxAsyncRequests</span>: <span class="number">5</span>, <span class="comment">// 按需加载请求最大并发数 5</span></span><br><span class="line">            <span class="attr">maxInitialRequests</span>: <span class="number">3</span>, <span class="comment">// 初始化请求最大并发数 3</span></span><br><span class="line">            <span class="attr">automaticNameDelimiter</span>: <span class="string">&#x27;~&#x27;</span>, <span class="comment">// chunk名称分隔符</span></span><br><span class="line">            <span class="attr">name</span>: <span class="literal">true</span>, <span class="comment">// String|Function|Boolean, chunk的名称，true代表自动生成</span></span><br><span class="line">            <span class="comment">// 子规则，子规则会继承以上属性，若有同名属性，则子规则优先</span></span><br><span class="line">            <span class="attr">cacheGroups</span>: &#123;</span><br><span class="line">                <span class="attr">vendors</span>: &#123;</span><br><span class="line">                    <span class="attr">test</span>: <span class="regexp">/[\\/]node_modules[\\/]/</span>, <span class="comment">// 按路径匹配模块，这里将node_modules下符合条件的模块统一分离到vendors</span></span><br><span class="line">                    priority: -<span class="number">10</span> <span class="comment">// 优先级</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="comment">// default默认子规则，只能有一个。</span></span><br><span class="line">                <span class="attr">default</span>: &#123;</span><br><span class="line">                    <span class="attr">minChunks</span>: <span class="number">2</span>, <span class="comment">// 被引用次数至少 &gt; 1 </span></span><br><span class="line">                    <span class="attr">priority</span>: -<span class="number">20</span>, <span class="comment">// 优先级</span></span><br><span class="line">                    <span class="attr">reuseExistingChunk</span>: <span class="literal">true</span> <span class="comment">// </span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="忽略无效代码"><a href="#忽略无效代码" class="headerlink" title="忽略无效代码"></a>忽略无效代码</h3><p><a target="_blank" rel="noopener" href="https://remarkablemark.org/blog/2017/02/25/webpack-ignore-module/">如何剔除多余的模块</a><br>了解<a target="_blank" rel="noopener" href="https://webpack.js.org/guides/tree-shaking/#src/components/Sidebar/Sidebar.jsx">webpack-tree-shaking</a>，剔除无效的export。<br>使用UglifyJsPlugin剔除dead code。<br>使用IgnorePlugin忽略某些模块。</p>
+<h3 id="increment-build"><a href="#increment-build" class="headerlink" title="increment build"></a>increment build</h3><p>todo 增量编译是如何实现的</p>
+<p>与product不同，dev是增量编译模式。未找到直接获取stats.json文件的方法。<br>但是可以通过node –inspect-brk利用devtools调试nodejs，找到conpiler代码段，然后在console中使用stats.toJSON()来获取增量编译的统计信息。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://webpack.js.org/api/stats/">stats.json结构说明</a><br><a target="_blank" rel="noopener" href="https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15">Speeding Up Webpack, Typescript Incremental Builds by 7x</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/11/27/webpack%E4%B9%8Bcode-splitting/" data-id="ckowi50gx004zdvrvevbxbj4d" data-title="webpack之code-splitting" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue过渡系统" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time class="dt-published" datetime="2018-11-27T09:08:08.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/">vue过渡系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="进入离开过渡"><a href="#进入离开过渡" class="headerlink" title="进入离开过渡"></a>进入离开过渡</h2><p>设置元素进入/离开时的动效果。<br>触发点:</p>
+<ol>
+<li>条件渲染 (使用 v-if)</li>
+<li>条件展示 (使用 v-show)</li>
+<li>动态组件 (使用 is)</li>
+<li>组件根节点</li>
+</ol>
+<h3 id="transition组件，实现单个元素的过渡"><a href="#transition组件，实现单个元素的过渡" class="headerlink" title="transition组件，实现单个元素的过渡"></a>transition组件，实现单个元素的过渡</h3><p>transition组件不会渲染为真实的dom节点。在触发点被激活时，vue会自动嗅探当前元素是否应用了过渡效果，如果是，则会在不同的过渡阶段为触发元素添加不同的过渡class。</p>
+<p>过渡周期：</p>
+<img src="/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/transition.png" class="">
+
+<p>过渡模式mode：</p>
+<ol>
+<li>默认enter与leave同时发生。</li>
+<li>in-out：新元素先进行过渡，完成之后当前元素过渡离开。</li>
+<li>out-in：当前元素先进行过渡，完成之后新元素过渡进入。</li>
+</ol>
+<p>主要场景，多选一过渡<br>原生标签若名称相同，则需要通过key来区分。多个组件则不用。</p>
+<h3 id="transition-group组件，实现多个元素同时过渡"><a href="#transition-group组件，实现多个元素同时过渡" class="headerlink" title="transition-group组件，实现多个元素同时过渡"></a>transition-group组件，实现多个元素同时过渡</h3><p>transition-group会被渲染为一个真实dom节点，默认为span。<br>过渡模式mode不可用，此时不是单个元素的切换。<br>内部元素总是需要提供唯一key。</p>
+<p>transition-group会提供一个新特性move，在元素改变定位时应用，为其添加class v-move。内部实现是利用了FLIP动画队列，让元素平滑的改变位置。</p>
+<h2 id="状态过渡"><a href="#状态过渡" class="headerlink" title="状态过渡"></a>状态过渡</h2><p>元素本身改变的动效。</p>
+<ul>
+<li>数字和运算</li>
+<li>颜色的显示</li>
+<li>SVG 节点的位置</li>
+<li>元素的大小和其他的属性</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://aerotwist.com/blog/flip-your-animations/">FLIP</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2018/11/27/vue%E8%BF%87%E6%B8%A1%E7%B3%BB%E7%BB%9F/" data-id="ckowi50gy0052dvrv9y5m6wwm" data-title="vue过渡系统" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/blog/page/6/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/5/">5</a><a class="page-number" href="/blog/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/blog/page/8/">8</a><a class="extend next" rel="next" href="/blog/page/8/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>vue2底层机制解析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="reactive data@1 响应式原理包含3个部分：  Observer，底层观察者 Dep，订阅列表 Watcher，高层订阅者  reactive obj&#x2F;arrayObserver将一个对象（数组）变为“可响应式的”。 reactive obj会将所有属性会变为可响应式属性，reactive array会将所有子元素变为可观察的。 reactive prop（可响应式属性） 可响应式属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2底层机制解析">
+<meta property="og:url" content="https://jsxhill.github.io/blog/2019/09/26/vue2%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="reactive data@1 响应式原理包含3个部分：  Observer，底层观察者 Dep，订阅列表 Watcher，高层订阅者  reactive obj&#x2F;arrayObserver将一个对象（数组）变为“可响应式的”。 reactive obj会将所有属性会变为可响应式属性，reactive array会将所有子元素变为可观察的。 reactive prop（可响应式属性） 可响应式属性">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-26T01:34:52.000Z">
+<meta property="article:modified_time" content="2020-11-08T08:13:07.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="todo">
+<meta property="article:tag" content="vue2">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jsxhill.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-vue2底层机制解析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2019/09/26/vue2%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90/" class="article-date">
+  <time class="dt-published" datetime="2019-09-26T01:34:52.000Z" itemprop="datePublished">2019-09-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      vue2底层机制解析
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="reactive-data"><a href="#reactive-data" class="headerlink" title="reactive data"></a>reactive data</h2><p>@1 响应式原理包含3个部分：</p>
+<ol>
+<li>Observer，底层观察者</li>
+<li>Dep，订阅列表</li>
+<li>Watcher，高层订阅者</li>
+</ol>
+<p>reactive obj/array<br>Observer将一个对象（数组）变为“可响应式的”。</p>
+<p>reactive obj会将所有属性会变为可响应式属性，<br>reactive array会将所有子元素变为可观察的。</p>
+<pre><code>reactive prop（可响应式属性）
+可响应式属性是利用 Object.defineProperty 将原属性转换为getter/setter，并且绑定一个Dep，让自己的变化可追踪。
+除了实现原本的get/set功能之外，getter还会负责收集依赖（depend）。而setter还会负责将新value变为可观察的。如果属性值发生了变化，还会负责
+发送通知（Dep.notify）。
+
+reactive method（可响应式方法）
+响应式数组的&#39;push&#39;,&#39;pop&#39;,&#39;shift&#39;,&#39;unshift&#39;,&#39;splice&#39;,&#39;sort&#39;,&#39;reverse&#39;也是响应式的。并且还会负责将新元素（有的话）也变为可观察的。
+</code></pre>
+<p>Dep<br>每个reactive obj以及reactive prop都会绑定一个dep对象，用于记录其订阅者。<br>订阅的过程称之为收集依赖（depend）。depend是一个全局操作，每次只有一个watcher（target）可以depend。</p>
+<p>Watcher<br>订阅响应式事件。<br>响应式属性与watcher是多对多关系。<br>vm实例与watcher是一对多关系。</p>
+<h2 id="component"><a href="#component" class="headerlink" title="component"></a>component</h2><p>Vue将可配置的实例属性都放在了vm.options下，且vm.options由class options 以及 context options混合而成；<br>其余实例属性都以_开头，作为私有属性供内部使用。</p>
+<p>@1 strategies option合并策略<br>{<br>    // 先检查合并是否发生在实例上，然后调用 defaultStrat<br>    ‘el’: validDefaultStrat,<br>    ‘propsData’: validDefaultStrat,</p>
+<pre><code>// 会将所有hook并入一个数组，[...parent, ...child]
+&#39;beforeCreate&#39;: mergeHook,
+&#39;created &#39;: mergeHook,
+&#39;beforeMount&#39;: mergeHook,
+&#39;mounted&#39;: mergeHook,
+&#39;beforeUpdate&#39;: mergeHook,
+&#39;updated&#39;: mergeHook,
+&#39;beforeDestroy&#39;: mergeHook,
+&#39;destroyed&#39;: mergeHook,
+&#39;activated&#39;: mergeHook,
+&#39;deactivated&#39;: mergeHook,
+&#39;errorCaptured&#39;: mergeHook,
+
+// parent以原型代理方式并入child, child -&gt; parent
+&#39;component&#39;: mergeAssets,
+&#39;directive&#39;: mergeAssets,
+&#39;filter&#39;: mergeAssets,
+
+// 与mergeHook类似，相同的项使用concat合并，&#123; _path: [...parent, ...child] &#125;
+&#39;watch&#39;: mergewatch,
+
+// 返回一个工厂函数，内部进行递归合并，相同项child优先
+&#39;data&#39;: mergeData,
+
+// 浅复制，child覆盖parent
+&#39;props&#39;: mergeObj,
+&#39;methods&#39;: mergeObj,
+&#39;inject&#39;: mergeObj,
+&#39;computed&#39;: mergeObj,
+
+// 返回一个工厂函数，内部进行递归合并，相同项child优先
+&#39;provide&#39;: mergeDataOrFn,
+
+// 默认合并策略：child ? child : parent 
+&#39;*&#39;: defaultStrat
+</code></pre>
+<p>}</p>
+<p>@2 mergeOption是创建Vue实例的核心步骤。<br>每个实例的$options都来自 ConstructorOptions &lt; InstanceOptions 的合并。<br>而 ConstructorOptions 是来自 OwnConstructorOptions &lt; SuperConstructorOptions … &lt; VueConstructorOptions 的合并。</p>
+<p>Vue.extend（继承）就是通过 ConstructorOptions 的逐级合并而实现的。<br>    Sub.options = mergeOptions(Sub.superOptions, extendOptions);</p>
+<p>另外还会缓存3个对象，分别是：<br>    1. 父级options，Sub.superOptions = Super.options;<br>    2. 本级options Sub.extendOptions = extendOptions;<br>    3. 原始构造函数options（只读），Sub.sealedOptions = extend({}, Sub.options);<br>主要目的是为了优化Vue.mixin。mixin动态修改options的原理是：<br>    每当创建Vue实例时，会重新计算一次ConstructorOptions（resolveConstructorOptions），以保证后续动态添加的mixin会包含在其中。<br>但是全属性的mergeOptions是一件很耗时的任务，因此利用缓存做对比以及局部合并，尽量缩小合并范围，提升性能。</p>
+<p>各生命周期钩子触发的时机<br>beforeCreate    Vue实例创建时vue.init内触发；此时options已成形，但是还未进入数据观察状态；<br>created         vue.init末尾触发，实例已进入观测状态，但是还未进行模版渲染；<br>beforeMount     vue.$mount开始时触发，此时render函数已编译好，但是还未生成VNode；<br>mounted         vue.$mount结束时触发，此时VNode已生成完毕，并且已经渲染到为DOM；<br>beforeUpdate    vue._update开始时触发（首次渲染不会触发），局部DOM还未更新；<br>updated         flushSchedulerQueue结束时触发，每个watcher都会触发一次，局部DOM已更新；<br>activated       flushSchedulerQueue结束时触发，keep-alive组件专属；<br>deactivated     keep-alive组件在destory结束时触发；<br>beforeDestroy   非keep-alive组件在destory开始时触发，此时实例仍可用；<br>destroyed       $destory结束时触发，此时实例已解除所有绑定和事件监听，子组件实例也已经销毁；<br>errorCaptured</p>
+<h2 id="vnode"><a href="#vnode" class="headerlink" title="vnode"></a>vnode</h2><h2 id="compiler"><a href="#compiler" class="headerlink" title="compiler"></a>compiler</h2><h2 id="build"><a href="#build" class="headerlink" title="build"></a>build</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jsxhill.github.io/blog/2019/09/26/vue2%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90/" data-id="ckowi50fo001pdvrvdaz34opm" data-title="vue2底层机制解析" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/10/09/verdaccio%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          verdaccio使用问题集合
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/09/23/weapp%E5%8C%85%E7%AE%A1%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">weapp包管理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Tool/">Tool</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/">cookbook</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/vue/">vue</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cookbook/weapp/">weapp</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/guide/">guide</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/angular1/" rel="tag">angular1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/" rel="tag">babel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chart/" rel="tag">chart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/component/" rel="tag">component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/develop/" rel="tag">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/e2e/" rel="tag">e2e</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fp/" rel="tag">fp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/generator/" rel="tag">generator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/geojson/" rel="tag">geojson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/glob/" rel="tag">glob</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/gulp/" rel="tag">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/h5/" rel="tag">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/inherit/" rel="tag">inherit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mlcc/" rel="tag">mlcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mvvm/" rel="tag">mvvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/no-sql/" rel="tag">no-sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/pattern/" rel="tag">pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/performance/" rel="tag">performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/registry/" rel="tag">registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrapy/" rel="tag">scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/scrcpy/" rel="tag">scrcpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/semantics/" rel="tag">semantics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sinonjs/" rel="tag">sinonjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/sklearn/" rel="tag">sklearn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/spider/" rel="tag">spider</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/st3/" rel="tag">st3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/stackoverflow/" rel="tag">stackoverflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/todo/" rel="tag">todo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ts/" rel="tag">ts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/visualization/" rel="tag">visualization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/vue2/" rel="tag">vue2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/weapp/" rel="tag">weapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/yo/" rel="tag">yo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/angular1/" style="font-size: 10px;">angular1</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/blog/tags/chart/" style="font-size: 10px;">chart</a> <a href="/blog/tags/cli/" style="font-size: 10px;">cli</a> <a href="/blog/tags/component/" style="font-size: 10px;">component</a> <a href="/blog/tags/conda/" style="font-size: 10px;">conda</a> <a href="/blog/tags/develop/" style="font-size: 10px;">develop</a> <a href="/blog/tags/e2e/" style="font-size: 12.5px;">e2e</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/fp/" style="font-size: 10px;">fp</a> <a href="/blog/tags/generator/" style="font-size: 10px;">generator</a> <a href="/blog/tags/geojson/" style="font-size: 10px;">geojson</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/glob/" style="font-size: 10px;">glob</a> <a href="/blog/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/blog/tags/h5/" style="font-size: 15px;">h5</a> <a href="/blog/tags/inherit/" style="font-size: 10px;">inherit</a> <a href="/blog/tags/js/" style="font-size: 12.5px;">js</a> <a href="/blog/tags/junit/" style="font-size: 15px;">junit</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mac/" style="font-size: 15px;">mac</a> <a href="/blog/tags/mlcc/" style="font-size: 15px;">mlcc</a> <a href="/blog/tags/mvvm/" style="font-size: 10px;">mvvm</a> <a href="/blog/tags/no-sql/" style="font-size: 10px;">no-sql</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 17.5px;">npm</a> <a href="/blog/tags/pandas/" style="font-size: 12.5px;">pandas</a> <a href="/blog/tags/pattern/" style="font-size: 10px;">pattern</a> <a href="/blog/tags/performance/" style="font-size: 10px;">performance</a> <a href="/blog/tags/python/" style="font-size: 15px;">python</a> <a href="/blog/tags/registry/" style="font-size: 12.5px;">registry</a> <a href="/blog/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/blog/tags/scrcpy/" style="font-size: 10px;">scrcpy</a> <a href="/blog/tags/semantics/" style="font-size: 10px;">semantics</a> <a href="/blog/tags/sinonjs/" style="font-size: 10px;">sinonjs</a> <a href="/blog/tags/sklearn/" style="font-size: 10px;">sklearn</a> <a href="/blog/tags/spider/" style="font-size: 12.5px;">spider</a> <a href="/blog/tags/st3/" style="font-size: 10px;">st3</a> <a href="/blog/tags/stackoverflow/" style="font-size: 12.5px;">stackoverflow</a> <a href="/blog/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/blog/tags/todo/" style="font-size: 20px;">todo</a> <a href="/blog/tags/ts/" style="font-size: 10px;">ts</a> <a href="/blog/tags/visualization/" style="font-size: 10px;">visualization</a> <a href="/blog/tags/vscode/" style="font-size: 12.5px;">vscode</a> <a href="/blog/tags/vue/" style="font-size: 17.5px;">vue</a> <a href="/blog/tags/vue2/" style="font-size: 10px;">vue2</a> <a href="/blog/tags/weapp/" style="font-size: 15px;">weapp</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 12.5px;">webpack</a> <a href="/blog/tags/yo/" style="font-size: 10px;">yo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2021/05/20/js%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98/">js中如何实现私有成员</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/14/sinonjs%E4%B8%8E%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">sinonjs与单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/08/Vue%E7%BB%84%E4%BB%B6%E5%8D%95%E6%B5%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Vue组件单测环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/11/04/VsCode%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">VsCode实践总结</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/09/27/chai-cheatSheet/">chai cheatSheet</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
